@@ -1,0 +1,61 @@
+grammarCheck TextGears API post request response
+
+{
+    "originalText": "I is an engeneer.",
+    "corrections": [
+        {
+            "error": {
+                "en": "Use a first-person plural verb."
+            },
+            "suggestions": [
+                "am"
+            ]
+        },
+        {
+            "error": {
+                "en": "Possible spelling mistake"
+            },
+            "suggestions": [
+                "engineer",
+                "engender",
+                "engineers",
+                "engine",
+                "ingenue",
+                "engineer's"
+            ]
+        }
+    ],
+    "all": [
+        {
+            "id": "e504761736",
+            "offset": 2,
+            "length": 2,
+            "description": {
+                "en": "Use a first-person plural verb."
+            },
+            "bad": "is",
+            "better": [
+                "am"
+            ],
+            "type": "grammar"
+        },
+        {
+            "id": "e1147650887",
+            "offset": 8,
+            "length": 8,
+            "description": {
+                "en": "Possible spelling mistake"
+            },
+            "bad": "engeneer",
+            "better": [
+                "engineer",
+                "engender",
+                "engineers",
+                "engine",
+                "ingenue",
+                "engineer's"
+            ],
+            "type": "spelling"
+        }
+    ]
+}
