@@ -13,11 +13,10 @@ const textGearsRoute = require("./routers/textGears");
 // Load environment variables from .env file
 require("dotenv").config();
 
-// ROUTERS //
-
+// Routers
 app.use("/", textGearsRoute);
 
-// ROUTES //
+// Routes
 app.use(router);
 
 // Start port
