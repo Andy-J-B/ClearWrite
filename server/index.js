@@ -9,12 +9,14 @@ app.use(express.json());
 // Use Routers to clean up code
 const router = express.Router();
 const textGearsRoute = require("./routers/textGears");
+const saplingRoute = require("./routers/sapling");
 
 // Load environment variables from .env file
 require("dotenv").config();
 
 // Routers
 app.use("/", textGearsRoute);
+app.use("/", saplingRoute);
 
 // Routes
 app.use(router);
