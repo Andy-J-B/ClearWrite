@@ -153,7 +153,7 @@ describe("Summarize", () => {
       method: "POST",
       url: "/summarize",
       body: {
-        text: "I is an engeneer.",
+        text: "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
       },
     });
 
@@ -164,9 +164,39 @@ describe("Summarize", () => {
     const data = response._getJSONData();
 
     expect(data).toEqual({
-      originalText: text,
-      corrections: {},
-      all: {},
+      originalText:
+        "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
+      summary: [
+        // Text summary sentences
+        "The two main factors of readability are the printing and linguistic features of the text.",
+        "The Flesch Kinkaid Score is the most popular way to measure the readability of English text.",
+        "It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities.",
+      ],
+      all: {
+        keywords: [
+          "text",
+          "readability",
+          "english",
+          "printing",
+          "fewer",
+          "words",
+          "terms",
+          "higher",
+          "features",
+          "indexes",
+        ],
+        highlight: [
+          // Most important paragraph, starting with main sentence
+          "The two main factors of readability are the printing and linguistic features of the text.",
+          "In other words, pages containing simple and clear text get higher positions in the search results.",
+        ],
+        summary: [
+          // Text summary sentences
+          "The two main factors of readability are the printing and linguistic features of the text.",
+          "The Flesch Kinkaid Score is the most popular way to measure the readability of English text.",
+          "It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities.",
+        ],
+      },
     });
   });
 });

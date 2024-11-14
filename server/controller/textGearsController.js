@@ -179,7 +179,7 @@ const Summarize = async (req, res) => {
     //   // If there are enough sentences
     //   res.json({
     //     originalText: text,
-    //     corrections: summaries?.summary,
+    //     summaries: summaries?.summary,
     //     all: summaries,
     //   });
     // } else if (text.length == 0) {
