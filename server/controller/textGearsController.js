@@ -21,25 +21,83 @@ const CorrectGrammar = async (req, res) => {
     // const data = await axios.get(url);
 
     // Extract errors
-    const errors = data?.data?.response?.errors;
+    // const errors = data?.data?.response?.errors;
 
-    if (errors.length > 0) {
-      // If there are grammatical errors
-      res.json({
-        originalText: text,
-        corrections: errors.map((error) => ({
-          error: error.description,
-          suggestions: error.better,
-        })),
-        all: errors,
-      });
-    } else {
-      // If there are no grammatical errors
-      res.json({
-        originalText: text,
-        corrections: [],
-      });
-    }
+    res.json({
+      originalText: "I is an engeneer.",
+      corrections: [
+        {
+          error: {
+            en: "Use a first-person plural verb.",
+          },
+          suggestions: ["am"],
+        },
+        {
+          error: {
+            en: "Possible spelling mistake",
+          },
+          suggestions: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+        },
+      ],
+      all: [
+        {
+          id: "e504761736",
+          offset: 2,
+          length: 2,
+          description: {
+            en: "Use a first-person plural verb.",
+          },
+          bad: "is",
+          better: ["am"],
+          type: "grammar",
+        },
+        {
+          id: "e1147650887",
+          offset: 8,
+          length: 8,
+          description: {
+            en: "Possible spelling mistake",
+          },
+          bad: "engeneer",
+          better: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+          type: "spelling",
+        },
+      ],
+    });
+
+    return;
+
+    // if (errors.length > 0) {
+    //   // If there are grammatical errors
+    //   res.json({
+    //     originalText: text,
+    //     corrections: errors.map((error) => ({
+    //       error: error.description,
+    //       suggestions: error.better,
+    //     })),
+    //     all: errors,
+    //   });
+    // } else {
+    //   // If there are no grammatical errors
+    //   res.json({
+    //     originalText: text,
+    //     corrections: [],
+    //   });
+    // }
   } catch (error) {
     // If there is an error
     res.status(500).send(`Error: ${error}`);
@@ -66,20 +124,25 @@ const Readability = async (req, res) => {
     // const data = await axios.get(url);
 
     // Extract statistics
-    const statistics = data?.data?.response?.stats;
-    if (statistics?.counters?.words > 30) {
-      // If there are enough words
-      res.json({
-        originalText: text,
-        fleschKincaid: statistics?.fleschKincaid,
-        emotion: statistics?.emotion,
-        counters: statistics?.counters,
-        all: statistics,
-      });
-    } else {
-      // If there are too little words
-      res.json({ error: "Essay is too short to evaluate." });
-    }
+    // const statistics = data?.data?.response?.stats;
+
+    res.json({});
+
+    return;
+
+    // if (statistics?.counters?.words > 30) {
+    //   // If there are enough words
+    //   res.json({
+    //     originalText: text,
+    //     fleschKincaid: statistics?.fleschKincaid,
+    //     emotion: statistics?.emotion,
+    //     counters: statistics?.counters,
+    //     all: statistics,
+    //   });
+    // } else {
+    //   // If there are too little words
+    //   res.json({ error: "Essay is too short to evaluate." });
+    // }
   } catch (error) {
     // Catch errors
     res.status(500).send(`Error: ${error}`);
@@ -106,22 +169,26 @@ const Summarize = async (req, res) => {
     // const data = await axios.get(url);
 
     // Extract summaries
-    const summaries = data?.data?.response;
+    // const summaries = data?.data?.response;
 
-    if (summaries?.keywords.length > 0) {
-      // If there are enough sentences
-      res.json({
-        originalText: text,
-        corrections: summaries?.summary,
-        all: summaries,
-      });
-    } else if (text.length == 0) {
-      // If there are no words at all
-      res.json({ error: "No words present to evaluate." });
-    } else {
-      // If the essay is too short
-      res.json({ error: "Essay is too short to evaluate." });
-    }
+    res.json({});
+
+    return;
+
+    // if (summaries?.keywords.length > 0) {
+    //   // If there are enough sentences
+    //   res.json({
+    //     originalText: text,
+    //     corrections: summaries?.summary,
+    //     all: summaries,
+    //   });
+    // } else if (text.length == 0) {
+    //   // If there are no words at all
+    //   res.json({ error: "No words present to evaluate." });
+    // } else {
+    //   // If the essay is too short
+    //   res.json({ error: "Essay is too short to evaluate." });
+    // }
   } catch (error) {
     // Catch error
     res.status(500).send(`Error: ${error}`);
