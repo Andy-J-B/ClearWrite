@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "start": "node index",
     "dev": "nodemon server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "axios": "^1.7.7",
+    "express": "^4.21.1",
+    "textgears-api": "^1.1.11"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
