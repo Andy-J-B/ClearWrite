@@ -20,5 +20,5 @@ app.use("/", textGearsRoute);
 app.use(router);
 
 // Start port
-const port = process.env.PORT;
+const port = 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -1,0 +1,55 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif; /* Sets the font for the page */
+    background-color: #f4f4f4; /* Light grey background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centers the container horizontally */
+    align-items: center; /* Centers the container vertically */
+    height: 100vh; /* Full viewport height */
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 40px; /* Increased from 20px for a larger outer box */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Adjusted for a larger appearance */
+    margin: auto; /* Centers the box horizontally */
+}
+
+textarea#essayInput {
+    width: 90%; /* Making the textarea wider */
+    height: 200px; /* Increased height */
+    margin: 20px 0; /* Adds vertical space around the textarea */
+    padding: 15px; /* More internal padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none; /* Keeps the resize disabled */
+}
+
+button#submitBtn {
+    /* Keep these styles the same to not affect the button size */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+button#submitBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Logo styling */
+.logo {
+    height: 50px;  /* Adjust the size of your logo */
+    width: 100px;  /* Maintain aspect ratio */
+    margin-right: 10px;  /* Space between logo and text */
+}
