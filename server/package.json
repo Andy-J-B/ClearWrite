@@ -7,7 +7,7 @@
     "test": "jest --coverage",
     "start": "node index",
     "dev": "nodemon server",
-    "build": "npm build",
+    "build": "npm build"
   },
   "author": "",
   "license": "ISC",
