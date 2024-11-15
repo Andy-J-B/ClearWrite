@@ -5,8 +5,5 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "node-mocks-http": "^1.16.1"
-  },
-  "scripts":{
-    "test":"jest"
   }
 }
