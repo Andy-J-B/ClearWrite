@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import '../src/'; // Ensure the CSS is correctly linked
+import logo from './path/to/images/clearWritebg.png'; // Make sure the path matches where you store your images
 
 const MainPage = () => {
-  const [text, setText] = useState('');
-  const navigate = useNavigate();
+  const [text, setText] = useState(''); // This state will hold the essay text
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
+    event.preventDefault(); // Prevent the default form submission behavior
     try {
+      // Here we make a POST request to the API endpoint
       const response = await fetch('http://localhost:3000/correctGrammar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text }) // Send the text state in the request body
       });
       const data = await response.json();
-
-      // Redirect to the results page with the data
-      navigate('/results', { state: { data } });
+      console.log(data); // Log or handle the response data
+      // Optionally, handle navigation or state updates based on the response
     } catch (error) {
       console.error('Error submitting essay:', error);
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <header>
-        <img src="/path/to/clearwrite-logo.png" alt="ClearWrite Logo" />
+        <img src={logo} alt="ClearWrite Logo" className="logo"/>
       </header>
       <form onSubmit={handleSubmit}>
         <textarea
+          id="essayInput"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Enter your essay here ..."
