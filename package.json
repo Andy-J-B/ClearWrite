@@ -1,5 +1,22 @@
 {
+  "name": "ClearWrite",
+  "version": "1.0.0",
+  "description": "A simple React application for essay evaluation with ClearWrite.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
   "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0",
     "dotenv": "^16.4.5"
-  }
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  },
+  "author": "Your Name",
+  "license": "ISC"
 }

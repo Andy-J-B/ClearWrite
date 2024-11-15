@@ -2,39 +2,8 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import MainPage from './MainPage';  // Ensure this path matches your actual file
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-function MainPage() {
-    const [essay, setEssay] = useState('');
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await fetch('http://localhost:3000/correctGrammar', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: essay })
-            });
-            const data = await response.json();
-            alert('Essay evaluated! Check the console for results.');
-            console.log(data);
-        } catch (error) {
-            console.error('Error submitting essay:', error);
-            alert('Error sending essay for evaluation.');
-        }
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <textarea
-                value={essay}
-                onChange={(e) => setEssay(e.target.value)}
-                placeholder="Enter your essay here ..."
-            />
-            <button type="submit">Evaluate</button>
-        </form>
-    );
-}
 
 function App() {
     const [count, setCount] = useState(0);
@@ -45,10 +14,10 @@ function App() {
                 <Route path="/" element={
                     <>
                         <div>
-                            <a href="https://vite.dev" target="_blank">
+                            <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
                                 <img src={viteLogo} className="logo" alt="Vite logo" />
                             </a>
-                            <a href="https://react.dev" target="_blank">
+                            <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
                                 <img src={reactLogo} className="logo react" alt="React logo" />
                             </a>
                         </div>
@@ -62,7 +31,7 @@ function App() {
                         <p className="read-the-docs">
                             Click on the Vite and React logos to learn more
                         </p>
-                        <MainPage />
+                        <MainPage />  {/* This uses the imported MainPage component */}
                     </>
                 } />
             </Routes>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles.css'; // Ensure the CSS is correctly linked
-import logo from './path/to/images/clearWritebg.png'; // Make sure the path matches where you store your images
+import logo from './images/clearWritebg.png'; // Adjust this path to your actual image location
 
 const MainPage = () => {
   const [text, setText] = useState(''); // This state will hold the essay text
@@ -36,7 +36,7 @@ const MainPage = () => {
           onChange={(e) => setText(e.target.value)}
           placeholder="Enter your essay here ..."
         ></textarea>
-        <button type="submit">Evaluate ...</button>
+        <button type="submit">Evaluate</button>
       </form>
     </div>
   );
