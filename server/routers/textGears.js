@@ -17,8 +17,10 @@ const textGearsController = require("../controller/textGearsController");
 // Load environmental variables
 require("dotenv").config();
 
+
 // Router for correcting grammar
 router.post("/correctGrammar", textGearsController.CorrectGrammar);
+
 
 // Router for checking readability
 router.post("/readability", textGearsController.Readability);
