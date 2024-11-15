@@ -18,68 +18,68 @@ const CorrectGrammar = async (req, res) => {
 
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    const data = await axios.get(url);
+    // const data = await axios.get(url);
 
     // Extract errors
-    const errors = data?.data?.response?.errors;
+    // const errors = data?.data?.response?.errors;
 
-    // res.json({
-    //   originalText: "I is an engeneer.",
-    //   corrections: [
-    //     {
-    //       error: {
-    //         en: "Use a first-person plural verb.",
-    //       },
-    //       suggestions: ["am"],
-    //     },
-    //     {
-    //       error: {
-    //         en: "Possible spelling mistake",
-    //       },
-    //       suggestions: [
-    //         "engineer",
-    //         "engender",
-    //         "engineers",
-    //         "engine",
-    //         "ingenue",
-    //         "engineer's",
-    //       ],
-    //     },
-    //   ],
-    //   all: [
-    //     {
-    //       id: "e504761736",
-    //       offset: 2,
-    //       length: 2,
-    //       description: {
-    //         en: "Use a first-person plural verb.",
-    //       },
-    //       bad: "is",
-    //       better: ["am"],
-    //       type: "grammar",
-    //     },
-    //     {
-    //       id: "e1147650887",
-    //       offset: 8,
-    //       length: 8,
-    //       description: {
-    //         en: "Possible spelling mistake",
-    //       },
-    //       bad: "engeneer",
-    //       better: [
-    //         "engineer",
-    //         "engender",
-    //         "engineers",
-    //         "engine",
-    //         "ingenue",
-    //         "engineer's",
-    //       ],
-    //       type: "spelling",
-    //     },
-    //   ],
-    // });
+    res.json({
+      originalText: "I is an engeneer.",
+      corrections: [
+        {
+          error: {
+            en: "Use a first-person plural verb.",
+          },
+          suggestions: ["am"],
+        },
+        {
+          error: {
+            en: "Possible spelling mistake",
+          },
+          suggestions: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+        },
+      ],
+      all: [
+        {
+          id: "e504761736",
+          offset: 2,
+          length: 2,
+          description: {
+            en: "Use a first-person plural verb.",
+          },
+          bad: "is",
+          better: ["am"],
+          type: "grammar",
+        },
+        {
+          id: "e1147650887",
+          offset: 8,
+          length: 8,
+          description: {
+            en: "Possible spelling mistake",
+          },
+          bad: "engeneer",
+          better: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+          type: "spelling",
+        },
+      ],
+    });
 
-    // return;
+    return;
 
     if (errors.length > 0) {
       // If there are grammatical errors
@@ -121,14 +121,14 @@ const Readability = async (req, res) => {
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    const data = await axios.get(url);
+    // const data = await axios.get(url);
 
     // Extract statistics
-    const statistics = data?.data?.response?.stats;
+    // const statistics = data?.data?.response?.stats;
 
-    // res.json({});
+    res.json({});
 
-    // return;
+    return;
 
     if (statistics?.counters?.words > 30) {
       // If there are enough words
@@ -166,14 +166,14 @@ const Summarize = async (req, res) => {
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    const data = await axios.get(url);
+    // const data = await axios.get(url);
 
     // Extract summaries
-    const summaries = data?.data?.response;
+    // const summaries = data?.data?.response;
 
-    // res.json({});
+    res.json({});
 
-    // return;
+    return;
 
     if (summaries?.keywords.length > 0) {
       // If there are enough sentences
