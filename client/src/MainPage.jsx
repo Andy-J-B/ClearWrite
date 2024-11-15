@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../src/'; // Ensure the CSS is correctly linked
+import './styles.css'; // Ensure the CSS is correctly linked
 import logo from './path/to/images/clearWritebg.png'; // Make sure the path matches where you store your images
 
 const MainPage = () => {
