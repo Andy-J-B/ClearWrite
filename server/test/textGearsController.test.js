@@ -1,68 +1,106 @@
-grammarCheck TextGears API post request response
+const {
+  CorrectGrammar,
+  Readability,
+  Summarize,
+} = require("../controller/textGearsController");
 
-{
-    "originalText": "I is an engeneer.",
-    "corrections": [
+const httpMocks = require("node-mocks-http");
+
+describe("CorrectGrammar", () => {
+  // Inspired from https://stackoverflow.com/questions/45210018/how-to-test-response-data-from-express-in-jest
+  test("Test grammatical checking and suggestions", () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/correctGrammar",
+      body: {
+        text: "I is an engeneer.",
+      },
+    });
+
+    const response = httpMocks.createResponse();
+
+    CorrectGrammar(request, response);
+
+    const data = response._getJSONData();
+    // console.log(data);
+
+    expect(data).toEqual({
+      originalText: "I is an engeneer.",
+      corrections: [
         {
-            "error": {
-                "en": "Use a first-person plural verb."
-            },
-            "suggestions": [
-                "am"
-            ]
+          error: {
+            en: "Use a first-person plural verb.",
+          },
+          suggestions: ["am"],
         },
         {
-            "error": {
-                "en": "Possible spelling mistake"
-            },
-            "suggestions": [
-                "engineer",
-                "engender",
-                "engineers",
-                "engine",
-                "ingenue",
-                "engineer's"
-            ]
-        }
-    ],
-    "all": [
+          error: {
+            en: "Possible spelling mistake",
+          },
+          suggestions: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+        },
+      ],
+      all: [
         {
-            "id": "e504761736",
-            "offset": 2,
-            "length": 2,
-            "description": {
-                "en": "Use a first-person plural verb."
-            },
-            "bad": "is",
-            "better": [
-                "am"
-            ],
-            "type": "grammar"
+          id: "e504761736",
+          offset: 2,
+          length: 2,
+          description: {
+            en: "Use a first-person plural verb.",
+          },
+          bad: "is",
+          better: ["am"],
+          type: "grammar",
         },
         {
-            "id": "e1147650887",
-            "offset": 8,
-            "length": 8,
-            "description": {
-                "en": "Possible spelling mistake"
-            },
-            "bad": "engeneer",
-            "better": [
-                "engineer",
-                "engender",
-                "engineers",
-                "engine",
-                "ingenue",
-                "engineer's"
-            ],
-            "type": "spelling"
-        }
-    ]
-}
+          id: "e1147650887",
+          offset: 8,
+          length: 8,
+          description: {
+            en: "Possible spelling mistake",
+          },
+          bad: "engeneer",
+          better: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+          type: "spelling",
+        },
+      ],
+    });
+  });
+});
 
-readabilityScore TextGears API post request response
+describe("Readability", () => {
+  // Inspired from https://stackoverflow.com/questions/45210018/how-to-test-response-data-from-express-in-jest
+  test("Test readability checking and evaluate score", () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/readability",
+      body: {
+        text: "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
+      },
+    });
 
-{
+    const response = httpMocks.createResponse();
+
+    Readability(request, response);
+
+    const data = response._getJSONData();
+    // console.log(data);
+
+    expect(data).toEqual({
       originalText:
         "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
       fleschKincaid: {
@@ -106,11 +144,28 @@ readabilityScore TextGears API post request response
           sentences: 10,
         },
       },
-    }
+    });
+  });
+});
 
-summarized TextGears API post request response
+describe("Summarize", () => {
+  // Inspired from https://stackoverflow.com/questions/45210018/how-to-test-response-data-from-express-in-jest
+  test("Test summarizing the essay", () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/summarize",
+      body: {
+        text: "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
+      },
+    });
 
-{
+    const response = httpMocks.createResponse();
+
+    Readability(request, response);
+
+    const data = response._getJSONData();
+
+    expect(data).toEqual({
       originalText:
         "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
       summary: [
@@ -144,4 +199,6 @@ summarized TextGears API post request response
           "It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities.",
         ],
       },
-    }
+    });
+  });
+});
