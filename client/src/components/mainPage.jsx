@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../styles.css"; // Ensure the CSS is correctly linked
 import logo from "../images/clearWritebg.png"; // Adjust this path to your actual image location
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const [text, setText] = useState(""); // This state will hold the essay text
 
   const handleSubmit = async (event) => {
@@ -20,6 +22,8 @@ const MainPage = () => {
       const data = await response.json();
       console.log(data); // Log or handle the response data
       // Optionally, handle navigation or state updates based on the response
+      // Navigate to the Evaluation page and pass data
+      navigate("/evaluation", { state: { evaluationData: data } });
     } catch (error) {
       console.error("Error submitting essay:", error);
     }

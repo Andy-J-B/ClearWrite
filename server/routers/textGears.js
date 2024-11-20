@@ -10,19 +10,17 @@
 // Import necessary modules
 const express = require("express");
 const router = express.Router();
-const axios = require('axios');
-
+const axios = require("axios");
 
 // Import user-related controllers
-const textGearsController = require("../controller/textGearsController");
+// const textGearsController = require("../controller/textGearsController");
+const textGearsController = require("../controller/textGearsTempController");
 
 // Load environmental variables
 require("dotenv").config();
 
-
 // Router for correcting grammar
 router.post("/correctGrammar", textGearsController.CorrectGrammar);
-
 
 // Router for checking readability
 router.post("/readability", textGearsController.Readability);
