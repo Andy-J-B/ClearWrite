@@ -50,5 +50,22 @@ router.post("/rephrase", async (req, res) => {
   }
 });
 
+
+// 2. AI detection
+router.post("/aidetect", async (req, res) => {
+  const { text } = req.body;
+
+  try {
+    const response = await axios.post("https://api.sapling.ai/api/v1/aidetect", {
+      key: apiKey,
+      text,
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Export router
 module.exports = router;
