@@ -56,8 +56,9 @@ router.post("/aidetect", async (req, res) => {
   const { text } = req.body;
 
   try {
+    
     const response = await axios.post("https://api.sapling.ai/api/v1/aidetect", {
-      key: apiKey,
+      key: `${apiKey}`,
       text,
     });
 
@@ -72,8 +73,9 @@ router.post("/tone", async (req, res) => {
   const { text } = req.body;
 
   try {
+    
     const response = await axios.post("https://api.sapling.ai/api/v1/tone", {
-      key: apiKey,
+      key: `${apiKey}`,
       text,
     });
 
