@@ -57,11 +57,15 @@ router.post("/aidetect", async (req, res) => {
 
   try {
     
-    const response = await axios.post("https://api.sapling.ai/api/v1/aidetect", {
+    const response = await axios.post("https://api.sapling.ai/api/v1/aidetect",
+       {
       key: `${apiKey}`,
       text,
-    });
-
+        }
+      );
+    const {status, data} = response;
+    console.log({status});
+    console.log(JSON.stringify(data, null, 4));
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: error.message });
