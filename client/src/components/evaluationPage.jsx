@@ -1,13 +1,11 @@
 import React from "react";
-import data from "./textGearsData.json"; // Import the JSON data
+
 import { useLocation } from "react-router-dom";
 
 function EvaluationPage() {
   const location = useLocation();
   const evaluationData = location.state?.evaluationData;
-  console.log("WLANDLKNALDN");
-  console.log(evaluationData);
-  const { grammarChecked, readabilityScore, summarized } = data; // Destructure the data
+  const { grammarChecked, readabilityScore, summarized } = evaluationData; // Destructure the data
 
   return (
     <div style={styles.container}>
