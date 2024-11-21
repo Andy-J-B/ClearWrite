@@ -1,9 +1,12 @@
 import "./App.css";
-import MainPage from "./components/MainPage"; // Ensure this path matches your actual file
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Import bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import EvaluationPage from "./components/evaluationPage";
+// Imports pages
+import MainPage from "./components/MainPage"; // Ensure this path matches your actual file
+import EvaluationPage from "./components/EvaluationPage";
 
 function App() {
   console.log("Rendering App Component");
