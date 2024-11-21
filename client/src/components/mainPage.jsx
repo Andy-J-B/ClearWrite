@@ -30,14 +30,15 @@ const MainPage = () => {
       // If good, send api requests
       try {
         // List of endpoints
-        const apiEndpoints = [
-          "correctGrammar",
-          "readability",
-          "summarize",
-          "rephrase",
-          "aidetect",
-          "tone",
-        ];
+        // const apiEndpoints = [
+        //   "correctGrammar",
+        //   "readability",
+        //   "summarize",
+        //   "rephrase",
+        //   "aidetect",
+        //   "tone",
+        // ];
+        // Comment out for now
         const results = [];
         for (let i = 0; i < 6; i++) {
           // Here we make a POST request to the API endpoint
