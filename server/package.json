@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "start": "node index",
     "dev": "nodemon server"
   },
@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^1.7.7",
     "express": "^4.21.1",
+    "supertest": "^7.0.0",
     "textgears-api": "^1.1.11"
   },
   "devDependencies": {
