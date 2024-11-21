@@ -15,29 +15,42 @@ const axios = require("axios");
 // Load environmental variables
 require("dotenv").config();
 
+if (process.env.NODE_ENV === "test") {
+  jest.mock("axios");
+}
+
 // Rephrasing
 router.post("/rephrase", async (req, res) => {
-  // Get text to grammar check
+  // Get text to rephraser 
   const text = req.body.text;
 
   // Get apiKey from dotenv file
   const apiKey = process.env.Sapling_API_KEY;
 
   try {
-    if (text.length > 0) {
-      //   const response = await axios.post(
-      //     "https://api.sapling.ai/api/v1/paraphrase",
-      //     {
-      //       key: `${apiKey}`,
-      //       text,
-      //     }
-      //   );
+
+    if (text.length > 0) { // if there is input text is > 0
+        const response = await axios.post(
+          "https://api.sapling.ai/api/v1/rephrase",
+          {
+            key: `${apiKey}`,
+            text,
+            mapping: 'informal_to_formal'
+          }
+        );
+
       const { status, data } = response;
       console.log({ status });
       console.log(JSON.stringify(data, null, 4));
-      res.json({ originalText: text, rephrasing: data, all: response });
+      res.json({ 
+                originalText: text, 
+                rephrasing: data,
+                all: response 
+                }
+              );
+
     } else {
-      // If there are no grammatical errors
+      // If there are no input text 
       res.json({
         originalText: text,
         rephrasing: [],
@@ -53,7 +66,11 @@ router.post("/rephrase", async (req, res) => {
 
 // 2. AI detection
 router.post("/aidetect", async (req, res) => {
-  const { text } = req.body;
+    // Get text to AI detector
+    const text = req.body.text;
+
+    // Get apiKey from dotenv file
+    const apiKey = process.env.Sapling_API_KEY;
 
   try {
     
@@ -74,18 +91,27 @@ router.post("/aidetect", async (req, res) => {
 
 // 3. feature tone detection
 router.post("/tone", async (req, res) => {
-  const { text } = req.body;
+  // Get text to AI detector
+  const text = req.body.text;
+
+  // Get apiKey from dotenv file
+  const apiKey = process.env.Sapling_API_KEY;
 
   try {
     
-    const response = await axios.post("https://api.sapling.ai/api/v1/tone", {
+     const response = await axios.post('https://api.sapling.ai/api/v1/sentiment', 
+      {
       key: `${apiKey}`,
       text,
     });
 
-    res.json(response.data);
+    const {status, data} = response;
+    console.log({status});
+    console.log(JSON.stringify(data, null, 4));
+    
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const { msg } = err.response.data;
+        console.log({err: msg});
   }
 });
 
