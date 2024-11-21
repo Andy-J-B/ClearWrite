@@ -5,16 +5,26 @@ import { useNavigate } from "react-router-dom";
 import ErrorModal from "./ErrorModal";
 
 const MainPage = () => {
+  // Implement when to show modal
   const [modalShow, setModalShow] = React.useState(false);
-  const navigate = useNavigate();
-  const [text, setText] = useState(""); // This state will hold the essay text
 
+  // Use navigate to navigate between routers
+  const navigate = useNavigate();
+
+  // This state will hold the essay text
+  const [text, setText] = useState("");
+
+  // handleSubmit Function to get text, send to apis,
+  // recieve json, and send to EvaluationPage
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
+    // Validate text character limit
     if (text.length > 4000 || text.length < 50) {
+      // Send error is character limit is exceeded or too little
       setModalShow(true);
     } else {
+      // If good, send api requests
       try {
         // Here we make a POST request to the API endpoint
         const response = await fetch("http://localhost:3000/correctGrammar", {
@@ -24,9 +34,11 @@ const MainPage = () => {
           },
           body: JSON.stringify({ text }), // Send the text state in the request body
         });
+        // Get response
         const data = await response.json();
         console.log(data); // Log or handle the response data
         // Optionally, handle navigation or state updates based on the response
+
         // Navigate to the Evaluation page and pass data
         navigate("/evaluation", { state: { evaluationData: data } });
       } catch (error) {
