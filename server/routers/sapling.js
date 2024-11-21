@@ -83,10 +83,10 @@ router.post("/aidetect", async (req, res) => {
       version: "20240606", // Default version
         }
       );
-    const {status, data} = response;
-    console.log({status});
-    console.log(JSON.stringify(data, null, 4));
-    res.json(response.data);
+    const { data} = response;
+    // console.log({status});
+    // console.log(JSON.stringify(data, null, 4));
+    // res.json(response.data);
 
     res.json({
       overallScore: data.score,
