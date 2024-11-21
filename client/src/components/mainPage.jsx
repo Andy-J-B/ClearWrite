@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import ErrorModal from "./ErrorModal";
 
 const MainPage = () => {
+  // Implement progress for loadingPage
+  const [progress, setProgress] = useState(0);
+
   // Implement when to show modal
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -26,17 +29,35 @@ const MainPage = () => {
     } else {
       // If good, send api requests
       try {
-        // Here we make a POST request to the API endpoint
-        const response = await fetch("http://localhost:3000/correctGrammar", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ text }), // Send the text state in the request body
-        });
-        // Get response
-        const data = await response.json();
-        console.log(data); // Log or handle the response data
+        // List of endpoints
+        const apiEndpoints = [
+          "correctGrammar",
+          "readability",
+          "summarize",
+          "rephrase",
+          "aidetect",
+          "tone",
+        ];
+        const results = [];
+        for (let i = 0; i < 6; i++) {
+          // Here we make a POST request to the API endpoint
+          const response = await fetch(
+            `http://localhost:3000/${apiEndpoints[i]}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ text }), // Send the text state in the request body
+            }
+          );
+          const data = await response.json();
+          results.push(data);
+          setProgress((prev) => prev + 1); // Increment progress
+
+          console.log(data); // Log or handle the response data
+        }
+
         // Optionally, handle navigation or state updates based on the response
 
         // Navigate to the Evaluation page and pass data
