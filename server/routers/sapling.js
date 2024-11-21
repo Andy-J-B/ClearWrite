@@ -78,18 +78,27 @@ router.post("/aidetect", async (req, res) => {
        {
       key: `${apiKey}`,
       text,
+      sent_scores: true, // Enable sentence-level scoring
+      score_string: false, // Disable token heatmap
+      version: "20240606", // Default version
         }
       );
     const {status, data} = response;
     console.log({status});
     console.log(JSON.stringify(data, null, 4));
     res.json(response.data);
+
+    res.json({
+      overallScore: data.score,
+      sentenceScores: data.sentence_scores,
+    });
+    
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).send(`Error: ${error}`);
   }
 });
 
-// 3. feature tone detection
+// 3. feature sentimentt
 router.post("/tone", async (req, res) => {
   // Get text to AI detector
   const text = req.body.text;
@@ -108,10 +117,13 @@ router.post("/tone", async (req, res) => {
     const {status, data} = response;
     console.log({status});
     console.log(JSON.stringify(data, null, 4));
-    
+    res.json({
+      sentences: data.sents,
+      overallSentiment: data.overall,
+      detailedResults: data.results,
+    });
   } catch (error) {
-    const { msg } = err.response.data;
-        console.log({err: msg});
+    res.status(500).send(`Error: ${error}`);
   }
 });
 
