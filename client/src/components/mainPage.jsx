@@ -49,7 +49,7 @@ const MainPage = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ text }), // Send the text state in the request body
+              body: text, // Send the text state in the request body
             }
           );
           const data = await response.json();

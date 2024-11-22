@@ -21,41 +21,48 @@ if (process.env.NODE_ENV === "test") {
 
 // Rephrasing
 router.post("/rephrase", async (req, res) => {
-  // Get text to rephraser 
+  // Get text to rephraser
   const text = req.body.text;
 
   // Get apiKey from dotenv file
   const apiKey = process.env.Sapling_API_KEY;
 
-  try {
+  // Seperate sentences
+  // From https://stackoverflow.com/questions/11761563/javascript-regexp-for-splitting-text-into-sentences-and-keeping-the-delimiter
+  const seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
 
-    if (text.length > 0) { // if there is input text is > 0
+  try {
+    let resultingData = [];
+
+    if (text.length > 0) {
+      for (var i = 0; i < 1; i++) {
+        let textToEvaluate = seperated[i].trim();
+
+        // if there is input text is > 0
+
         const response = await axios.post(
           "https://api.sapling.ai/api/v1/rephrase",
           {
             key: `${apiKey}`,
-            text,
-            mapping: 'informal_to_formal'
+            text: `${textToEvaluate}`,
+            mapping: "informal_to_formal",
           }
         );
 
-      const { status, data } = response;
-      console.log({ status });
-      console.log(JSON.stringify(data, null, 4));
-      res.json({ 
-                originalText: text, 
-                rephrasing: data,
-                all: response 
-                }
-              );
-
+        resultingData.push({
+          originalText: text,
+          rephrasing: response?.data?.results,
+        });
+      }
     } else {
-      // If there are no input text 
-      res.json({
+      // If there are no input text
+      resultingData.push({
         originalText: text,
         rephrasing: [],
       });
     }
+
+    res.json({ rephrase: resultingData });
   } catch (error) {
     // If there is an error
 
@@ -63,27 +70,26 @@ router.post("/rephrase", async (req, res) => {
   }
 });
 
-
 // 2. AI detection
 router.post("/aidetect", async (req, res) => {
-    // Get text to AI detector
-    const text = req.body.text;
+  // Get text to AI detector
+  const text = req.body.text;
 
-    // Get apiKey from dotenv file
-    const apiKey = process.env.Sapling_API_KEY;
+  // Get apiKey from dotenv file
+  const apiKey = process.env.Sapling_API_KEY;
 
   try {
-    
-    const response = await axios.post("https://api.sapling.ai/api/v1/aidetect",
-       {
-      key: `${apiKey}`,
-      text,
-      sent_scores: true, // Enable sentence-level scoring
-      score_string: false, // Disable token heatmap
-      version: "20240606", // Default version
-        }
-      );
-    const { data} = response;
+    const response = await axios.post(
+      "https://api.sapling.ai/api/v1/aidetect",
+      {
+        key: `${apiKey}`,
+        text,
+        sent_scores: true, // Enable sentence-level scoring
+        score_string: false, // Disable token heatmap
+        version: "20240606", // Default version
+      }
+    );
+    const { data } = response;
     // console.log({status});
     // console.log(JSON.stringify(data, null, 4));
     // res.json(response.data);
@@ -92,7 +98,6 @@ router.post("/aidetect", async (req, res) => {
       overallScore: data.score,
       sentenceScores: data.sentence_scores,
     });
-    
   } catch (error) {
     res.status(500).send(`Error: ${error}`);
   }
@@ -107,15 +112,16 @@ router.post("/tone", async (req, res) => {
   const apiKey = process.env.Sapling_API_KEY;
 
   try {
-    
-     const response = await axios.post('https://api.sapling.ai/api/v1/sentiment', 
+    const response = await axios.post(
+      "https://api.sapling.ai/api/v1/sentiment",
       {
-      key: `${apiKey}`,
-      text,
-    });
+        key: `${apiKey}`,
+        text,
+      }
+    );
 
-    const {status, data} = response;
-    console.log({status});
+    const { status, data } = response;
+    console.log({ status });
     console.log(JSON.stringify(data, null, 4));
     res.json({
       sentences: data.sents,

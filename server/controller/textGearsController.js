@@ -32,40 +32,40 @@ const CorrectGrammar = async (req, res) => {
   }
 
   try {
-    let errors = [];
+    let resultingData = [];
     // Codes from lines 24-42 is from
     // "https://gist.github.com/krishheii/415ccdf6ab9a6bb29d60bdcdbdb5e98c"
 
     for (var i = 0; i < urls.length; i++) {
       // Should not test too many times due to api usage limit
       // Uncomment only for testing and production
-      // const data = await axios.get(urls[i]);
+      const data = await axios.get(urls[i]);
 
       // Extract errors
       const errors = data?.data?.response?.errors;
 
       if (errors.length > 0) {
         // If there are grammatical errors
-        errors.push(
-          JSON.parse({
-            originalText: text,
-            corrections: errors.map((error) => ({
-              error: error.description,
-              suggestions: error.better,
-            })),
-            all: errors,
-          })
-        );
+        errors.push({
+          originalText: seperated[i],
+          corrections: errors.map((error) => ({
+            error: error.description,
+            suggestions: error.better,
+          })),
+          all: errors,
+        });
+        console.log(errors);
       } else {
         // If there are no grammatical errors
-        errors.push(
-          JSON.parse({
-            originalText: text,
-            corrections: [],
-          })
-        );
+        errors.push({
+          originalText: seperated[i],
+          corrections: [],
+        });
+        console.log(errors);
       }
     }
+
+    res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
     res.status(500).send(`Error: ${error}`);
