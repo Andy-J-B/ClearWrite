@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-import "./HomePage.css";
+import "./Homepage.css";
+import { FaSun, FaMoon } from "react-icons/fa"; 
 
 const HomePage = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    setDarkMode((prevMode) => !prevMode);
+    document.body.className = darkMode ? "dark-mode" : "light-mode";
   };
 
   return (
-    <div className={`homepage-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      {/* Theme Toggle */}
-      <button className="theme-toggle" onClick={toggleTheme}>
-        {isDarkMode ? "Day Mode" : "Night Mode"}
-      </button>
+    <div className="homepage-container">
+      <div className="day-night-toggle">
+        <button onClick={toggleTheme} className="toggle-button">
+          {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
+        </button>
+      </div>
 
-      {/* Essay Section */}
       <div className="essay-section">
-        <img src="/path/to/logo.png" alt="ClearWrite Logo" className="logo" />
+        <img src="client/src/image/clearwrite-background.png" alt="ClearWrite Logo" className="logo" />
         <textarea
           placeholder="Enter your essay here ..."
           className="essay-input"
