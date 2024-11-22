@@ -37,28 +37,6 @@ const HomePage = () => {
         ></textarea>
         <button className="evaluate-button">Evaluate</button>
       </div>
-
-      <div className="about-section">
-        <h2>About Us</h2>
-        <div className="group-members">
-          <div className="member-card">
-            <h3>Armaan Singh Chahal</h3>
-            <p>Student ID: 301559489</p>
-          </div>
-          <div className="member-card">
-            <h3>Andy Junhyuk Bae</h3>
-            <p>Student ID: 301578862</p>
-          </div>
-          <div className="member-card">
-            <h3>Adityapal Singh Waraich</h3>
-            <p>Student ID:</p>
-          </div>
-          <div className="member-card">
-            <h3>Gordon</h3>
-            <p>Student ID:</p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

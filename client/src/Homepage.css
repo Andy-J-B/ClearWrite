@@ -169,7 +169,7 @@ body.dark-mode {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 100px auto;
   padding: 20px;
-  width: 90%;
+  width: 100vw;
   max-width: 800px;
   border-radius: 8px;
   display: flex;
@@ -290,6 +290,7 @@ body.dark-mode .nested-list li::marker {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 100px;
 }
 
