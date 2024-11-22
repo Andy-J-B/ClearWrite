@@ -18,19 +18,17 @@ const HomePage = () => {
     <div className="homepage-container">
         <button
         className="back-button"
-        onClick={() => navigate(-1)} // Navigate to the previous page
+        onClick={() => navigate(-1)}
       >
         <FaArrowLeft size={20} />
       </button>
 
-      {/* Day-Night Toggle */}
       <div className="day-night-toggle">
         <button onClick={toggleTheme} className="toggle-button">
           {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
         </button>
       </div>
 
-      {/* Essay Section */}
       <div className="essay-section">
         <img src={logo} alt="ClearWrite Logo" className="logo" />
         <textarea
@@ -40,7 +38,6 @@ const HomePage = () => {
         <button className="evaluate-button">Evaluate</button>
       </div>
 
-      {/* About Section */}
       <div className="about-section">
         <h2>About Us</h2>
         <div className="group-members">

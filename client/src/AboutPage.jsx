@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Homepage.css'; // Reuse the same CSS
-import { FaArrowLeft, FaSun, FaMoon } from 'react-icons/fa'; // Import icons
+import './Homepage.css';
+import { FaArrowLeft, FaSun, FaMoon } from 'react-icons/fa';
 
 const AboutPage = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
 
-  // Toggle theme logic
   const toggleTheme = () => {
     setDarkMode((prevMode) => !prevMode);
     document.body.className = darkMode ? 'light-mode' : 'dark-mode';
@@ -15,24 +14,30 @@ const AboutPage = () => {
 
   return (
     <div className="aboutpage-container">
-      {/* Back Button */}
+
       <button
         className="back-button"
-        onClick={() => navigate(-1)} // Navigate to the previous page
+        onClick={() => navigate(-1)}
       >
         <FaArrowLeft size={20} />
       </button>
 
-      {/* Day-Night Toggle */}
       <div className="day-night-toggle">
         <button onClick={toggleTheme} className="toggle-button">
           {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
         </button>
       </div>
 
-      {/* Main Content */}
+      <div className="introduction-page">
+      <h1>ClearWrite</h1>
+        <p>
+            <strong>Your Guide to Better Writing</strong> – This tool empowers you to enhance your
+            writing skills without doing the work for you.
+        </p>
+      </div>
+
       <div className="about-content">
-        {/* About Section */}
+
         <h1 className="about-title">About</h1>
         <p className="about-description">
           Unlike costly grammar checkers or AI writing assistants, ClearWrite provides real-time
@@ -41,7 +46,6 @@ const AboutPage = () => {
           foster learning, not shortcuts and AI usage.
         </p>
 
-        {/* How to Use Section */}
         <h2 className="section-title">How to Use It</h2>
         <p className="section-description">
           ClearWrite is designed to help you become a better writer through real-time feedback and
@@ -81,7 +85,6 @@ const AboutPage = () => {
           </ul>
         </div>
 
-        {/* Button to Navigate to Home */}
         <button className="evaluate-button" onClick={() => navigate('/home')}>
           Continue to ClearWrite
         </button>

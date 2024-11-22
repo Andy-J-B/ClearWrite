@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
-import "./App.css"; // For transitions
+import "./App.css";
 import HomePage from "./HomePage.jsx";
-import IntroPage from "./IntroPage.jsx";
 import AboutPage from "./AboutPage.jsx";
 import LoadingPage from "./LoadingPage.jsx";
 
@@ -18,8 +17,7 @@ const App = () => {
         classNames="fade"
       >
         <Routes location={location}>
-          <Route path="/" element={<IntroPage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/" element={<AboutPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/loading" element={<LoadingPage /> } />
         </Routes>
