@@ -12,6 +12,7 @@ const IntroPage = () => {
           {/* Add the day-night toggle logic */}
         </button>
       </div>
+      <div className="introduction-page">
       <h1>ClearWrite</h1>
       <p>
         <strong>Your Guide to Better Writing</strong> – This tool empowers you to enhance your
@@ -23,6 +24,7 @@ const IntroPage = () => {
       >
         Start
       </button>
+      </div>
     </div>
   );
 };

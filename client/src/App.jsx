@@ -1,19 +1,37 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import IntroPage from './IntroPage';
-import AboutPage from './AboutPage';
-import HomePage from './HomePage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
+import "./App.css"; // For transitions
+import HomePage from "./HomePage.jsx";
+import IntroPage from "./IntroPage.jsx";
+import AboutPage from "./AboutPage.jsx";
+import LoadingPage from "./LoadingPage.jsx";
 
 const App = () => {
+  const location = useLocation();
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<IntroPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/home" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <SwitchTransition>
+      <CSSTransition
+        key={location.key}
+        timeout={300}
+        classNames="fade"
+      >
+        <Routes location={location}>
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/loading" element={<LoadingPage /> } />
+        </Routes>
+      </CSSTransition>
+    </SwitchTransition>
   );
 };
 
-export default App;
+const WrappedApp = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default WrappedApp;

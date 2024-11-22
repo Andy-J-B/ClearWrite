@@ -1,58 +1,48 @@
+/* Global box-sizing */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* General container styling */
-.homepage-container {
-  min-height: 100vh; /* Ensure it takes the full viewport height */
+/* Light and dark modes */
+body.light-mode {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* General container styling for both pages */
+.homepage-container,
+.aboutpage-container {
+  min-height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
 }
 
-/* Prevent horizontal scrolling on the entire page */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Ensures no horizontal scroll for the entire page */
-  box-sizing: border-box;
-}
-
-/* Basic styles for light and dark modes */
-body.light-mode {
-  background-color: #ffffff;
-  color: #000000;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Positioning the toggle button */
+/* Day-Night Toggle */
 .day-night-toggle {
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 1000;
-  overflow: hidden; /* Prevent any possible overflow caused by the button */
 }
 
-/* Styling the button */
 .toggle-button {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: inherit; /* Inherits color from the current theme */
+  color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,21 +52,125 @@ body.dark-mode {
 }
 
 .toggle-button:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
+  transform: scale(1.1);
 }
 
 .toggle-button:focus {
   outline: none;
 }
 
-/* Essay Section */
+/* Back Button Styling */
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}
+
+.back-button:focus {
+  outline: none;
+}
+
+/* Styles for AboutPage */
+.about-content {
+  max-width: 80vw;
+  width: 100%;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.about-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 40px;
+  color: inherit;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 30px;
+  color: inherit;
+}
+
+.how-to-use {
+  width: 100%;
+}
+
+.how-to-use-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.how-to-use-list > li {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.how-to-use-list > li::before {
+  content: '•';
+  color: #ff6b6b;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.how-to-use-list strong {
+  color: inherit;
+}
+
+.nested-list {
+  list-style-type: disc;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.nested-list li {
+  margin-bottom: 10px;
+  color: inherit;
+}
+
+/* Styles for HomePage */
 .essay-section {
   background-color: inherit;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: 180px auto; /* Center the section */
+  margin: 100px auto;
   padding: 20px;
-  width: 100%;
-  max-width: 800px; /* Limit the maximum width */
+  width: 90%;
+  max-width: 800px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -90,29 +184,32 @@ body.dark-mode {
 
 .essay-input {
   width: 100%;
-  height: 150px;
+  height: 200px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   font-size: 16px;
   background-color: inherit;
   color: inherit;
-  resize: none; /* Prevent resizing of the textarea */
+  resize: none;
 }
-body.dark-mode .essay-section{
-  background-color:#171717;
+
+body.dark-mode .essay-section {
+  background-color: #171717;
 }
+
 body.dark-mode .essay-input {
-  background-color: #333333; /* Dark grey background */
-  color: #ffffff;            /* White text for readability */
-  border-color: #555555;     /* Adjust border color */
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #555555;
 }
 
 body.dark-mode .essay-input::placeholder {
-  color: #bbbbbb;            /* Light grey placeholder text */
+  color: #bbbbbb;
 }
 
+/* Evaluate Button */
 .evaluate-button {
   background: linear-gradient(45deg, #ff6b6b, #f94d6a);
   color: white;
@@ -131,17 +228,23 @@ body.dark-mode .essay-input::placeholder {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* About Section */
+/* Adjust .evaluate-button margin-top only in AboutPage */
+.aboutpage-container .evaluate-button {
+  margin-top: 40px;
+}
+
+/* About Section in HomePage */
 .about-section {
-  margin-top: 500px;
+  margin-top: 80px;
   padding: 20px;
   width: 100%;
+  max-width: 1200px;
   text-align: center;
 }
 
 .about-section h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .group-members {
@@ -149,30 +252,6 @@ body.dark-mode .essay-input::placeholder {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-}
-/* Back Button Styling */
-.back-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit; /* Adapt to light/dark mode */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
-
-.back-button:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
-}
-
-.back-button:focus {
-  outline: none;
 }
 
 .member-card {
@@ -182,10 +261,92 @@ body.dark-mode .essay-input::placeholder {
   border-radius: 8px;
   text-align: center;
   transition: background-color 0.3s ease;
+  width: 250px;
   margin-bottom: 20px;
 }
 
 .dark-mode .member-card {
   background-color: #424242;
   color: white;
+}
+
+/* Dark Mode Adjustments for AboutPage */
+body.dark-mode .about-description,
+body.dark-mode .section-description,
+body.dark-mode .how-to-use-list li,
+body.dark-mode .nested-list li {
+  color: #dddddd;
+}
+
+body.dark-mode .how-to-use-list > li::before {
+  color: #ff6b6b;
+}
+
+body.dark-mode .nested-list li::marker {
+  color: #ff6b6b;
+}
+
+.introduction-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.introduction-page p{
+  margin-bottom: 80px;
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.98); /* Optional slight zoom-out effect */
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+/* General Loading Page Styling */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+  width: 80%;
+  max-width: 400px;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(45deg, #ff6b6b, #f94d6a);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 1.2rem;
+  color: #555;
 }

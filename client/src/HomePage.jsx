@@ -1,33 +1,36 @@
 import React, { useState } from "react";
 import "./Homepage.css";
-import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './image/clearwrite-background.png';
+import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import logo from "./image/clearwrite-background.png";
 
 const HomePage = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   const toggleTheme = () => {
     setDarkMode((prevMode) => !prevMode);
-    document.body.className = darkMode ? "dark-mode" : "light-mode";
+    document.body.className = darkMode ? "light-mode" : "dark-mode";
   };
 
   return (
     <div className="homepage-container">
-
-      <button
+        <button
         className="back-button"
         onClick={() => navigate(-1)} // Navigate to the previous page
       >
         <FaArrowLeft size={20} />
       </button>
 
+      {/* Day-Night Toggle */}
       <div className="day-night-toggle">
         <button onClick={toggleTheme} className="toggle-button">
           {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
         </button>
       </div>
 
+      {/* Essay Section */}
       <div className="essay-section">
         <img src={logo} alt="ClearWrite Logo" className="logo" />
         <textarea
@@ -36,25 +39,26 @@ const HomePage = () => {
         ></textarea>
         <button className="evaluate-button">Evaluate</button>
       </div>
-     
+
+      {/* About Section */}
       <div className="about-section">
         <h2>About Us</h2>
         <div className="group-members">
           <div className="member-card">
             <h3>Armaan Singh Chahal</h3>
-            <p>student id: 301559489</p>
+            <p>Student ID: 301559489</p>
           </div>
           <div className="member-card">
-            <h3>Andy Bae</h3>
-            <p>student id: </p>
+            <h3>Andy Junhyuk Bae</h3>
+            <p>Student ID: 301578862</p>
           </div>
           <div className="member-card">
             <h3>Adityapal Singh Waraich</h3>
-            <p>student id:</p>
+            <p>Student ID:</p>
           </div>
           <div className="member-card">
             <h3>Gordon</h3>
-            <p>student id: </p>
+            <p>Student ID:</p>
           </div>
         </div>
       </div>
