@@ -1,24 +1,36 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage.jsx";
+import AboutPage from "./AboutPage.jsx";
+import LoadingPage from "./LoadingPage.jsx";
 
-// Import bootstrap
-import "bootstrap/dist/css/bootstrap.min.css";
+const App = () => {
+  const location = useLocation();
 
-// Imports pages
-import MainPage from "./components/MainPage"; // Ensure this path matches your actual file
-import EvaluationPage from "./components/EvaluationPage";
-
-function App() {
-  console.log("Rendering App Component");
   return (
-    <div>
-      <Routes>
-        {/* <Route path="/" element={<IntroPage />} /> */}
-        <Route path="/" element={<MainPage />} />
-        {/* <Route path="/loading" element={<LoadingPage />} /> */}
-        <Route path="/evaluation" element={<EvaluationPage />} />
-      </Routes>
-    </div>
+    <SwitchTransition>
+      <CSSTransition key={location.key} timeout={300} classNames="fade">
+        <Routes location={location}>
+          <Route path="/" element={<AboutPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/loading" element={<LoadingPage />} />
+        </Routes>
+      </CSSTransition>
+    </SwitchTransition>
   );
-}
-export default App;
+};
+
+const WrappedApp = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default WrappedApp;
