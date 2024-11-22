@@ -1,29 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Homepage.css";
+import "../css/Homepage.css";
+import { useProgress } from "./ProgressContext";
 
 const LoadingPage = () => {
-  const [progress, setProgress] = useState(0); 
-  const navigate = useNavigate();
-
-
-  useEffect(() => {
-    const simulateAPICalls = async () => {
-      for (let i = 1; i <= 6; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 1000)); 
-        setProgress(i); 
-      }
-    };
-
-    simulateAPICalls();
-  }, []);
-
-  useEffect(() => {
-    if (progress === 6) {
-      navigate("/results");
-    }
-  }, [progress, navigate]);
-
+  const { progress } = useProgress();
   return (
     <div className="loading-container">
       <h1>Loading Results...</h1>

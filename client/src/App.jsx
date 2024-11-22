@@ -7,10 +7,11 @@ import {
 } from "react-router-dom";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import "./App.css";
-import HomePage from "./HomePage.jsx";
-import AboutPage from "./AboutPage.jsx";
-import LoadingPage from "./LoadingPage.jsx";
-
+import HomePage from "./components/HomePage.jsx";
+import AboutPage from "./components/AboutPage.jsx";
+import LoadingPage from "./components/LoadingPage.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import EvaluationPage from "./components/evaluationPage.jsx";
 const App = () => {
   const location = useLocation();
 
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/" element={<AboutPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/evaluate" element={<EvaluationPage />} />
         </Routes>
       </CSSTransition>
     </SwitchTransition>
@@ -28,9 +30,9 @@ const App = () => {
 };
 
 const WrappedApp = () => (
-  <Router>
+  <div>
     <App />
-  </Router>
+  </div>
 );
 
 export default WrappedApp;
