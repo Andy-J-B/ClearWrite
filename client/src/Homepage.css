@@ -291,11 +291,11 @@ body.dark-mode .nested-list li::marker {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 320px;
 }
 
 .introduction-page p{
-  margin-bottom: 80px;
+  margin-bottom: 400px;
 }
 
 .fade-enter {
