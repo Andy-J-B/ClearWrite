@@ -2,7 +2,7 @@ const {
   CorrectGrammar,
   Readability,
   Summarize,
-} = require("../controller/textGearsController");
+} = require("../controller/textGearsTempController");
 
 const httpMocks = require("node-mocks-http");
 
@@ -161,9 +161,11 @@ describe("Summarize", () => {
 
     const response = httpMocks.createResponse();
 
-    Readability(request, response);
+    Summarize(request, response);
 
     const data = response._getJSONData();
+
+    console.log(data);
 
     expect(data).toEqual({
       originalText:

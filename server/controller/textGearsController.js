@@ -1,103 +1,71 @@
+const axios = require("axios");
+
 // Correct Grammatical issues
 const CorrectGrammar = async (req, res) => {
   // Get text to grammar check
   const text = req.body.text;
 
-  // Replace all spaces with a +
-  const addTexts = text.replace(/ /g, "+");
+  // Seperate sentences
+  // From https://stackoverflow.com/questions/11761563/javascript-regexp-for-splitting-text-into-sentences-and-keeping-the-delimiter
+  const seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
+
+  seperatedAddedTexts = [];
+
+  for (var i = 0; i < seperated.length; i++) {
+    // Replace all spaces with a +
+    const addTexts = seperated[i].trim().replace(/ /g, "+");
+    seperatedAddedTexts.push(addTexts);
+  }
+
+  // Insert each into a list
 
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
 
-  // Server request url
-  const url = `https://api.textgears.com/grammar?text=${addTexts}&language=en-GB&whitelist=&dictionary_id=&ai=1&key=${apiKey}`;
+  // urls list
+  var urls = [];
+
+  for (var i = 0; i < seperatedAddedTexts.length; i++) {
+    // Server request url
+    const url = `https://api.textgears.com/grammar?text=${seperatedAddedTexts[i]}&language=en-GB&whitelist=&dictionary_id=&ai=1&key=${apiKey}`;
+    urls.push(url);
+  }
 
   try {
+    let resultingData = [];
     // Codes from lines 24-42 is from
     // "https://gist.github.com/krishheii/415ccdf6ab9a6bb29d60bdcdbdb5e98c"
 
-    // Should not test too many times due to api usage limit
-    // Uncomment only for testing and production
-    // const data = await axios.get(url);
+    for (var i = 0; i < urls.length; i++) {
+      // Should not test too many times due to api usage limit
+      // Uncomment only for testing and production
+      const data = await axios.get(urls[i]);
 
-    // Extract errors
-    // const errors = data?.data?.response?.errors;
+      // Extract errors
+      const errors = data?.data?.response?.errors;
 
-    res.json({
-      originalText: "I is an engeneer.",
-      corrections: [
-        {
-          error: {
-            en: "Use a first-person plural verb.",
-          },
-          suggestions: ["am"],
-        },
-        {
-          error: {
-            en: "Possible spelling mistake",
-          },
-          suggestions: [
-            "engineer",
-            "engender",
-            "engineers",
-            "engine",
-            "ingenue",
-            "engineer's",
-          ],
-        },
-      ],
-      all: [
-        {
-          id: "e504761736",
-          offset: 2,
-          length: 2,
-          description: {
-            en: "Use a first-person plural verb.",
-          },
-          bad: "is",
-          better: ["am"],
-          type: "grammar",
-        },
-        {
-          id: "e1147650887",
-          offset: 8,
-          length: 8,
-          description: {
-            en: "Possible spelling mistake",
-          },
-          bad: "engeneer",
-          better: [
-            "engineer",
-            "engender",
-            "engineers",
-            "engine",
-            "ingenue",
-            "engineer's",
-          ],
-          type: "spelling",
-        },
-      ],
-    });
-
-    return;
-
-    if (errors.length > 0) {
-      // If there are grammatical errors
-      res.json({
-        originalText: text,
-        corrections: errors.map((error) => ({
-          error: error.description,
-          suggestions: error.better,
-        })),
-        all: errors,
-      });
-    } else {
-      // If there are no grammatical errors
-      res.json({
-        originalText: text,
-        corrections: [],
-      });
+      if (errors.length > 0) {
+        // If there are grammatical errors
+        errors.push({
+          originalText: seperated[i],
+          corrections: errors.map((error) => ({
+            error: error.description,
+            suggestions: error.better,
+          })),
+          all: errors,
+        });
+        console.log(errors);
+      } else {
+        // If there are no grammatical errors
+        errors.push({
+          originalText: seperated[i],
+          corrections: [],
+        });
+        console.log(errors);
+      }
     }
+
+    res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
     res.status(500).send(`Error: ${error}`);
@@ -121,14 +89,10 @@ const Readability = async (req, res) => {
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    // const data = await axios.get(url);
+    const data = await axios.get(url);
 
     // Extract statistics
-    // const statistics = data?.data?.response?.stats;
-
-    res.json({});
-
-    return;
+    const statistics = data?.data?.response?.stats;
 
     if (statistics?.counters?.words > 30) {
       // If there are enough words
@@ -166,14 +130,10 @@ const Summarize = async (req, res) => {
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    // const data = await axios.get(url);
+    const data = await axios.get(url);
 
     // Extract summaries
-    // const summaries = data?.data?.response;
-
-    res.json({});
-
-    return;
+    const summaries = data?.data?.response;
 
     if (summaries?.keywords.length > 0) {
       // If there are enough sentences

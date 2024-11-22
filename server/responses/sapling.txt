@@ -1,0 +1,37 @@
+{ status: 200 }
+{
+    "results": [
+        {
+            "hash": "4cefba04-0aea-5d06-829f-18f81e174f50",
+            "model_version": "v20240207",
+            "original": "How are you?",
+            "rephrase_type": "paraphrase",
+            "replacement": "What's your current state of health"
+        },
+        {
+            "hash": "65746566-290d-59b9-b374-5c19a96c09a9",
+            "model_version": "v20240207",
+            "original": "How are you?",
+            "rephrase_type": "paraphrase",
+            "replacement": "In what condition are you at present?"
+        },
+        {
+            "hash": "6f9e6c53-8a72-576e-a36d-6362716c432b",
+            "model_version": "v20240207",
+            "original": "How are you?",
+            "rephrase_type": "paraphrase",
+            "replacement": "How are things with you?"
+        },
+        {
+            "hash": "a5051a20-b1a2-5a51-b627-eccdc73e7fb8",
+            "model_version": "v20240207",
+            "original": "How are you?",
+            "rephrase_type": "paraphrase",
+            "replacement": "How do you feel today?"
+        }
+    ]
+}
+
+
+
+

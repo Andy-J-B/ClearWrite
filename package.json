@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "react": "^18.0.0",
@@ -15,12 +16,7 @@
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
-
     "jest": "^29.7.0",
     "node-mocks-http": "^1.16.1"
-  },
-  "scripts":{
-    "test": "jest"
   }
-
 }

@@ -1,68 +1,112 @@
-grammarCheck TextGears API post request response
+// Correct Grammatical issues
+const CorrectGrammar = async (req, res) => {
+  // Get text to grammar check
+  const text = req.body.text;
 
-{
-    "originalText": "I is an engeneer.",
-    "corrections": [
+  // Replace all spaces with a +
+  const addTexts = text.replace(/ /g, "+");
+
+  // Get apiKey from dotenv file
+  const apiKey = process.env.TextGears_API_KEY;
+
+  // Server request url
+  const url = `https://api.textgears.com/grammar?text=${addTexts}&language=en-GB&whitelist=&dictionary_id=&ai=1&key=${apiKey}`;
+
+  try {
+    // Codes from lines 24-42 is from
+    // "https://gist.github.com/krishheii/415ccdf6ab9a6bb29d60bdcdbdb5e98c"
+
+    // Should not test too many times due to api usage limit
+    // Uncomment only for testing and production
+    // const data = await axios.get(url);
+
+    // Extract errors
+    // const errors = data?.data?.response?.errors;
+
+    res.json({
+      originalText: "I is an engeneer.",
+      corrections: [
         {
-            "error": {
-                "en": "Use a first-person plural verb."
-            },
-            "suggestions": [
-                "am"
-            ]
+          error: {
+            en: "Use a first-person plural verb.",
+          },
+          suggestions: ["am"],
         },
         {
-            "error": {
-                "en": "Possible spelling mistake"
-            },
-            "suggestions": [
-                "engineer",
-                "engender",
-                "engineers",
-                "engine",
-                "ingenue",
-                "engineer's"
-            ]
-        }
-    ],
-    "all": [
+          error: {
+            en: "Possible spelling mistake",
+          },
+          suggestions: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+        },
+      ],
+      all: [
         {
-            "id": "e504761736",
-            "offset": 2,
-            "length": 2,
-            "description": {
-                "en": "Use a first-person plural verb."
-            },
-            "bad": "is",
-            "better": [
-                "am"
-            ],
-            "type": "grammar"
+          id: "e504761736",
+          offset: 2,
+          length: 2,
+          description: {
+            en: "Use a first-person plural verb.",
+          },
+          bad: "is",
+          better: ["am"],
+          type: "grammar",
         },
         {
-            "id": "e1147650887",
-            "offset": 8,
-            "length": 8,
-            "description": {
-                "en": "Possible spelling mistake"
-            },
-            "bad": "engeneer",
-            "better": [
-                "engineer",
-                "engender",
-                "engineers",
-                "engine",
-                "ingenue",
-                "engineer's"
-            ],
-            "type": "spelling"
-        }
-    ]
-}
+          id: "e1147650887",
+          offset: 8,
+          length: 8,
+          description: {
+            en: "Possible spelling mistake",
+          },
+          bad: "engeneer",
+          better: [
+            "engineer",
+            "engender",
+            "engineers",
+            "engine",
+            "ingenue",
+            "engineer's",
+          ],
+          type: "spelling",
+        },
+      ],
+    });
+  } catch (error) {
+    // If there is an error
+    res.status(500).send(`Error: ${error}`);
+  }
+};
 
-readabilityScore TextGears API post request response
+// Readability grading
+const Readability = async (req, res) => {
+  // Get text to check readability
+  const text = req.body.text;
 
-{
+  // Replace all spaces with a +
+  const addTexts = text.replace(/ /g, "+");
+
+  // Get apiKey from dotenv file
+  const apiKey = process.env.TextGears_API_KEY;
+
+  // Server request url
+  const url = `https://api.textgears.com/readbility?key=${apiKey}&text=${addTexts}`;
+
+  try {
+    // Should not test too many times due to api usage limit
+    // Uncomment only for testing and production
+    // const data = await axios.get(url);
+
+    // Extract statistics
+    // const statistics = data?.data?.response?.stats;
+
+    res.json({
       originalText:
         "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
       fleschKincaid: {
@@ -106,11 +150,36 @@ readabilityScore TextGears API post request response
           sentences: 10,
         },
       },
-    }
+    });
+  } catch (error) {
+    // Catch errors
+    res.status(500).send(`Error: ${error}`);
+  }
+};
 
-summarized TextGears API post request response
+// Summarizer
+const Summarize = async (req, res) => {
+  // Get text to check readability
+  const text = req.body.text;
 
-{
+  // Replace all spaces with a +
+  const addTexts = text.replace(/ /g, "+");
+
+  // Get apiKey from dotenv file
+  const apiKey = process.env.TextGears_API_KEY;
+
+  // Server request url
+  const url = `https://api.textgears.com/summarize?key=${apiKey}&language=en-GB&text=${addTexts}`;
+
+  try {
+    // Should not test too many times due to api usage limit
+    // Uncomment only for testing and production
+    // const data = await axios.get(url);
+
+    // Extract summaries
+    // const summaries = data?.data?.response;
+
+    res.json({
       originalText:
         "Readability (legibility) is a feature of the text that represents ease of its perception by the reader, as well as the evaluation of its simplicity. The two main factors of readability are the printing and linguistic features of the text.    The Flesch Kinkaid Score is the most popular way to measure the readability of English text. It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities. The higher the index value on a 100-point scale, the better the readability of the text.    Smart human-trained search algorithms evaluate all site content for completeness of topic disclosure, and in a form that is understandable to the reader. For this purpose, readability indexes are used. In other words, pages containing simple and clear text get higher positions in the search results. Improving the text in terms of its printing and linguistic qualities will increase the user's viewing time. It turns out that the readability significantly affects the ranking of sites in the search engine.",
       summary: [
@@ -144,8 +213,15 @@ summarized TextGears API post request response
           "It works on the principle of “the fewer words in the text, and the fewer syllables in them, the easier it is to perceive” and is most often used for checking essays in schools and universities.",
         ],
       },
-    }
+    });
+  } catch (error) {
+    // Catch error
+    res.status(500).send(`Error: ${error}`);
+  }
+};
 
-
-
-    
+module.exports = {
+  CorrectGrammar,
+  Readability,
+  Summarize,
+};

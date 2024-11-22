@@ -1,15 +1,23 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import MainPage from "./components/MainPage"; // Ensure this path matches your actual file
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import EvaluationPage from "./components/evaluationPage";
+// Import bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// Imports pages
+import MainPage from "./components/MainPage"; // Ensure this path matches your actual file
+import EvaluationPage from "./components/EvaluationPage";
 
 function App() {
+  console.log("Rendering App Component");
   return (
-    <div className="App">
-      <MainPage />
+    <div>
+      <Routes>
+        {/* <Route path="/" element={<IntroPage />} /> */}
+        <Route path="/" element={<MainPage />} />
+        {/* <Route path="/loading" element={<LoadingPage />} /> */}
+        <Route path="/evaluation" element={<EvaluationPage />} />
+      </Routes>
     </div>
   );
 }
