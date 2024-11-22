@@ -1,19 +1,30 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* General container styling */
 .homepage-container {
-    min-height: 100%;
-    width: 100vw; 
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease; 
-    box-sizing: border-box;
-  }
-  
-  /* Basic styles for light and dark modes */
+  min-height: 100vh; /* Ensure it takes the full viewport height */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Prevent horizontal scrolling on the entire page */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Ensures no horizontal scroll for the entire page */
+  box-sizing: border-box;
+}
+
+/* Basic styles for light and dark modes */
 body.light-mode {
   background-color: #ffffff;
   color: #000000;
@@ -32,6 +43,7 @@ body.dark-mode {
   top: 10px;
   right: 10px;
   z-index: 1000;
+  overflow: hidden; /* Prevent any possible overflow caused by the button */
 }
 
 /* Styling the button */
@@ -57,83 +69,123 @@ body.dark-mode {
   outline: none;
 }
 
-  
-  /* Essay Section */
-  .essay-section {
-    background-color: inherit;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
-    padding: 20px;
-    width: 50%;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .logo {
-    max-width: 100px;
-    margin-bottom: 20px;
-  }
-  
-  .essay-input {
-    width: 100%;
-    height: 150px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: inherit;
-    color: inherit;
-  }
-  
-  .evaluate-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .evaluate-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* About Section */
-  .about-section {
-    margin-top: 500px;
-    padding: 20px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .about-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .group-members {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .member-card {
-    background-color: #f1f1f1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    border-radius: 8px;
-    width: 200px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dark-mode .member-card {
-    background-color: #424242;
-    color: white;
-  }
-  
+/* Essay Section */
+.essay-section {
+  background-color: inherit;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 180px auto; /* Center the section */
+  padding: 20px;
+  width: 100%;
+  max-width: 800px; /* Limit the maximum width */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.essay-input {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: inherit;
+  color: inherit;
+  resize: none; /* Prevent resizing of the textarea */
+}
+body.dark-mode .essay-section{
+  background-color:#171717;
+}
+body.dark-mode .essay-input {
+  background-color: #333333; /* Dark grey background */
+  color: #ffffff;            /* White text for readability */
+  border-color: #555555;     /* Adjust border color */
+}
+
+body.dark-mode .essay-input::placeholder {
+  color: #bbbbbb;            /* Light grey placeholder text */
+}
+
+.evaluate-button {
+  background: linear-gradient(45deg, #ff6b6b, #f94d6a);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.evaluate-button:hover {
+  background: linear-gradient(45deg, #f94d6a, #ff6b6b);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* About Section */
+.about-section {
+  margin-top: 500px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.group-members {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+/* Back Button Styling */
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit; /* Adapt to light/dark mode */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.back-button:focus {
+  outline: none;
+}
+
+.member-card {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.dark-mode .member-card {
+  background-color: #424242;
+  color: white;
+}

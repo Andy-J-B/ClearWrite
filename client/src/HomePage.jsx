@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Homepage.css";
-import { FaSun, FaMoon } from "react-icons/fa"; 
+import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './image/clearwrite-background.png';
 
 const HomePage = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -12,6 +14,14 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
+
+      <button
+        className="back-button"
+        onClick={() => navigate(-1)} // Navigate to the previous page
+      >
+        <FaArrowLeft size={20} />
+      </button>
+
       <div className="day-night-toggle">
         <button onClick={toggleTheme} className="toggle-button">
           {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
@@ -19,7 +29,7 @@ const HomePage = () => {
       </div>
 
       <div className="essay-section">
-        <img src="client/src/image/clearwrite-background.png" alt="ClearWrite Logo" className="logo" />
+        <img src={logo} alt="ClearWrite Logo" className="logo" />
         <textarea
           placeholder="Enter your essay here ..."
           className="essay-input"
