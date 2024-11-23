@@ -295,7 +295,7 @@ body.dark-mode .nested-list li::marker {
 }
 
 .introduction-page p{
-  margin-bottom: 400px;
+  margin-bottom: 290px;
 }
 
 .fade-enter {
@@ -325,7 +325,7 @@ body.dark-mode .nested-list li::marker {
   height: 100vh;
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   color: #333;
 }
 
@@ -350,4 +350,75 @@ body.dark-mode .nested-list li::marker {
 .progress-text {
   font-size: 1.2rem;
   color: #555;
+}
+/* Form styling */
+form {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Textarea styling */
+textarea {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: inherit;
+  color: inherit;
+  resize: none; /* Prevent resizing of the textarea */
+}
+
+textarea::placeholder {
+  color: #bbb;
+}
+
+body.dark-mode textarea {
+  background-color: #333; /* Dark mode textarea background */
+  color: #fff;           /* White text for dark mode */
+  border-color: #555;    /* Dark mode border color */
+}
+
+body.dark-mode textarea::placeholder {
+  color: #aaa;           /* Lighter placeholder color for dark mode */
+}
+
+/* Evaluate button styling */
+button.evaluate-button {
+  background: linear-gradient(45deg, #ff6b6b, #f94d6a);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+button.evaluate-button:hover {
+  background: linear-gradient(45deg, #f94d6a, #ff6b6b);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+/* Container for textarea and character count */
+.textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Style for the character count */
+.character-count {
+  position: absolute;
+  bottom: -20px;
+  left: 10px;
+  font-size: 14px;
+  color: #888;
+  font-family: Arial, sans-serif;
 }

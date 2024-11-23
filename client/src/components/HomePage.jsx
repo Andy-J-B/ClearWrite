@@ -101,12 +101,15 @@ const HomePage = () => {
       <div className="essay-section">
         <img src={logo} alt="ClearWrite Logo" className="logo" />
         <form onSubmit={handleSubmit}>
-          <textarea
-            id="essayInput"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Enter your essay here ..."
-          ></textarea>
+          <div className="textarea-container">
+            <textarea
+              id="essayInput"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Enter your essay here ..."
+            ></textarea>
+            <div className="character-count">{text.length} / 4000</div>
+          </div>
           <button className="evaluate-button" type="submit">
             Evaluate
           </button>

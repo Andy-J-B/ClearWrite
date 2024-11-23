@@ -27,7 +27,12 @@ const AboutPage = () => {
           to enhance your writing skills without doing the work for you.
         </p>
       </div>
+      <button className="evaluate-button" onClick={() => navigate("/home")}>
+          Continue to ClearWrite
+        </button>
+      <div className="about-continue">
 
+      </div>
       <div className="about-content">
         <h1 className="about-title">About</h1>
         <p className="about-description">
