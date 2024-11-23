@@ -151,7 +151,25 @@ const Summarize = async (req, res) => {
     }
   } catch (error) {
     // Catch error
-    res.status(500).send(`Error: ${error}`);
+    let errorMessage;
+    switch (error.code) {
+      case 600:
+        errorMessage = "Invalid API key.";
+        break;
+      case 606:
+        errorMessage = "Unsupported Language.";
+        break;
+      case 607:
+        errorMessage = "Allowed number of requests exceeded.";
+        break;
+      case 501:
+        errorMessage = "Text length exceeds rate limit.";
+        break;
+      default:
+        errorMessage = `Unknown internal service error: ${error.message}`;
+        break;
+    }
+    res.status(error.code === 500 ? 500 : 400).send(`Error: ${errorMessage}`);
   }
 };
 
