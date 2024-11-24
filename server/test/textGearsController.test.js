@@ -80,6 +80,127 @@ describe("CorrectGrammar", () => {
       ],
     });
   });
+
+
+
+  // testing the errors
+  test("should return 400 for Invalid API key (600)", async () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/correctGrammar",
+      body: {
+        text: "Test text",
+      },
+    });
+
+    const response = httpMocks.createResponse();
+
+    const error = new Error();
+    error.code = 600;
+    CorrectGrammar.mockImplementationOnce(() => {
+      throw error;
+    });
+
+    await CorrectGrammar(request, response);
+
+    expect(response.statusCode).toBe(400);
+    expect(response._getData()).toContain("Invalid key.");
+  });
+
+  test("should return 400 for Unsupported Language (606)", async () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/correctGrammar",
+      body: {
+        text: "Test text",
+      },
+    });
+
+    const response = httpMocks.createResponse();
+
+    const error = new Error();
+    error.code = 606;
+    CorrectGrammar.mockImplementationOnce(() => {
+      throw error;
+    });
+
+    await CorrectGrammar(request, response);
+
+    expect(response.statusCode).toBe(400);
+    expect(response._getData()).toContain("Unsupported Language.");
+  });
+
+  test("should return 400 for Allowed number of requests exceeded (607)", async () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/correctGrammar",
+      body: {
+        text: "Test text",
+      },
+    });
+
+    const response = httpMocks.createResponse();
+
+    const error = new Error();
+    error.code = 607;
+    CorrectGrammar.mockImplementationOnce(() => {
+      throw error;
+    });
+
+    await CorrectGrammar(request, response);
+
+    expect(response.statusCode).toBe(400);
+    expect(response._getData()).toContain("Allowed number of requests exceeded.");
+  });
+
+  test("should return 400 for Text length exceeds rate limit (501)", async () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/correctGrammar",
+      body: {
+        text: "Test text",
+      },
+    });
+
+    const response = httpMocks.createResponse();
+
+    const error = new Error();
+    error.code = 501;
+    CorrectGrammar.mockImplementationOnce(() => {
+      throw error;
+    });
+
+    await CorrectGrammar(request, response);
+
+    expect(response.statusCode).toBe(400);
+    expect(response._getData()).toContain("Text length exceeds rate limit.");
+  });
+
+  test("should return 500 for Unknown internal service error", async () => {
+    const request = httpMocks.createRequest({
+      method: "POST",
+      url: "/correctGrammar",
+      body: {
+        text: "Test text",
+      },
+    });
+
+    const response = httpMocks.createResponse();
+
+    const error = new Error("Internal error");
+    error.code = 500;
+    CorrectGrammar.mockImplementationOnce(() => {
+      throw error;
+    });
+
+    await CorrectGrammar(request, response);
+
+    expect(response.statusCode).toBe(500);
+    expect(response._getData()).toContain("Unknown internal service error: Internal error");
+  });
+
+
+
 });
 
 describe("Readability", () => {
