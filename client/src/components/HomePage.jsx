@@ -53,7 +53,7 @@ const HomePage = () => {
         // //   "tone",
         // // ];
         // // Comment out for now
-        // const results = [];
+        // let results = {};
         // for (let i = 0; i < 6; i++) {
         //   // Here we make a POST request to the API endpoint
         //   const response = await fetch(
@@ -67,7 +67,7 @@ const HomePage = () => {
         //     }
         //   );
         //   const data = await response.json();
-        //   results.push(data);
+        //   results[apiEndpoints[i]] = JSON.stringify(data);
         //   setProgress((prev) => prev + 1); // Increment progress
 
         //   console.log(data); // Log or handle the response data
