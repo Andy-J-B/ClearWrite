@@ -1,25 +1,34 @@
 {
-  "grammarChecked": {
-    "originalText": "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
-    "corrections": [
-      {
-        "id": "e151597237",
-        "offset": 83,
-        "length": 11,
-        "description_en": "Possible spelling mistake",
-        "bad": "emphasizing",
-        "better": [
-          "emphasising",
-          "reemphasising",
-          "emphasis",
-          "emphasise",
-          "emphasis's",
-          "emphasised"
-        ],
-        "type": "spelling"
-      }
-    ]
-  },
+  "grammarChecked": [
+    {
+      "originalText": "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+      "corrections": []
+    },
+    {
+      "originalText": "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+      "corrections": []
+    },
+    {
+      "originalText": "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+      "corrections": []
+    },
+    {
+      "id": "e151597237",
+      "offset": 83,
+      "length": 11,
+      "description_en": "Possible spelling mistake",
+      "bad": "emphasizing",
+      "better": [
+        "emphasising",
+        "reemphasising",
+        "emphasis",
+        "emphasise",
+        "emphasis's",
+        "emphasised"
+      ],
+      "type": "spelling"
+    }
+  ],
   "readabilityScore": {
     "originalText": "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
     "fleschKincaid": {
