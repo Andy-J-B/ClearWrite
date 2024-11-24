@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import evaluationData from "./evaluationData-new.json";
 
 function EvaluationPage() {
@@ -9,75 +9,142 @@ function EvaluationPage() {
     rephrase = [],
   } = evaluationData;
 
-  console.log('Readability Score:', readabilityScore); // Log to check data
+  const [expandedSections, setExpandedSections] = useState({});
+  const [hoveredSection, setHoveredSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
 
   return (
     <div style={styles.pageContainer}>
-      <div style={styles.sidebar}>
+      <div style={styles.leftColumn}>
         <div style={styles.square}>
-          <h3 style={styles.squareTitle}>Grammar Check</h3>
-          {grammarChecked.length > 0 ? (
-            grammarChecked.map((entry, index) => (
-              <List
-                key={index}
-                title={`Grammar Issue ${index + 1}`}
-                items={entry.corrections || ["No corrections available."]}
-              />
-            ))
-          ) : (
-            <p style={styles.emptyText}>No grammar checks available.</p>
-          )}
-        </div>
-
-        <div style={styles.square}>
-          <h3 style={styles.squareTitle}>Readability Score</h3>
-          {readabilityScore.fleschKincaid ? (
+          <h3
+            style={{
+              ...styles.squareTitle,
+              ...(hoveredSection === 'grammar' && styles.squareTitleHover),
+            }}
+            onMouseEnter={() => setHoveredSection('grammar')}
+            onMouseLeave={() => setHoveredSection(null)}
+            onClick={() => toggleSection('grammar')}
+          >
+            Grammar Check
+          </h3>
+          {expandedSections.grammar && (
             <div>
-              <p style={styles.textBlock}>
-                <strong>Reading Ease:</strong>{" "}
-                {readabilityScore.fleschKincaid.readingEase}
-              </p>
-              <p style={styles.textBlock}>
-                <strong>Grade Level:</strong>{" "}
-                {readabilityScore.fleschKincaid.grade}
-              </p>
-              <p style={styles.textBlock}>
-                <strong>Interpretation:</strong>{" "}
-                {readabilityScore.fleschKincaid.interpretation}
-              </p>
+              {grammarChecked.length > 0 ? (
+                grammarChecked.map((entry, index) => (
+                  <List
+                    key={index}
+                    title={`Grammar Issue ${index + 1}`}
+                    items={entry.corrections || ["No corrections available."]}
+                  />
+                ))
+              ) : (
+                <p style={styles.emptyText}>No grammar checks available.</p>
+              )}
             </div>
-          ) : (
-            <p style={styles.emptyText}>No readability score available.</p>
           )}
         </div>
 
         <div style={styles.square}>
-          <h3 style={styles.squareTitle}>Summarized Text</h3>
-          {summarized.summaries?.length > 0 ? (
-            <List title="Summaries" items={summarized.summaries} />
-          ) : (
-            <p style={styles.emptyText}>No summaries available.</p>
+          <h3
+            style={{
+              ...styles.squareTitle,
+              ...(hoveredSection === 'readability' && styles.squareTitleHover),
+            }}
+            onMouseEnter={() => setHoveredSection('readability')}
+            onMouseLeave={() => setHoveredSection(null)}
+            onClick={() => toggleSection('readability')}
+          >
+            Readability Score
+          </h3>
+          {expandedSections.readability && (
+            <div>
+              {readabilityScore.fleschKincaid ? (
+                <div>
+                  <p style={styles.textBlock}>
+                    <strong>Reading Ease:</strong> {readabilityScore.fleschKincaid.readingEase}
+                  </p>
+                  <p style={styles.textBlock}>
+                    <strong>Grade Level:</strong> {readabilityScore.fleschKincaid.grade}
+                  </p>
+                  <p style={styles.textBlock}>
+                    <strong>Interpretation:</strong> {readabilityScore.fleschKincaid.interpretation}
+                  </p>
+                </div>
+              ) : (
+                <p style={styles.emptyText}>No readability score available.</p>
+              )}
+            </div>
           )}
         </div>
 
         <div style={styles.square}>
-          <h3 style={styles.squareTitle}>Rephrased Text</h3>
-          {rephrase.length > 0 ? (
-            rephrase.map((entry, index) => (
-              <List
-                key={index}
-                title={`Rephrase Suggestion ${index + 1}`}
-                items={entry.rephrasing.map((item) => item.replacement)}
-              />
-            ))
-          ) : (
-            <p style={styles.emptyText}>No rephrased text available.</p>
+          <h3
+            style={{
+              ...styles.squareTitle,
+              ...(hoveredSection === 'summarized' && styles.squareTitleHover),
+            }}
+            onMouseEnter={() => setHoveredSection('summarized')}
+            onMouseLeave={() => setHoveredSection(null)}
+            onClick={() => toggleSection('summarized')}
+          >
+            Summarized Text
+          </h3>
+          {expandedSections.summarized && (
+            <div>
+              {summarized.summaries?.length > 0 ? (
+                <List title="Summaries" items={summarized.summaries} />
+              ) : (
+                <p style={styles.emptyText}>No summaries available.</p>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div style={styles.square}>
+          <h3
+            style={{
+              ...styles.squareTitle,
+              ...(hoveredSection === 'rephrase' && styles.squareTitleHover),
+            }}
+            onMouseEnter={() => setHoveredSection('rephrase')}
+            onMouseLeave={() => setHoveredSection(null)}
+            onClick={() => toggleSection('rephrase')}
+          >
+            Rephrased Text
+          </h3>
+          {expandedSections.rephrase && (
+            <div>
+              {rephrase.length > 0 ? (
+                rephrase.map((entry, index) => (
+                  <List
+                    key={index}
+                    title={`Rephrase Suggestion ${index + 1}`}
+                    items={entry.rephrasing.map((item) => item.replacement)}
+                  />
+                ))
+              ) : (
+                <p style={styles.emptyText}>No rephrased text available.</p>
+              )}
+            </div>
           )}
         </div>
       </div>
 
-      <div style={styles.mainContent}>
-        <h2 style={styles.header}>Original Text</h2>
+      <div style={styles.rightColumn}>
+        <h2 style={styles.header}>Overall Score</h2>
+        <h3 style={styles.header}>
+          {evaluationData.overallScore && evaluationData.overallScore.length > 0
+            ? `${(evaluationData.overallScore[0].overallScore * 100).toFixed(2)}%`
+            : "No overall score available."}
+        </h3>
+        <p style={styles.originalText}>{readabilityScore.originalText}</p>
       </div>
     </div>
   );
@@ -97,37 +164,43 @@ const List = ({ title, items }) => (
   </div>
 );
 
-
 const styles = {
   pageContainer: {
     display: "flex",
+    flexDirection: "row",
     padding: "20px",
     fontFamily: "'Poppins', sans-serif",
     lineHeight: "1.6",
+    gap: "20px",
     backgroundColor: "#f0f0f0",
+    overflowX: "hidden",
   },
-  sidebar: {
-    width: "25%",
-    paddingRight: "20px",
+  leftColumn: {
+    flex: 1,
+    paddingRight: "10px",
     display: "flex",
     flexDirection: "column",
-    gap: "20px",
+    gap: "10px",  // Reduced gap for more compact layout
+    maxWidth: "30%",  // Ensures the left column takes up 30% of the space
   },
-  mainContent: {
-    width: "75%",
-    paddingLeft: "20px",
+  rightColumn: {
+    flex: 2,
+    padding: "10px",
     borderLeft: "1px solid #ddd",
     backgroundColor: "#fff",
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    maxWidth: "70%",  // Ensures the right column takes up 70% of the space
+    overflowY: "auto",
   },
   square: {
-    padding: "20px",
+    padding: "10px",  // Reduced padding for more compact sections
     border: "1px solid #ddd",
     borderRadius: "8px",
     backgroundColor: "#fff",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     transition: "background-color 0.3s ease",
+    cursor: "pointer",
   },
   squareTitle: {
     fontSize: "18px",
@@ -135,6 +208,14 @@ const styles = {
     marginBottom: "10px",
     color: "#333",
     textAlign: "center",
+    backgroundColor: "#e0e0e0",
+    padding: "10px",
+    borderRadius: "5px",
+    transition: "background-color 0.3s ease, color 0.3s ease",
+  },
+  squareTitleHover: {
+    backgroundColor: "#333",
+    color: "#fff",
   },
   header: {
     fontSize: "22px",
@@ -175,7 +256,6 @@ const styles = {
     fontStyle: "italic",
   },
 };
-
 
 
 export default EvaluationPage;
