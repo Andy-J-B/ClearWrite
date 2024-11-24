@@ -10,7 +10,7 @@ function App() {
     <div>
       <Routes>
         {/* <Route path="/" element={<IntroPage />} /> */}
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<EvaluationPage />} />
         {/* <Route path="/loading" element={<LoadingPage />} /> */}
         <Route path="/evaluation" element={<EvaluationPage />} />
       </Routes>
