@@ -39,43 +39,47 @@ const HomePage = () => {
       navigate("/loading");
       // If good, send api requests
       try {
-        for (let i = 1; i <= 6; i++) {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          setProgress((prev) => prev + 1);
-        }
-        // // List of endpoints
-        // // const apiEndpoints = [
-        // //   "correctGrammar",
-        // //   "readability",
-        // //   "summarize",
-        // //   "rephrase",
-        // //   "aidetect",
-        // //   "tone",
-        // // ];
-        // // Comment out for now
-        // let results = {};
-        // for (let i = 0; i < 6; i++) {
-        //   // Here we make a POST request to the API endpoint
-        //   const response = await fetch(
-        //     `http://localhost:3000/${apiEndpoints[i]}`,
-        //     {
-        //       method: "POST",
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //       },
-        //       body: text, // Send the text state in the request body
-        //     }
-        //   );
-        //   const data = await response.json();
-        //   results[apiEndpoints[i]] = JSON.stringify(data);
-        //   setProgress((prev) => prev + 1); // Increment progress
-
-        //   console.log(data); // Log or handle the response data
+        // for (let i = 1; i <= 6; i++) {
+        //   await new Promise((resolve) => setTimeout(resolve, 1000));
+        //   setProgress((prev) => prev + 1);
         // }
+        // List of endpoints
+        const apiEndpoints = [
+          "correctGrammar",
+          "readability",
+          "summarize",
+          "rephrase",
+          "aidetect",
+          "tone",
+        ];
+        // Comment out for now
+        let results = {};
+        for (let i = 0; i < 6; i++) {
+          // Here we make a POST request to the API endpoint
+          const response = await fetch(
+            `http://localhost:3000/${apiEndpoints[i]}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json", // Inform the server of JSON format
+              },
+              body: JSON.stringify({ text: text }), // Send the text state in the request body
+            }
+          );
+          console.log("response");
+          console.log(response);
+          const data = await response.json();
+          console.log(data);
+          console.log("data");
+          results[apiEndpoints[i]] = data;
+          setProgress((prev) => prev + 1); // Increment progress
 
+          console.log(data); // Log or handle the response data
+        }
+        console.log(results);
         // Optionally, handle navigation or state updates based on the response
 
-        const results = [0, 1, 2, 3, 4, 5, 5];
+        // const results = [0, 1, 2, 3, 4, 5, 5];
 
         // Navigate to the Evaluation page and pass data
         navigate("/evaluate", { state: { evaluationData: results } });

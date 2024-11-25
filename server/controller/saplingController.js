@@ -53,32 +53,27 @@ const Rephrase = async (req, res) => {
 };
 
 const AiDetect = async (req, res) => {
-  // Get text to AI detector
-  const theText = req.body.text;
+  //   Get text to AI detector
+
+  const text = req.body.text;
 
   // Get apiKey from dotenv file
   const apiKey = process.env.Sapling_API_KEY;
-
-  console.log(theText, apiKey);
 
   try {
     const response = await axios.post(
       "https://api.sapling.ai/api/v1/aidetect",
       {
         key: `${apiKey}`,
-        text: `${theText}`,
+        text: `${text}`,
         sent_scores: true, // Enable sentence-level scoring
         score_string: false, // Disable token heatmap
         version: "20240606", // Default version
       }
     );
-
-    // console.log({status});
+    const { status, data } = response;
+    // console.log({ status });
     // console.log(JSON.stringify(data, null, 4));
-    res.json(response);
-
-    console.log(JSON.stringify(response));
-
     res.json({
       overallScore: data.score,
       sentenceScores: data.sentence_scores,
@@ -105,8 +100,8 @@ const Tone = async (req, res) => {
     );
 
     const { status, data } = response;
-    console.log({ status });
-    console.log(JSON.stringify(data, null, 4));
+    // console.log({ status });
+    // console.log(JSON.stringify(data, null, 4));
 
     res.json({
       sentences: data.sents,

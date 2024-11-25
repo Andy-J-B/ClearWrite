@@ -31,6 +31,8 @@ const CorrectGrammar = async (req, res) => {
     urls.push(url);
   }
 
+  console.log(urls);
+
   try {
     let resultingData = [];
     // Codes from lines 24-42 is from
@@ -39,14 +41,23 @@ const CorrectGrammar = async (req, res) => {
     for (var i = 0; i < urls.length; i++) {
       // Should not test too many times due to api usage limit
       // Uncomment only for testing and production
-      const data = await axios.get(urls[i]);
+      const response = await axios.get(urls[i]);
 
       // Extract errors
-      const errors = data?.data?.response?.errors;
+      console.log("response");
+      console.log(response);
+
+      //
+      const { status, data } = response;
+      console.log("status, data");
+      console.log(status, data);
+      const errors = data?.response?.errors;
+      console.log("errors");
+      console.log(errors);
 
       if (errors.length > 0) {
         // If there are grammatical errors
-        errors.push({
+        resultingData.push({
           originalText: seperated[i],
           corrections: errors.map((error) => ({
             error: error.description,
@@ -54,17 +65,18 @@ const CorrectGrammar = async (req, res) => {
           })),
           all: errors,
         });
-        console.log(errors);
+        // console.log(errors);
       } else {
         // If there are no grammatical errors
-        errors.push({
+        resultingData.push({
           originalText: seperated[i],
           corrections: [],
         });
-        console.log(errors);
+        // console.log(errors);
       }
     }
-
+    console.log("resultingData");
+    console.log(resultingData);
     res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
@@ -84,18 +96,31 @@ const Readability = async (req, res) => {
   const apiKey = process.env.TextGears_API_KEY;
 
   // Server request url
-  const url = `https://api.textgears.com/readbility?key=${apiKey}&text=${addTexts}`;
+  const url = `https://api.textgears.com/readability?key=${apiKey}&text=${addTexts}`;
 
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    const data = await axios.get(url);
+    // console.log(url);
+    const response = await axios.get(url);
+
+    // Extract errors
+    console.log("response");
+    console.log(response);
+
+    //
+    const { status, data } = response;
+    console.log("status, data");
+    console.log(status, data);
+    const statistics = data?.response?.stats;
+    console.log("statistics");
+    console.log(statistics);
 
     // Extract statistics
-    const statistics = data?.data?.response?.stats;
 
     if (statistics?.counters?.words > 30) {
       // If there are enough words
+
       res.json({
         originalText: text,
         fleschKincaid: statistics?.fleschKincaid,
@@ -130,10 +155,21 @@ const Summarize = async (req, res) => {
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    const data = await axios.get(url);
+    const response = await axios.get(url);
+
+    // Extract errors
+    console.log("response");
+    console.log(response);
+
+    //
+    const { status, data } = response;
+    console.log("status, data");
+    console.log(status, data);
+    const summaries = data?.response;
+    console.log("summaries");
+    console.log(summaries);
 
     // Extract summaries
-    const summaries = data?.data?.response;
 
     if (summaries?.keywords.length > 0) {
       // If there are enough sentences

@@ -13,8 +13,8 @@ const router = express.Router();
 const axios = require("axios");
 
 // Import user-related controllers
-// const textGearsController = require("../controller/textGearsController");
-const textGearsController = require("../controller/textGearsTempController");
+const textGearsController = require("../controller/textGearsController");
+// const textGearsController = require("../controller/textGearsTempController");
 
 // Load environmental variables
 require("dotenv").config();

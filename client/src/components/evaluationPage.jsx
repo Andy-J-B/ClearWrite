@@ -1,13 +1,432 @@
 import React, { useState } from "react";
 import evaluationData from "./evaluationData-new.json";
+import { useLocation } from "react-router-dom";
 
 function EvaluationPage() {
+  // const {
+  //   grammarChecked = [],
+  //   readabilityScore = {},
+  //   summarized = {},
+  //   rephrase = [],
+  // } = evaluationData;
+
+  const location = useLocation();
+  const realEval = location.state?.evaluationData;
+
+  // const evaluationData = {
+  //   correctGrammar: {
+  //     grammar: [
+  //       {
+  //         originalText:
+  //           "Writing well is a skill that opens doors to countless opportunities.",
+  //         corrections: [],
+  //       },
+  //       {
+  //         originalText:
+  //           " Grammar is important because it makes the sentences clarity and better for readings.",
+  //         corrections: [],
+  //       },
+  //       {
+  //         originalText:
+  //           " It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //         corrections: [],
+  //       },
+  //       {
+  //         originalText:
+  //           " As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //         corrections: [
+  //           {
+  //             error: {
+  //               en: "Possible spelling mistake",
+  //             },
+  //             suggestions: [
+  //               "emphasising",
+  //               "reemphasising",
+  //               "emphasis",
+  //               "emphasise",
+  //               "emphasis's",
+  //               "emphasised",
+  //             ],
+  //           },
+  //         ],
+  //         all: [
+  //           {
+  //             id: "e1930194451",
+  //             offset: 83,
+  //             length: 11,
+  //             description: {
+  //               en: "Possible spelling mistake",
+  //             },
+  //             bad: "emphasizing",
+  //             better: [
+  //               "emphasising",
+  //               "reemphasising",
+  //               "emphasis",
+  //               "emphasise",
+  //               "emphasis's",
+  //               "emphasised",
+  //             ],
+  //             type: "spelling",
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   readability: {
+  //     originalText:
+  //       "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //     fleschKincaid: {
+  //       readingEase: 51.7,
+  //       grade: "10th to 12th grade",
+  //       interpretation: "Fairly difficult to read",
+  //     },
+  //     emotion: {
+  //       positive: 0.5,
+  //       negative: 0.5,
+  //     },
+  //     counters: {
+  //       length: 402,
+  //       clearLength: 339,
+  //       words: 65,
+  //       sentences: 4,
+  //     },
+  //     all: {
+  //       fleschKincaid: {
+  //         readingEase: 51.7,
+  //         grade: "10th to 12th grade",
+  //         interpretation: "Fairly difficult to read",
+  //       },
+  //       gunningFog: 12.7,
+  //       colemanLiau: 12,
+  //       SMOG: 12,
+  //       vocabularySize: {
+  //         active: null,
+  //         passive: null,
+  //       },
+  //       emotion: {
+  //         positive: 0.5,
+  //         negative: 0.5,
+  //       },
+  //       counters: {
+  //         length: 402,
+  //         clearLength: 339,
+  //         words: 65,
+  //         sentences: 4,
+  //       },
+  //     },
+  //   },
+  //   summarize: {
+  //     originalText:
+  //       "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //     summaries: [
+  //       "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //       "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //     ],
+  //     all: {
+  //       keywords: [
+  //         "writing",
+  //         "skill",
+  //         "improve",
+  //         "gain",
+  //         "good",
+  //         "mirror",
+  //         "confidence",
+  //         "communication",
+  //         "clear",
+  //         "opens",
+  //       ],
+  //       highlight: [],
+  //       summary: [
+  //         "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //         "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //       ],
+  //     },
+  //   },
+  //   rephrase: {
+  //     rephrase: [
+  //       {
+  //         originalText:
+  //           "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //         rephrasing: [
+  //           {
+  //             hash: "9caa16ed-b315-5120-9b36-544c3a65a83a",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Writing well is a skill that opens doors to countless opportunities.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "The ability to write effectively unlocks a multitude of prospects.",
+  //           },
+  //           {
+  //             hash: "5238730d-c59d-5f06-b3a1-785495aa11a6",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Writing well is a skill that opens doors to countless opportunities.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "A proficient writing skill grants access to an abundance of possibilities.",
+  //           },
+  //           {
+  //             hash: "64125733-cc9c-5342-a4e3-f517c08f5775",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Writing well is a skill that opens doors to countless opportunities.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "Mastering the craft of writing provides the key to numerous opportunities.",
+  //           },
+  //           {
+  //             hash: "3cad6eeb-492e-5822-a4bb-bedff03bace2",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Writing well is a skill that opens doors to countless opportunities.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "The art of writing well holds the power to unlock a vast array of chances.",
+  //           },
+  //           {
+  //             hash: "240fcf35-6146-598a-a8b1-51f31bf7fbbc",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Writing well is a skill that opens doors to countless opportunities.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "Adept writing abilities grant entrance to a plethora of opportunities.",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         originalText:
+  //           "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //         rephrasing: [
+  //           {
+  //             hash: "e9e807db-424e-5cda-ab19-860a9c611e4d",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Grammar is important because it makes the sentences clarity and better for readings.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "The significance of grammar lies in its ability to enhance sentence clarity and improve the overall reading experience.",
+  //           },
+  //           {
+  //             hash: "ca903435-a2b6-5de0-83ab-27921c80303a",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Grammar is important because it makes the sentences clarity and better for readings.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "Grammar plays a crucial role in ensuring that sentences are clear and well-structured, thereby enhancing the reading experience.",
+  //           },
+  //           {
+  //             hash: "16bb5c4f-55c8-5e2e-8ec6-181455e92c30",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Grammar is important because it makes the sentences clarity and better for readings.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "The importance of grammar cannot be overstated when it comes to making sentences clearer and more effective for reading.",
+  //           },
+  //           {
+  //             hash: "0280866c-757a-5806-90b0-a0ac5efb464c",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Grammar is important because it makes the sentences clarity and better for readings.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "Proper use of grammar is essential for achieving clarity in sentences and enhancing the quality of the reading material.",
+  //           },
+  //           {
+  //             hash: "1e4676c2-0014-5b92-8766-9c00749e1d43",
+  //             model_version: "v20240207",
+  //             original:
+  //               "Grammar is important because it makes the sentences clarity and better for readings.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "Grammar is a vital component in the construction of clear and effective sentences, thereby contributing significantly to the reading experience.",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         originalText:
+  //           "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //         rephrasing: [
+  //           {
+  //             hash: "f7e737a0-2edc-5904-8762-f677383f37c0",
+  //             model_version: "v20240207",
+  //             original:
+  //               "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "I derive great pleasure from assisting others in enhancing their writing abilities and witnessing their growth in self-assurance regarding their expressive talents.",
+  //           },
+  //           {
+  //             hash: "61621122-2e18-513f-9fad-8a9a157cc01b",
+  //             model_version: "v20240207",
+  //             original:
+  //               "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "Assisting others in improving their writing and observing their newfound confidence in their communication skills is an unending source of joy for me.",
+  //           },
+  //           {
+  //             hash: "e36d6531-f338-57b3-b4b9-6190632529db",
+  //             model_version: "v20240207",
+  //             original:
+  //               "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "The satisfaction I experience in aiding others to refine their writing and observe their enhanced self-assurance in their communication skills is immeasurable.",
+  //           },
+  //           {
+  //             hash: "3456f5c2-2657-5369-a552-8701e72e332e",
+  //             model_version: "v20240207",
+  //             original:
+  //               "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "I find immense joy in helping others develop their writing skills and observing their newfound confidence in their communication abilities.",
+  //           },
+  //           {
+  //             hash: "8544aea5-d0f1-5d83-af44-21de02be3b8b",
+  //             model_version: "v20240207",
+  //             original:
+  //               "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "It brings me great joy to support others in their writing improvement journey and observe their increased self-assurance in their communication skills.",
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         originalText:
+  //           "Writing well is a skill that opens doors to countless opportunities. Grammar is important because it makes the sentences clarity and better for readings. It's always a joy to help others improve their writing and see them gain confidence in their communication skills! As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //         rephrasing: [
+  //           {
+  //             hash: "3ba8661f-4dd4-5256-a371-81ad91b9e6b9",
+  //             model_version: "v20240207",
+  //             original:
+  //               "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "A shrewd observation by an intelligent person asserts that 'Effective writing is a reflection of a clear-thinking mind,' underscoring the significance of lucid expression.",
+  //           },
+  //           {
+  //             hash: "948b67ca-5974-5194-99b2-a778b03bd90d",
+  //             model_version: "v20240207",
+  //             original:
+  //               "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "A sage remark by an insightful person states that 'Clear writing is a manifestation of a well-organized mind,' highlighting the value of precise communication.",
+  //           },
+  //           {
+  //             hash: "ec905484-4bd6-5af2-8dd7-93e4399a22fa",
+  //             model_version: "v20240207",
+  //             original:
+  //               "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "An astute observation from a knowledgeable person asserts that 'Good writing is a manifestation of a well-structured mind,' stressing the importance of articulate expression.",
+  //           },
+  //           {
+  //             hash: "8fd3700e-cf14-5822-a195-290dde46200f",
+  //             model_version: "v20240207",
+  //             original:
+  //               "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "A profound statement by a discerning person asserts that 'Effective writing is a reflection of a well-regulated mind,' emphasizing the significance of clear and concise communication.",
+  //           },
+  //           {
+  //             hash: "ac5bc5e6-1d64-5f15-b627-ba6259772d0d",
+  //             model_version: "v20240207",
+  //             original:
+  //               "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //             rephrase_type: "informal_to_formal",
+  //             replacement:
+  //               "A perceptive observation by a thoughtful person asserts that 'Clear writing is a reflection of a well-governed mind,' highlighting the importance of logical and organized expression.",
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   aidetect: {
+  //     overallScore: 0.9840300298077785,
+  //     sentenceScores: [
+  //       {
+  //         score: 0.21343320587607306,
+  //         sentence:
+  //           "Writing well is a skill that opens doors to countless opportunities.",
+  //       },
+  //       {
+  //         score: 9.419816038302997e-10,
+  //         sentence:
+  //           "Grammar is important because it makes the sentences clarity and better for readings.",
+  //       },
+  //       {
+  //         score: 0.43752189183034196,
+  //         sentence:
+  //           "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //       },
+  //       {
+  //         score: 0.3412947188620773,
+  //         sentence:
+  //           "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //       },
+  //     ],
+  //   },
+  //   tone: {
+  //     sentences: [
+  //       "Writing well is a skill that opens doors to countless opportunities.",
+  //       "Grammar is important because it makes the sentences clarity and better for readings.",
+  //       "It's always a joy to help others improve their writing and see them gain confidence in their communication skills!",
+  //       "As a wise individual once said, 'Good writing is a mirror of a well-ordered mind,' emphasizing the importance of clear communication.",
+  //     ],
+  //     overallSentiment: [[1, "POSITIVE"]],
+  //     detailedResults: [
+  //       [[0.98443155689165, "POSITIVE"]],
+  //       [
+  //         [0.9972456566756591, "POSITIVE"],
+  //         [0.001190662500448525, "NEUTRAL"],
+  //       ],
+  //       [[0.9829248506575823, "POSITIVE"]],
+  //       [[0.9685407653450966, "POSITIVE"]],
+  //     ],
+  //   },
+  // };
+  console.log("realEval");
+  console.log(realEval);
+
   const {
-    grammarChecked = [],
-    readabilityScore = {},
-    summarized = {},
-    rephrase = [],
-  } = evaluationData;
+    correctGrammar = {},
+    readability = {},
+    summarize = {},
+    rephrase = {},
+    aidetect = {},
+    tone = {},
+  } = realEval;
+
+  console.log(correctGrammar, readability, summarize, rephrase, aidetect, tone);
+
+  console.log("grammarChecked");
+  console.log(correctGrammar["grammar"]);
+
+  const rephrased = rephrase["rephrase"];
+
+  const grammarChecked = correctGrammar["grammar"];
+
+  const summarized = summarize;
+
+  const readabilityScore = readability;
+
+  console.log(
+    grammarChecked,
+    readabilityScore,
+    summarize,
+    rephrased,
+    aidetect,
+    tone
+  );
 
   const [expandedSections, setExpandedSections] = useState({});
   const [hoveredSection, setHoveredSection] = useState(null);
@@ -26,11 +445,11 @@ function EvaluationPage() {
           <h3
             style={{
               ...styles.squareTitle,
-              ...(hoveredSection === 'grammar' && styles.squareTitleHover),
+              ...(hoveredSection === "grammar" && styles.squareTitleHover),
             }}
-            onMouseEnter={() => setHoveredSection('grammar')}
+            onMouseEnter={() => setHoveredSection("grammar")}
             onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection('grammar')}
+            onClick={() => toggleSection("grammar")}
           >
             Grammar Check
           </h3>
@@ -41,7 +460,13 @@ function EvaluationPage() {
                   <List
                     key={index}
                     title={`Grammar Issue ${index + 1}`}
-                    items={entry.corrections || ["No corrections available."]}
+                    items={
+                      entry.corrections.length > 0
+                        ? entry.corrections.map((correction) => (
+                            <p>{correction.suggestions}</p>
+                          )) // Map correction errors
+                        : ["No corrections available."] // Fallback for empty corrections
+                    }
                   />
                 ))
               ) : (
@@ -55,11 +480,11 @@ function EvaluationPage() {
           <h3
             style={{
               ...styles.squareTitle,
-              ...(hoveredSection === 'readability' && styles.squareTitleHover),
+              ...(hoveredSection === "readability" && styles.squareTitleHover),
             }}
-            onMouseEnter={() => setHoveredSection('readability')}
+            onMouseEnter={() => setHoveredSection("readability")}
             onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection('readability')}
+            onClick={() => toggleSection("readability")}
           >
             Readability Score
           </h3>
@@ -68,13 +493,16 @@ function EvaluationPage() {
               {readabilityScore.fleschKincaid ? (
                 <div>
                   <p style={styles.textBlock}>
-                    <strong>Reading Ease:</strong> {readabilityScore.fleschKincaid.readingEase}
+                    <strong>Reading Ease:</strong>{" "}
+                    {readabilityScore.fleschKincaid.readingEase}
                   </p>
                   <p style={styles.textBlock}>
-                    <strong>Grade Level:</strong> {readabilityScore.fleschKincaid.grade}
+                    <strong>Grade Level:</strong>{" "}
+                    {readabilityScore.fleschKincaid.grade}
                   </p>
                   <p style={styles.textBlock}>
-                    <strong>Interpretation:</strong> {readabilityScore.fleschKincaid.interpretation}
+                    <strong>Interpretation:</strong>{" "}
+                    {readabilityScore.fleschKincaid.interpretation}
                   </p>
                 </div>
               ) : (
@@ -88,11 +516,11 @@ function EvaluationPage() {
           <h3
             style={{
               ...styles.squareTitle,
-              ...(hoveredSection === 'summarized' && styles.squareTitleHover),
+              ...(hoveredSection === "summarized" && styles.squareTitleHover),
             }}
-            onMouseEnter={() => setHoveredSection('summarized')}
+            onMouseEnter={() => setHoveredSection("summarized")}
             onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection('summarized')}
+            onClick={() => toggleSection("summarized")}
           >
             Summarized Text
           </h3>
@@ -111,18 +539,18 @@ function EvaluationPage() {
           <h3
             style={{
               ...styles.squareTitle,
-              ...(hoveredSection === 'rephrase' && styles.squareTitleHover),
+              ...(hoveredSection === "rephrase" && styles.squareTitleHover),
             }}
-            onMouseEnter={() => setHoveredSection('rephrase')}
+            onMouseEnter={() => setHoveredSection("rephrase")}
             onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection('rephrase')}
+            onClick={() => toggleSection("rephrase")}
           >
             Rephrased Text
           </h3>
           {expandedSections.rephrase && (
             <div>
-              {rephrase.length > 0 ? (
-                rephrase.map((entry, index) => (
+              {rephrased.length > 0 ? (
+                rephrased.map((entry, index) => (
                   <List
                     key={index}
                     title={`Rephrase Suggestion ${index + 1}`}
@@ -141,7 +569,9 @@ function EvaluationPage() {
         <h2 style={styles.header}>Overall Score</h2>
         <h3 style={styles.header}>
           {evaluationData.overallScore && evaluationData.overallScore.length > 0
-            ? `${(evaluationData.overallScore[0].overallScore * 100).toFixed(2)}%`
+            ? `${(evaluationData.overallScore[0].overallScore * 100).toFixed(
+                2
+              )}%`
             : "No overall score available."}
         </h3>
         <p style={styles.originalText}>{readabilityScore.originalText}</p>
@@ -180,8 +610,8 @@ const styles = {
     paddingRight: "10px",
     display: "flex",
     flexDirection: "column",
-    gap: "10px",  // Reduced gap for more compact layout
-    maxWidth: "30%",  // Ensures the left column takes up 30% of the space
+    gap: "10px", // Reduced gap for more compact layout
+    maxWidth: "30%", // Ensures the left column takes up 30% of the space
   },
   rightColumn: {
     flex: 2,
@@ -190,11 +620,11 @@ const styles = {
     backgroundColor: "#fff",
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    maxWidth: "70%",  // Ensures the right column takes up 70% of the space
+    maxWidth: "70%", // Ensures the right column takes up 70% of the space
     overflowY: "auto",
   },
   square: {
-    padding: "10px",  // Reduced padding for more compact sections
+    padding: "10px", // Reduced padding for more compact sections
     border: "1px solid #ddd",
     borderRadius: "8px",
     backgroundColor: "#fff",
@@ -256,6 +686,5 @@ const styles = {
     fontStyle: "italic",
   },
 };
-
 
 export default EvaluationPage;
