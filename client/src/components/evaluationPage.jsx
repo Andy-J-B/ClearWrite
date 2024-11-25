@@ -430,6 +430,9 @@ function EvaluationPage() {
 
   const [expandedSections, setExpandedSections] = useState({});
   const [hoveredSection, setHoveredSection] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState(null);
+  const [expandedRephraseIndex, setExpandedRephraseIndex] = useState(null);
+  
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
@@ -438,44 +441,82 @@ function EvaluationPage() {
     }));
   };
 
-  return (
-    <div style={styles.pageContainer}>
-      <div style={styles.leftColumn}>
-        <div style={styles.square}>
-          <h3
-            style={{
-              ...styles.squareTitle,
-              ...(hoveredSection === "grammar" && styles.squareTitleHover),
-            }}
-            onMouseEnter={() => setHoveredSection("grammar")}
-            onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection("grammar")}
-          >
-            Grammar Check
-          </h3>
-          {expandedSections.grammar && (
-            <div>
-              {grammarChecked.length > 0 ? (
-                grammarChecked.map((entry, index) => (
-                  <List
-                    key={index}
-                    title={`Grammar Issue ${index + 1}`}
-                    items={
-                      entry.corrections.length > 0
-                        ? entry.corrections.map((correction) => (
-                            <p>{correction.suggestions}</p>
-                          )) // Map correction errors
-                        : ["No corrections available."] // Fallback for empty corrections
-                    }
-                  />
-                ))
-              ) : (
-                <p style={styles.emptyText}>No grammar checks available.</p>
-              )}
+  const [expandedGrammarIssue, setExpandedGrammarIssue] = useState(null);
+
+  const [hoveredIssueIndex, setHoveredIssueIndex] = useState(null);
+
+const toggleGrammarIssue = (index) => {
+  setExpandedGrammarIssue((prevIndex) =>
+    prevIndex === index ? null : index
+  );
+};
+
+return (
+  <div style={styles.pageContainer}>
+    <div style={styles.leftColumn}>
+      <div style={styles.square}>
+        <h3
+          style={{
+            ...styles.squareTitle,
+            ...(hoveredSection === "grammar" && styles.squareTitleHover),
+          }}
+          onMouseEnter={() => setHoveredSection("grammar")}
+          onMouseLeave={() => setHoveredSection(null)}
+          onClick={() => toggleSection("grammar")}
+        >
+          Grammar Check
+        </h3>
+        {expandedSections.grammar && (
+          <div>
+          {grammarChecked.length > 0 ? (
+          grammarChecked.map((entry, index) => (
+            <div key={index}>
+              <div
+                style={{
+                  ...styles.listItem,
+                  backgroundColor:
+                    hoveredIssueIndex === index ? "#e0e0e0" : "#f9f9f9", // Background change on hover
+                }}
+                onMouseEnter={() => setHoveredIssueIndex(index)} // Set the hovered issue
+                onMouseLeave={() => setHoveredIssueIndex(null)} // Reset when mouse leaves
+                onClick={() => toggleGrammarIssue(index)}
+              >
+                <h4 style={styles.listTitle}>Grammar Issue {index + 1}</h4>
+
+                {/* Display error text with adjusted font size */}
+                {entry.corrections && entry.corrections.length > 0 && (
+                  <p style={{ ...styles.errorText, fontSize: "14px" }}>
+                    Error: {entry.corrections[0].error.en}
+                  </p>
+                )}
+
+                {expandedGrammarIssue === index && entry.corrections && entry.corrections.length > 0 ? (
+                  <div style={styles.details}>
+                    <p style={styles.suggestionsTitle}>Suggestions:</p>
+                    <ul style={styles.suggestionsList}>
+                      {entry.corrections[0].suggestions.map((suggestion, idx) => (
+                        <li key={idx} style={styles.suggestionItem}>
+                          {suggestion}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  // Displaying "No corrections available" message only for entries with no corrections
+                  entry.corrections && entry.corrections.length === 0 && (
+                    <p style={styles.noIssuesText}>No corrections available.</p>
+                  )
+                )}
+              </div>
             </div>
+          ))
+        ) : (
+          <p style={styles.emptyText}>No grammar checks available.</p>
+        )}
+          </div>
           )}
         </div>
-
+        
         <div style={styles.square}>
           <h3
             style={{
@@ -536,33 +577,64 @@ function EvaluationPage() {
         </div>
 
         <div style={styles.square}>
-          <h3
-            style={{
-              ...styles.squareTitle,
-              ...(hoveredSection === "rephrase" && styles.squareTitleHover),
-            }}
-            onMouseEnter={() => setHoveredSection("rephrase")}
-            onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection("rephrase")}
-          >
-            Rephrased Text
-          </h3>
-          {expandedSections.rephrase && (
-            <div>
-              {rephrased.length > 0 ? (
-                rephrased.map((entry, index) => (
-                  <List
-                    key={index}
-                    title={`Rephrase Suggestion ${index + 1}`}
-                    items={entry.rephrasing.map((item) => item.replacement)}
-                  />
-                ))
-              ) : (
-                <p style={styles.emptyText}>No rephrased text available.</p>
-              )}
-            </div>
+        <h3
+          style={{
+            ...styles.squareTitle,
+            ...(hoveredSection === "rephrase" && styles.squareTitleHover), // Apply hover styles
+          }}
+          onMouseEnter={() => setHoveredSection("rephrase")}
+          onMouseLeave={() => setHoveredSection(null)}
+          onClick={() => toggleSection("rephrase")} // Toggle the rephrase section
+        >
+          Rephrased Text
+        </h3>
+
+        {/* Expandable section */}
+        {expandedSections.rephrase && (
+          <div>
+            {rephrased.length > 0 ? (
+            rephrased.map((entry, index) => (
+              <div
+                key={index}
+                style={{
+                  ...styles.listItem,
+                  ...(hoveredItem === index && styles.listItemHover), // Highlight hovered item
+                }}
+                onMouseEnter={() => setHoveredItem(index)}
+                onMouseLeave={() => setHoveredItem(null)}
+                onClick={() =>
+                  setExpandedRephraseIndex((prevIndex) =>
+                    prevIndex === index ? null : index
+                  )
+                } // Expand/collapse individual suggestion
+              >
+                <h4 style={styles.listTitle}>
+                  Rephrase Suggestion {index + 1}
+                </h4>
+
+                {/* Show rephrased suggestions when expanded */}
+                {expandedRephraseIndex === index && (
+                  <div style={styles.details}>
+                    <ul style={styles.suggestionsList}>
+                      {entry.rephrasing.map((item, idx) => (
+                        <li key={idx} style={styles.suggestionItem}>
+                          {item.replacement}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <p style={styles.emptyText}>No rephrased text available.</p>
           )}
-        </div>
+
+          </div>
+        )}
+      </div>
+
+
       </div>
 
       <div style={styles.rightColumn}>
@@ -679,12 +751,56 @@ const styles = {
   },
   listItem: {
     fontSize: "14px",
+    marginBottom: "10px",
+    cursor: "pointer",
+    padding: "10px",
+    border: "1px solid #ddd",
+    borderRadius: "5px",
+    backgroundColor: "#f9f9f9",
+    transition: "background-color 0.3s ease", // Smooth transition for color change
+  },
+  details: {
+    paddingLeft: "20px",
+    fontSize: "14px",
+    backgroundColor: "#f0f0f0",
+    marginTop: "10px",
+    borderRadius: "5px",
+  },
+  errorText: {
+    fontWeight: "bold",
+    fontSize: "16px",
+    color: "#d9534f", // Red color for error message
+    marginBottom: "10px",
+  },
+  suggestionsTitle: {
+    fontSize: "14px",
+    fontWeight: "bold",
+    marginBottom: "5px",
+  },
+  suggestionsList: {
+    listStyleType: "disc", // Bulleted list style
+    paddingLeft: "20px",
+  },
+  suggestionItem: {
+    fontSize: "14px",
     marginBottom: "5px",
   },
   emptyText: {
-    color: "#999",
     fontStyle: "italic",
+    color: "#888",
   },
+  noIssuesText: {
+    fontStyle: "italic",
+    color: "#888",
+    fontSize: "14px",
+  },
+  listItemHover: {
+    backgroundColor: "#e0e0e0", 
+    cursor: "pointer", 
+  },
+  
+
+
 };
 
 export default EvaluationPage;
