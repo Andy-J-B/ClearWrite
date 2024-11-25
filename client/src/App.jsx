@@ -19,10 +19,10 @@ const App = () => {
     <SwitchTransition>
       <CSSTransition key={location.key} timeout={300} classNames="fade">
         <Routes location={location}>
-          <Route path="/" element={<AboutPage />} />
+          <Route path="/" element={<EvaluationPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/loading" element={<LoadingPage />} />
-          <Route path="/evaluate" element={<EvaluationPage />} />
+          {/* <Route path="/evaluate" element={<EvaluationPage />} /> */}
         </Routes>
       </CSSTransition>
     </SwitchTransition>
