@@ -14,7 +14,7 @@ const textGearsRoute = require("./routers/textGears");
 const saplingRoute = require("./routers/sapling");
 
 // Load environment variables from .env file
-require("dotenv").config();
+// require("dotenv").config();
 
 // Routers
 app.use("/", textGearsRoute);
