@@ -23,6 +23,11 @@ app.use("/", saplingRoute);
 // Routes
 app.use(router);
 
+// Health for render deploy
+app.get("/health", (req, res) => {
+  res.status(200).send({ status: "ok" });
+});
+
 // Start port
 const port = 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
