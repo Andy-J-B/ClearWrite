@@ -1,4 +1,4 @@
-name: CD Pipeline
+name: CD (Continuous Deployment)
 
 on:
   push:
@@ -13,24 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v1
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v1
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/my-app:latest
-
-    - name: Deploy to server
-      run: |
-        ssh user@your-server 'docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:latest && docker stop my-app || true && docker rm my-app || true && docker run -d --name my-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/my-app:latest'
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      publish-dir: ./public
+      production-deploy: true
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
