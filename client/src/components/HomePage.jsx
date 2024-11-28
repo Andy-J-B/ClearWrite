@@ -57,7 +57,7 @@ const HomePage = () => {
         for (let i = 0; i < 6; i++) {
           // Here we make a POST request to the API endpoint
           const response = await fetch(
-            `http://localhost:3000/${apiEndpoints[i]}`,
+            `${process.env.routerURL}/${apiEndpoints[i]}`,
             {
               method: "POST",
               headers: {
