@@ -57,7 +57,7 @@ const HomePage = () => {
         const routerURL = import.meta.env.VITE_ROUTER_URL;
         for (let i = 0; i < 6; i++) {
           // Here we make a POST request to the API endpoint
-          console.log(routerURL);
+
           const response = await fetch(`${routerURL}/${apiEndpoints[i]}`, {
             method: "POST",
             headers: {
@@ -65,17 +65,13 @@ const HomePage = () => {
             },
             body: JSON.stringify({ text: text }), // Send the text state in the request body
           });
-          console.log("response");
-          console.log(response);
+
           const data = await response.json();
-          console.log(data);
-          console.log("data");
+
           results[apiEndpoints[i]] = data;
           setProgress((prev) => prev + 1); // Increment progress
-
-          console.log(data); // Log or handle the response data
         }
-        console.log(results);
+
         // Optionally, handle navigation or state updates based on the response
 
         // const results = [0, 1, 2, 3, 4, 5, 5];

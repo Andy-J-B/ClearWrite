@@ -6,9 +6,6 @@ function EvaluationPage() {
   const location = useLocation();
   const realEval = location.state?.evaluationData;
 
-  console.log("realEval");
-  console.log(realEval);
-
   const {
     correctGrammar = {},
     readability = {},
@@ -18,11 +15,6 @@ function EvaluationPage() {
     tone = {},
   } = realEval;
 
-  console.log(correctGrammar, readability, summarize, rephrase, aidetect, tone);
-
-  console.log("grammarChecked");
-  console.log(correctGrammar["grammar"]);
-
   const rephrased = rephrase["rephrase"];
 
   const grammarChecked = correctGrammar["grammar"];
@@ -30,15 +22,6 @@ function EvaluationPage() {
   const summarized = summarize;
 
   const readabilityScore = readability;
-
-  console.log(
-    grammarChecked,
-    readabilityScore,
-    summarize,
-    rephrased,
-    aidetect,
-    tone
-  );
 
   const [expandedSections, setExpandedSections] = useState({});
   const [hoveredSection, setHoveredSection] = useState(null);
@@ -169,7 +152,10 @@ function EvaluationPage() {
                   </p>
                 </div>
               ) : (
-                <p style={styles.emptyText}>No readability score available.</p>
+                <p style={styles.emptyText}>
+                  No readability score available. We can only calculate a
+                  readability score when you have at least 40 words.
+                </p>
               )}
             </div>
           )}
