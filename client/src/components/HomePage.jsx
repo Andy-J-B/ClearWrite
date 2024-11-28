@@ -56,6 +56,7 @@ const HomePage = () => {
         let results = {};
         for (let i = 0; i < 6; i++) {
           // Here we make a POST request to the API endpoint
+          console.log(process.env.routerURL);
           const response = await fetch(
             `${process.env.routerURL}/${apiEndpoints[i]}`,
             {
