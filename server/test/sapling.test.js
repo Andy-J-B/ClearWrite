@@ -10,6 +10,8 @@ app.use(express.json());
 
 app.use("/", saplingRouter);
 
+require("dotenv").config({ path: "./server/.env" });
+
 //this was for mocking API
 
 // Mock axios to simulate API responses
