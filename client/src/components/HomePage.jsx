@@ -1,3 +1,5 @@
+// src/components/HomePage.jsx
+
 import React, { useState } from "react";
 import "../css/Homepage.css";
 import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
@@ -9,7 +11,6 @@ import { useProgress } from "./ProgressContext";
 
 const HomePage = () => {
   // Implement progress for loadingPage
-
   const { setProgress } = useProgress();
 
   // This state will hold the essay text
@@ -25,25 +26,20 @@ const HomePage = () => {
     document.body.className = darkMode ? "light-mode" : "dark-mode";
   };
 
-  // handleSubmit Function to get text, send to apis,
-  // recieve json, and send to EvaluationPage
+  // handleSubmit Function to get text, send to APIs,
+  // receive JSON, and send to EvaluationPage
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
     // Validate text character limit
     if (text.length > 4000 || text.length < 50) {
-      // Send error is character limit is exceeded or too little
+      // Send error if character limit is exceeded or too little
       setModalShow(true);
     } else {
       setProgress(0);
       navigate("/loading");
-      // If good, send api requests
+      // If good, send API requests
       try {
-        // for (let i = 1; i <= 6; i++) {
-        //   await new Promise((resolve) => setTimeout(resolve, 1000));
-        //   setProgress((prev) => prev + 1);
-        // }
-        // List of endpoints
         const apiEndpoints = [
           "correctGrammar",
           "readability",
@@ -52,10 +48,9 @@ const HomePage = () => {
           "aidetect",
           "tone",
         ];
-        // Comment out for now
         let results = {};
         for (let i = 0; i < 6; i++) {
-          // Here we make a POST request to the API endpoint
+          // Make a POST request to the API endpoint
           const response = await fetch(
             `http://localhost:3000/${apiEndpoints[i]}`,
             {
@@ -66,21 +61,10 @@ const HomePage = () => {
               body: JSON.stringify({ text: text }), // Send the text state in the request body
             }
           );
-          console.log("response");
-          console.log(response);
           const data = await response.json();
-          console.log(data);
-          console.log("data");
           results[apiEndpoints[i]] = data;
           setProgress((prev) => prev + 1); // Increment progress
-
-          console.log(data); // Log or handle the response data
         }
-        console.log(results);
-        // Optionally, handle navigation or state updates based on the response
-
-        // const results = [0, 1, 2, 3, 4, 5, 5];
-
         // Navigate to the Evaluation page and pass data
         navigate("/evaluate", { state: { evaluationData: results } });
       } catch (error) {
@@ -92,16 +76,36 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       <ErrorModal show={modalShow} onHide={() => setModalShow(false)} />
-      <button className="back-button" onClick={() => navigate(-1)}>
-        <FaArrowLeft size={20} />
-      </button>
 
-      <div className="day-night-toggle">
-        <button onClick={toggleTheme} className="toggle-button">
-          {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
+      {/* Navbar */}
+      <nav className="navbar">
+        {/* Back Button */}
+        <button className="back-button" onClick={() => navigate(-1)}>
+          <FaArrowLeft size={20} />
         </button>
-      </div>
 
+        {/* Navbar Links and Day-Night Toggle */}
+        <div className="navbar-right">
+          <ul className="navbar-links">
+            <li>
+              <button onClick={() => navigate("/home")}>Home</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/about-us")}>About Us</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/faq")}>FAQ</button>
+            </li>
+          </ul>
+          <div className="day-night-toggle">
+            <button onClick={toggleTheme} className="toggle-button">
+              {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Essay Section */}
       <div className="essay-section">
         <img src={logo} alt="ClearWrite Logo" className="logo" />
         <form onSubmit={handleSubmit}>
