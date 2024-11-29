@@ -538,3 +538,29 @@ body.dark-mode .homepage-container .essay-section .textarea-container .character
 .team-emails a:hover {
   text-decoration: underline;
 }
+/* Cancel icon styling */
+.cancel-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f94d6a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-icon svg {
+  color: white;
+  pointer-events: none; /* Prevent the icon from blocking click events */
+}

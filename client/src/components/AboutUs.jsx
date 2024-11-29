@@ -18,33 +18,34 @@ const AboutUs = () => {
   // Sample team member data
   const teamMembers = [
     {
-      name: 'Armaan Singh Chahal',
-      studentId: '301559489',
-      role: 'Project Manager',
-      description: 'Led the project development, coordinated team efforts, and ensured timely delivery.',
-      photo: '/images/armaan.jpg', // Place your photo in the public/images directory
+        name: 'Armaan Singh Chahal',
+        studentId: '301559489',
+        role: 'UI/UX Developer',
+        description: 'Designed and developed the entire user interface of ClearWrite, ensuring a seamless and intuitive user experience through thoughtful design and responsive layouts.',
+        photo: '/image/armaan.jpg',
+      },
+    
+    {
+        name: 'Andy Junhyuk Bae',
+        studentId: '301578862',
+        role: 'Team Lead and API Developer',
+        description: 'Led the team, implemented core functionalities, managed the codebase, and integrated APIs.',
+        photo: '/image/andy.jpg',
     },
     {
-      name: 'Andy Bae',
-      studentId: '301559490',
-      role: 'Lead Developer',
-      description: 'Implemented core functionalities, managed the codebase, and integrated APIs.',
-      photo: '/images/andy.jpg',
-    },
-    {
-      name: 'Adityapal Singh Waraich',
-      studentId: '301559491',
-      role: 'UI/UX Designer',
-      description: 'Designed user interfaces, enhanced user experience, and created design assets.',
-      photo: '/images/aditya.jpg',
-    },
-    {
-      name: 'Gordon Smith',
-      studentId: '301559492',
-      role: 'QA Engineer',
-      description: 'Conducted testing, identified bugs, and ensured product quality and reliability.',
-      photo: '/images/gordon.jpg',
-    },
+        name: 'Adityapal Singh Waraich',
+        studentId: '301568396',
+        role: 'CI/CD Integration',
+        description: 'Set up CI/CD pipelines to ensure smooth and automated deployment processes.',
+        photo: '/image/aditya.jpg',
+      },
+      {
+        name: 'Gordon Cheuk',
+        studentId: '301559492',
+        role: 'API Implementation',
+        description: 'Implemented API functionalities, conducted testing, and ensured integration quality.',
+        photo: '/image/gordon.jpg',
+      }
   ];
 
   return (
