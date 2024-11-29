@@ -539,28 +539,49 @@ body.dark-mode .homepage-container .essay-section .textarea-container .character
   text-decoration: underline;
 }
 /* Cancel icon styling */
+/* Cancel icon styling */
 .cancel-icon {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
+  top: calc(50% - 80px); /* Position directly above "Loading Results..." */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Center the icon */
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background-color: #f94d6a;
+  background-color: #f1f1f1; /* Light grey background */
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it is on top of other elements */
 }
 
 .cancel-icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .cancel-icon svg {
-  color: white;
+  color: #666666; /* Grey color for the X */
   pointer-events: none; /* Prevent the icon from blocking click events */
 }
+
+/* Loading container styles for alignment */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative; /* For absolute positioning of the cancel icon */
+  text-align: center;
+}
+
+h1 {
+  margin-top: 30px; /* Space between the icon and the heading */
+  font-size: 24px;
+  color: inherit;
+}
+
+
