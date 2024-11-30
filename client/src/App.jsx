@@ -23,12 +23,12 @@ const App = () => {
     <SwitchTransition>
       <CSSTransition key={location.key} timeout={300} classNames="fade">
         <Routes location={location}>
-        <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<EvaluationPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/loading" element={<LoadingPage />} />
           <Route path="/evaluate" element={<EvaluationPage />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/FAQ" element={<FAQ />}/>
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </CSSTransition>
     </SwitchTransition>

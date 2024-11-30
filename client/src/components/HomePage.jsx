@@ -51,16 +51,18 @@ const HomePage = () => {
         let results = {};
         const routerURL = import.meta.env.VITE_ROUTER_URL;
         for (let i = 0; i < 6; i++) {
-
           // Here we make a POST request to the API endpoint
 
-          const response = await fetch(`${routerURL}/${apiEndpoints[i]}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json", // Inform the server of JSON format
-            },
-            body: JSON.stringify({ text: text }), // Send the text state in the request body
-          });
+          const response = await fetch(
+            `http://localhost:3000/${apiEndpoints[i]}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json", // Inform the server of JSON format
+              },
+              body: JSON.stringify({ text: text }), // Send the text state in the request body
+            }
+          );
 
           const data = await response.json();
 
