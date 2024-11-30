@@ -1,0 +1,27 @@
+/* Ensures the background covers the entire viewport */
+.intro {
+  background-image: url("../assets/images/introBackground.jpg");
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  background-size: cover; /* Ensures the image covers the whole viewport */
+  background-position: center; /* Centers the background image */
+  height: 90vh; /* Takes up the full viewport height */
+  display: flex; /* Allows centering of the white box */
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  margin: 0; /* Removes any default body margins */
+}
+
+/* Styles the white box */
+.intro-container {
+  background-color: white;
+  padding: 2rem; /* Adds space inside the box */
+  border-radius: 10px; /* Optional: Adds rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+  max-width: 80%; /* Restricts the width of the box */
+  text-align: center; /* Centers text */
+}
+
+.intro-content {
+  margin-top: 1rem; /* Adds spacing between sections */
+}
