@@ -1,3 +1,5 @@
+/* src/css/Homepage.css */
+
 /* Global box-sizing */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -18,23 +20,82 @@ body.dark-mode {
 .homepage-container,
 .aboutpage-container {
   min-height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  width: 85vw; /* Changed from 95vw to 85vw */
+  margin: 0 auto; /* Center the container */
+  padding: 20px 0; /* Added vertical padding */
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Navbar styles */
+.navbar {
+  width: 100%; /* Ensures navbar spans the container */
+  background-color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between back button and navbar-right */
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Back Button Styling */
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}
+
+.back-button:focus {
+  outline: none;
+}
+
+/* Navbar Links */
+.navbar-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.navbar-links button:hover {
+  color: #f94d6a;
 }
 
 /* Day-Night Toggle */
 .day-night-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1000;
+  display: flex;
+  align-items: center;
 }
 
 .toggle-button {
@@ -59,117 +120,20 @@ body.dark-mode {
   outline: none;
 }
 
-/* Back Button Styling */
-.back-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
+/* Navbar Right Section */
+.navbar-right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
+  gap: 20px; /* Spacing between links and toggle */
 }
 
-.back-button:hover {
-  transform: scale(1.1);
-}
-
-.back-button:focus {
-  outline: none;
-}
-
-/* Styles for AboutPage */
-.about-content {
-  max-width: 80vw;
-  width: 100%;
-  padding: 20px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about-title {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: inherit;
-}
-
-.about-description {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  text-align: center;
-  margin-bottom: 40px;
-  color: inherit;
-}
-
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: inherit;
-}
-
-.section-description {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  text-align: center;
-  margin-bottom: 30px;
-  color: inherit;
-}
-
-.how-to-use {
-  width: 100%;
-}
-
-.how-to-use-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.how-to-use-list > li {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: flex-start;
-}
-
-.how-to-use-list > li::before {
-  content: '•';
-  color: #ff6b6b;
-  font-size: 1.5rem;
-  line-height: 1;
-  margin-right: 10px;
-  margin-top: 5px;
-}
-
-.how-to-use-list strong {
-  color: inherit;
-}
-
-.nested-list {
-  list-style-type: disc;
-  margin-left: 30px;
-  margin-top: 10px;
-}
-
-.nested-list li {
-  margin-bottom: 10px;
-  color: inherit;
-}
-
-/* Styles for HomePage */
-.essay-section {
+/* HomePage Specific Styles */
+.homepage-container .essay-section {
   background-color: inherit;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: 100px auto;
+  margin: 50px auto; /* Reduced top and bottom margin for better spacing */
   padding: 20px;
-  width: 100vw;
+  width: 100%; /* 85vw container, so 100% of that */
   max-width: 800px;
   border-radius: 8px;
   display: flex;
@@ -177,12 +141,12 @@ body.dark-mode {
   align-items: center;
 }
 
-.logo {
+.homepage-container .logo {
   max-width: 200px;
   margin-bottom: 20px;
 }
 
-.essay-input {
+.homepage-container .essay-input {
   width: 100%;
   height: 200px;
   margin-bottom: 20px;
@@ -195,17 +159,17 @@ body.dark-mode {
   resize: none;
 }
 
-body.dark-mode .essay-section {
+body.dark-mode .homepage-container .essay-section {
   background-color: #171717;
 }
 
-body.dark-mode .essay-input {
+body.dark-mode .homepage-container .essay-input {
   background-color: #333333;
   color: #ffffff;
   border-color: #555555;
 }
 
-body.dark-mode .essay-input::placeholder {
+body.dark-mode .homepage-container .essay-input::placeholder {
   color: #bbbbbb;
 }
 
@@ -228,197 +192,396 @@ body.dark-mode .essay-input::placeholder {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Adjust .evaluate-button margin-top only in AboutPage */
+/* AboutPage Specific Styles */
+.aboutpage-container .about-content {
+  max-width: 80vw; /* Changed to 70vw for 15% breathing room on each side */
+  width: 100%;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutpage-container .about-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.aboutpage-container .about-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 40px;
+  color: inherit;
+}
+
+.aboutpage-container .section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.aboutpage-container .section-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 30px;
+  color: inherit;
+}
+
+.aboutpage-container .how-to-use {
+  width: 100%;
+}
+
+.aboutpage-container .how-to-use-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aboutpage-container .how-to-use-list > li {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.aboutpage-container .how-to-use-list > li::before {
+  content: '•';
+  color: #ff6b6b;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.aboutpage-container .how-to-use-list strong {
+  color: inherit;
+}
+
+.aboutpage-container .nested-list {
+  list-style-type: disc;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.aboutpage-container .nested-list li {
+  margin-bottom: 10px;
+  color: inherit;
+}
+
 .aboutpage-container .evaluate-button {
   margin-top: 40px;
 }
 
-/* About Section in HomePage */
-.about-section {
-  margin-top: 80px;
-  padding: 20px;
-  width: 100%;
-  max-width: 1200px;
-  text-align: center;
-}
-
-.about-section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-}
-
-.group-members {
+/* Team Members Section */
+.aboutpage-container .team-members {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  flex-direction: column; /* Stack cards vertically */
+  align-items: center;
+  gap: 40px;
+  width: 70vw; /* Container width for each row */
+  margin: 0 auto; /* Center the container */
 }
 
-.member-card {
+.aboutpage-container .member-card {
   background-color: #f1f1f1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  border-radius: 12px;
   text-align: center;
-  transition: background-color 0.3s ease;
-  width: 250px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%; /* Span the entire 70vw container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutpage-container .member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.aboutpage-container .member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 20px;
+  border: 4px solid #f94d6a;
 }
 
-.dark-mode .member-card {
-  background-color: #424242;
-  color: white;
+.aboutpage-container .member-name {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
-/* Dark Mode Adjustments for AboutPage */
-body.dark-mode .about-description,
-body.dark-mode .section-description,
-body.dark-mode .how-to-use-list li,
-body.dark-mode .nested-list li {
-  color: #dddddd;
+.aboutpage-container .member-role {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #f94d6a;
 }
 
-body.dark-mode .how-to-use-list > li::before {
-  color: #ff6b6b;
+.aboutpage-container .member-description {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: inherit;
 }
 
-body.dark-mode .nested-list li::marker {
-  color: #ff6b6b;
+/* Responsive Design Enhancements */
+@media (max-width: 1024px) {
+  .homepage-container,
+  .aboutpage-container {
+    width: 90vw; /* Slightly narrower on medium screens */
+  }
+
+  .aboutpage-container .about-content {
+    max-width: 80vw; /* Adjust breathing room */
+  }
+
+  .aboutpage-container .team-members {
+    width: 80vw;
+    gap: 30px;
+  }
+
+  .aboutpage-container .member-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .aboutpage-container .member-card {
+    padding: 25px;
+  }
 }
 
-.introduction-page{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 320px;
+@media (max-width: 768px) {
+  .homepage-container,
+  .aboutpage-container {
+    width: 85vw; /* Further reduce width on small screens */
+  }
+
+  .aboutpage-container .about-content {
+    max-width: 85vw; /* Adjust breathing room */
+  }
+
+  .aboutpage-container .team-members {
+    width: 85vw;
+    gap: 20px;
+  }
+
+  .aboutpage-container .member-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .aboutpage-container .member-card {
+    padding: 20px;
+  }
 }
 
-.introduction-page p{
-  margin-bottom: 290px;
-}
+@media (max-width: 480px) {
+  .navbar-links {
+    flex-direction: column; /* Stack links vertically on very small screens */
+    gap: 10px;
+  }
 
-.fade-enter {
-  opacity: 0;
-  transform: scale(0.98); /* Optional slight zoom-out effect */
-}
-.fade-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-.fade-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-.fade-exit-active {
-  opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-/* General Loading Page Styling */
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #ffffff;
-  color: #333;
-}
+  .navbar-right {
+    flex-direction: column; /* Stack navbar elements vertically */
+    align-items: flex-start;
+    gap: 10px;
+  }
 
-/* Progress Bar Styling */
-.progress-bar {
-  width: 80%;
-  max-width: 400px;
-  height: 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+  .navbar {
+    flex-direction: column; /* Stack navbar elements vertically */
+    align-items: flex-start;
+  }
 
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(45deg, #ff6b6b, #f94d6a);
-  transition: width 0.3s ease;
-}
+  .aboutpage-container .team-members {
+    width: 90vw;
+    gap: 15px;
+  }
 
-.progress-text {
-  font-size: 1.2rem;
-  color: #555;
+  .homepage-container .essay-section {
+    width: 90%; /* Adjust width on very small screens */
+  }
+
+  .aboutpage-container .about-content {
+    max-width: 90vw;
+  }
+  
 }
-/* Form styling */
-form {
+/* Styling the essay section container */
+.homepage-container .essay-section {
+  background-color: inherit;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 50px auto;
+  padding: 10px 0; /* Removed left and right padding, decreased bottom padding */
   width: 100%;
   max-width: 800px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
 }
 
-/* Textarea styling */
-textarea {
-  width: 100%;
+/* Styling the textarea */
+.homepage-container .essay-section .textarea-container textarea {
+  width: 100%; /* Full width of the container */
   height: 300px;
-  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px; /* Inner padding for text inside the textarea */
   font-size: 16px;
   background-color: inherit;
   color: inherit;
-  resize: none; /* Prevent resizing of the textarea */
+  resize: none;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  margin: 0; /* Remove any default margin */
 }
 
-textarea::placeholder {
-  color: #bbb;
-}
-
-body.dark-mode textarea {
-  background-color: #333; /* Dark mode textarea background */
-  color: #fff;           /* White text for dark mode */
-  border-color: #555;    /* Dark mode border color */
-}
-
-body.dark-mode textarea::placeholder {
-  color: #aaa;           /* Lighter placeholder color for dark mode */
-}
-
-/* Evaluate button styling */
-button.evaluate-button {
-  background: linear-gradient(45deg, #ff6b6b, #f94d6a);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-button.evaluate-button:hover {
-  background: linear-gradient(45deg, #f94d6a, #ff6b6b);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-/* Container for textarea and character count */
-.textarea-container {
-  position: relative;
-  width: 100%;
-}
-
-/* Style for the character count */
-.character-count {
-  position: absolute;
-  bottom: -20px;
-  left: 10px;
+/* Character count styling */
+.homepage-container .essay-section .textarea-container .character-count {
+  margin-top: 5px;
   font-size: 14px;
-  color: #888;
-  font-family: Arial, sans-serif;
+  color: #666666;
+  align-self: flex-start; /* Align the character count to the left */
 }
+
+/* Dark mode textarea styling */
+body.dark-mode .homepage-container .essay-section .textarea-container textarea {
+  background-color: #333333; /* Explicit dark background */
+  color: #ffffff; /* Explicit light text color */
+  border-color: #555555; /* Adjust border color for dark mode */
+}
+
+body.dark-mode .homepage-container .essay-section .textarea-container .character-count {
+  color: #bbbbbb; /* Adjust character count color in dark mode */
+}
+
+/* Adjust textarea container */
+.textarea-container {
+  width: 100%; /* Full width of the section */
+  padding: 0; /* Ensure no padding is applied to the container */
+  margin: 0; /* Remove any default margin */
+  box-sizing: border-box; /* Ensure the container respects its defined width */
+  
+  display: flex;
+  flex-direction: column; /* Stack textarea and character count vertically */
+  align-items: flex-start; /* Align items to the start (left) */
+}
+
+.homepage-container .essay-section .textarea-container textarea {
+  width: 50vw; /* Span 95% of the container's width */
+}
+
+.faq-image {
+  width: 100%;
+  max-width: 600px; /* Adjust the maximum width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin: 20px 0; /* Vertical spacing */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Drop shadow */
+  object-fit: cover; /* Ensure the image covers the container without distortion */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.faq-image:hover {
+  transform: scale(1.02); /* Slightly enlarge the image on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Responsive Image Adjustments */
+@media (max-width: 768px) {
+  .faq-image {
+    max-width: 100%; /* Allow images to scale down on smaller screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly smaller shadow on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-image {
+    max-width: 100%; /* Full width on mobile */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow on very small screens */
+  }
+}
+
+.contact-section {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: inherit; /* Ensures background matches the current theme */
+}
+
+.contact-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.team-emails {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.team-emails li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.team-emails a {
+  color: #f94d6a; /* Matches the accent color used elsewhere */
+  text-decoration: none;
+}
+
+.team-emails a:hover {
+  text-decoration: underline;
+}
+/* Cancel icon styling */
+/* Cancel icon styling */
+.cancel-icon {
+  position: absolute;
+  top: calc(50% - 80px); /* Position directly above "Loading Results..." */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Center the icon */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f1f1f1; /* Light grey background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it is on top of other elements */
+}
+
+.cancel-icon:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-icon svg {
+  color: #666666; /* Grey color for the X */
+  pointer-events: none; /* Prevent the icon from blocking click events */
+}
+
+/* Loading container styles for alignment */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative; /* For absolute positioning of the cancel icon */
+  text-align: center;
+}
+
+h1 {
+  margin-top: 30px; /* Space between the icon and the heading */
+  font-size: 24px;
+  color: inherit;
+}
+
+
