@@ -31,8 +31,6 @@ const CorrectGrammar = async (req, res) => {
     urls.push(url);
   }
 
-  console.log(urls);
-
   try {
     let resultingData = [];
     // Codes from lines 24-42 is from
@@ -44,16 +42,11 @@ const CorrectGrammar = async (req, res) => {
       const response = await axios.get(urls[i]);
 
       // Extract errors
-      console.log("response");
-      console.log(response);
 
       //
       const { status, data } = response;
-      console.log("status, data");
-      console.log(status, data);
+
       const errors = data?.response?.errors;
-      console.log("errors");
-      console.log(errors);
 
       if (errors.length > 0) {
         // If there are grammatical errors
@@ -65,18 +58,17 @@ const CorrectGrammar = async (req, res) => {
           })),
           all: errors,
         });
-        // console.log(errors);
+        //
       } else {
         // If there are no grammatical errors
         resultingData.push({
           originalText: seperated[i],
           corrections: [],
         });
-        // console.log(errors);
+        //
       }
     }
-    console.log("resultingData");
-    console.log(resultingData);
+
     res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
@@ -101,20 +93,15 @@ const Readability = async (req, res) => {
   try {
     // Should not test too many times due to api usage limit
     // Uncomment only for testing and production
-    // console.log(url);
+    //
     const response = await axios.get(url);
 
     // Extract errors
-    console.log("response");
-    console.log(response);
 
     //
     const { status, data } = response;
-    console.log("status, data");
-    console.log(status, data);
+
     const statistics = data?.response?.stats;
-    console.log("statistics");
-    console.log(statistics);
 
     // Extract statistics
 
@@ -158,16 +145,11 @@ const Summarize = async (req, res) => {
     const response = await axios.get(url);
 
     // Extract errors
-    console.log("response");
-    console.log(response);
 
     //
     const { status, data } = response;
-    console.log("status, data");
-    console.log(status, data);
+
     const summaries = data?.response;
-    console.log("summaries");
-    console.log(summaries);
 
     // Extract summaries
 

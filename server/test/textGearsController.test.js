@@ -22,7 +22,7 @@ describe("CorrectGrammar", () => {
     CorrectGrammar(request, response);
 
     const data = response._getJSONData();
-    // console.log(data);
+    //
 
     expect(data).toEqual({
       originalText: "I is an engeneer.",
@@ -98,7 +98,7 @@ describe("Readability", () => {
     Readability(request, response);
 
     const data = response._getJSONData();
-    // console.log(data);
+    //
 
     expect(data).toEqual({
       originalText:
@@ -164,8 +164,6 @@ describe("Summarize", () => {
     Summarize(request, response);
 
     const data = response._getJSONData();
-
-    console.log(data);
 
     expect(data).toEqual({
       originalText:

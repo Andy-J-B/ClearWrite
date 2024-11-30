@@ -72,8 +72,8 @@ const AiDetect = async (req, res) => {
       }
     );
     const { status, data } = response;
-    // console.log({ status });
-    // console.log(JSON.stringify(data, null, 4));
+    //
+    //
     res.json({
       overallScore: data.score,
       sentenceScores: data.sentence_scores,
@@ -100,8 +100,8 @@ const Tone = async (req, res) => {
     );
 
     const { status, data } = response;
-    // console.log({ status });
-    // console.log(JSON.stringify(data, null, 4));
+    //
+    //
 
     res.json({
       sentences: data.sents,

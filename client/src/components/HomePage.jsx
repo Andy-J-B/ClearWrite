@@ -49,22 +49,29 @@ const HomePage = () => {
           "tone",
         ];
         let results = {};
+        const routerURL = import.meta.env.VITE_ROUTER_URL;
         for (let i = 0; i < 6; i++) {
-          // Make a POST request to the API endpoint
-          const response = await fetch(
-            `http://localhost:3000/${apiEndpoints[i]}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json", // Inform the server of JSON format
-              },
-              body: JSON.stringify({ text: text }), // Send the text state in the request body
-            }
-          );
+
+          // Here we make a POST request to the API endpoint
+
+          const response = await fetch(`${routerURL}/${apiEndpoints[i]}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", // Inform the server of JSON format
+            },
+            body: JSON.stringify({ text: text }), // Send the text state in the request body
+          });
+
           const data = await response.json();
+
           results[apiEndpoints[i]] = data;
           setProgress((prev) => prev + 1); // Increment progress
         }
+
+        // Optionally, handle navigation or state updates based on the response
+
+        // const results = [0, 1, 2, 3, 4, 5, 5];
+
         // Navigate to the Evaluation page and pass data
         navigate("/evaluate", { state: { evaluationData: results } });
       } catch (error) {
