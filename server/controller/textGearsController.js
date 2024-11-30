@@ -6,7 +6,7 @@ const CorrectGrammar = async (req, res) => {
   const text = req.body.text;
 
   if (!text) {
-    throw new Error("Text is required");
+    return res.status(601).json({ error: "Text is required" });
   }
 
   // Seperate sentences
@@ -95,12 +95,7 @@ const CorrectGrammar = async (req, res) => {
     res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
-
-    if (error.error_code == 600) {
-      res.status(600).send(`Error: ${error}`);
-    }
-
-    res.status(500).send(`Error: ${error}`);
+    res.status(501).send(`Error: ${error}`);
   }
 };
 
@@ -110,7 +105,7 @@ const Readability = async (req, res) => {
   const text = req.body.text;
 
   if (!text) {
-    throw new Error("Text is required");
+    return res.status(601).json({ error: "Text is required" });
   }
 
   // Replace all spaces with a +
@@ -158,11 +153,12 @@ const Readability = async (req, res) => {
       });
     } else {
       // If there are too little words
-      res.json({ error: "Essay is too short to evaluate." });
+      res.json({ error: "Essay is too short to evaluate" });
     }
   } catch (error) {
-    // Catch errors
-    res.status(500).send(`Error: ${error}`);
+    // If there is an error
+
+    res.status(501).send(`Error: ${error}`);
   }
 };
 
@@ -172,7 +168,7 @@ const Summarize = async (req, res) => {
   const text = req.body.text;
 
   if (!text) {
-    throw new Error("Text is required");
+    return res.status(601).json({ error: "Text is required" });
   }
 
   // Replace all spaces with a +
@@ -207,23 +203,23 @@ const Summarize = async (req, res) => {
 
     // Extract summaries
 
-    if (summaries?.keywords.length > 0) {
+    if (summaries?.summary.length > 2) {
       // If there are enough sentences
       res.json({
         originalText: text,
         summaries: summaries?.summary,
         all: summaries,
       });
-    } else if (text.length == 0) {
-      // If there are no words at all
-      res.json({ error: "No words present to evaluate." });
     } else {
       // If the essay is too short
-      res.json({ error: "Essay is too short to evaluate." });
+      res.json({
+        error: "Essay too short to evaluate",
+      });
     }
   } catch (error) {
-    // Catch error
-    res.status(500).send(`Error: ${error}`);
+    // If there is an error
+
+    res.status(501).send(`Error: ${error}`);
   }
 };
 
