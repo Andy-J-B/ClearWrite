@@ -5,9 +5,28 @@ const CorrectGrammar = async (req, res) => {
   // Get text to grammar check
   const text = req.body.text;
 
+  if (!text) {
+    throw new Error("Text is required");
+  }
+
   // Seperate sentences
   // From https://stackoverflow.com/questions/11761563/javascript-regexp-for-splitting-text-into-sentences-and-keeping-the-delimiter
-  const seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
+
+  var seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
+
+  if (seperated == null || seperated == undefined) {
+    seperated = [text];
+  } else if (
+    text.slice(-1) !== "." &&
+    text.slice(-1) !== "!" &&
+    text.slice(-1) !== "?"
+  ) {
+    // Add the last part without punctuation
+    const lastSentence = text.match(/[^\.!\?]+$/g);
+    if (lastSentence) {
+      seperated.push(lastSentence[0].trim());
+    }
+  }
 
   seperatedAddedTexts = [];
 
@@ -22,6 +41,10 @@ const CorrectGrammar = async (req, res) => {
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
 
+  if (!apiKey) {
+    return res.status(600).json({ error: "API key is missing" });
+  }
+
   // urls list
   var urls = [];
 
@@ -30,8 +53,6 @@ const CorrectGrammar = async (req, res) => {
     const url = `https://api.textgears.com/grammar?text=${seperatedAddedTexts[i]}&language=en-GB&whitelist=&dictionary_id=&ai=1&key=${apiKey}`;
     urls.push(url);
   }
-
-  console.log(urls);
 
   try {
     let resultingData = [];
@@ -44,16 +65,11 @@ const CorrectGrammar = async (req, res) => {
       const response = await axios.get(urls[i]);
 
       // Extract errors
-      console.log("response");
-      console.log(response);
 
       //
       const { status, data } = response;
-      console.log("status, data");
-      console.log(status, data);
+
       const errors = data?.response?.errors;
-      console.log("errors");
-      console.log(errors);
 
       if (errors.length > 0) {
         // If there are grammatical errors
@@ -65,21 +81,25 @@ const CorrectGrammar = async (req, res) => {
           })),
           all: errors,
         });
-        // console.log(errors);
+        //
       } else {
         // If there are no grammatical errors
         resultingData.push({
           originalText: seperated[i],
           corrections: [],
         });
-        // console.log(errors);
+        //
       }
     }
-    console.log("resultingData");
-    console.log(resultingData);
+
     res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
+
+    if (error.error_code == 600) {
+      res.status(600).send(`Error: ${error}`);
+    }
+
     res.status(500).send(`Error: ${error}`);
   }
 };
@@ -89,11 +109,19 @@ const Readability = async (req, res) => {
   // Get text to check readability
   const text = req.body.text;
 
+  if (!text) {
+    throw new Error("Text is required");
+  }
+
   // Replace all spaces with a +
   const addTexts = text.replace(/ /g, "+");
 
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
+
+  if (!apiKey) {
+    return res.status(600).json({ error: "API key is missing" });
+  }
 
   // Server request url
   const url = `https://api.textgears.com/readability?key=${apiKey}&text=${addTexts}`;
@@ -143,11 +171,19 @@ const Summarize = async (req, res) => {
   // Get text to check readability
   const text = req.body.text;
 
+  if (!text) {
+    throw new Error("Text is required");
+  }
+
   // Replace all spaces with a +
   const addTexts = text.replace(/ /g, "+");
 
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
+
+  if (!apiKey) {
+    return res.status(600).json({ error: "API key is missing" });
+  }
 
   // Server request url
   const url = `https://api.textgears.com/summarize?key=${apiKey}&language=en-GB&text=${addTexts}`;
