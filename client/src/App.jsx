@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import EvaluationPage from "./components/evaluationPage.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import FAQ from "./components/FAQ.jsx";
+import IntroPage from "./components/IntroPage.jsx";
 import "./css/transitions.css";
 
 const App = () => {
@@ -23,12 +24,12 @@ const App = () => {
     <SwitchTransition>
       <CSSTransition key={location.key} timeout={300} classNames="fade">
         <Routes location={location}>
-        <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<IntroPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/loading" element={<LoadingPage />} />
           <Route path="/evaluate" element={<EvaluationPage />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/FAQ" element={<FAQ />}/>
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </CSSTransition>
     </SwitchTransition>
