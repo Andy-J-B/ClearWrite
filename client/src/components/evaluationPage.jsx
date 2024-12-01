@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import evaluationData from "./evaluationData-new.json";
 import { useLocation } from "react-router-dom";
+import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
+import "../css/Evaluationpage.css";
+import { useNavigate } from "react-router-dom";
 
 function EvaluationPage() {
   // const location = useLocation();
@@ -423,6 +426,14 @@ function EvaluationPage() {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [expandedRephraseIndex, setExpandedRephraseIndex] = useState(null);
 
+  const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleTheme = () => {
+    setDarkMode((prevMode) => !prevMode);
+    document.body.className = darkMode ? "light-mode" : "dark-mode";
+  };
+
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
       ...prev,
@@ -441,212 +452,249 @@ function EvaluationPage() {
   };
 
   return (
-    <div style={styles.pageContainer}>
-      <div style={styles.leftColumn}>
-        <div style={styles.square}>
-          <h3
-            style={{
-              ...styles.squareTitle,
-              ...(hoveredSection === "grammar" && styles.squareTitleHover),
-            }}
-            onMouseEnter={() => setHoveredSection("grammar")}
-            onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection("grammar")}
-          >
-            Grammar Check
-          </h3>
-          {expandedSections.grammar && (
-            <div>
-              {grammarChecked.filter(
-                (entry) => entry.corrections && entry.corrections.length > 0
-              ).length > 0 ? (
-                grammarChecked
-                  .filter(
-                    (entry) => entry.corrections && entry.corrections.length > 0
-                  )
-                  .map((entry, index) => (
-                    <div key={index}>
-                      <div
-                        style={{
-                          ...styles.listItem,
-                          backgroundColor:
-                            hoveredIssueIndex === index ? "#e0e0e0" : "#f9f9f9",
-                        }}
-                        onMouseEnter={() => setHoveredIssueIndex(index)}
-                        onMouseLeave={() => setHoveredIssueIndex(null)}
-                        onClick={() => toggleGrammarIssue(index)}
-                      >
-                        <h4 style={styles.listTitle}>
-                          Grammar Issue {index + 1}
-                        </h4>
+    <div id="eval-page">
+      {/* Navbar */}
+      <nav className="navbar">
+        {/* Navbar Links and Day-Night Toggle */}
+        <div className="navbar-left">
+          {/* Back Button */}
+          <button className="back-button" onClick={() => navigate("/home")}>
+            <FaArrowLeft size={20} />
+          </button>
+        </div>
+        <div className="navbar-right">
+          <ul className="navbar-links">
+            <li>
+              <button onClick={() => navigate("/home")}>Home</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/about-us")}>About Us</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/faq")}>FAQ</button>
+            </li>
+          </ul>
+          <div className="day-night-toggle">
+            <button onClick={toggleTheme} className="toggle-button">
+              {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div style={styles.pageContainer}>
+        <div style={styles.leftColumn}>
+          <div style={styles.square}>
+            <h3
+              style={{
+                ...styles.squareTitle,
+                ...(hoveredSection === "grammar" && styles.squareTitleHover),
+              }}
+              onMouseEnter={() => setHoveredSection("grammar")}
+              onMouseLeave={() => setHoveredSection(null)}
+              onClick={() => toggleSection("grammar")}
+            >
+              Grammar Check
+            </h3>
+            {expandedSections.grammar && (
+              <div>
+                {grammarChecked.filter(
+                  (entry) => entry.corrections && entry.corrections.length > 0
+                ).length > 0 ? (
+                  grammarChecked
+                    .filter(
+                      (entry) =>
+                        entry.corrections && entry.corrections.length > 0
+                    )
+                    .map((entry, index) => (
+                      <div key={index}>
+                        <div
+                          style={{
+                            ...styles.listItem,
+                            backgroundColor:
+                              hoveredIssueIndex === index
+                                ? "#e0e0e0"
+                                : "#f9f9f9",
+                          }}
+                          onMouseEnter={() => setHoveredIssueIndex(index)}
+                          onMouseLeave={() => setHoveredIssueIndex(null)}
+                          onClick={() => toggleGrammarIssue(index)}
+                        >
+                          <h4 style={styles.listTitle}>
+                            Grammar Issue {index + 1}
+                          </h4>
 
-                        <p style={{ ...styles.errorText, fontSize: "14px" }}>
-                          Error: {entry.corrections[0].error.en}
-                        </p>
-                        <p>
-                          <strong>
-                            {entry.all[0].type.charAt(0).toUpperCase() +
-                              entry.all[0].type.slice(1)}{" "}
-                            Error: {entry.all[0].bad}
-                          </strong>
-                        </p>
+                          <p style={{ ...styles.errorText, fontSize: "14px" }}>
+                            Error: {entry.corrections[0].error.en}
+                          </p>
+                          <p>
+                            <strong>
+                              {entry.all[0].type.charAt(0).toUpperCase() +
+                                entry.all[0].type.slice(1)}{" "}
+                              Error: {entry.all[0].bad}
+                            </strong>
+                          </p>
 
-                        {expandedGrammarIssue === index && (
-                          <div style={styles.details}>
-                            <p style={styles.suggestionsTitle}>Suggestions:</p>
-                            <ul style={styles.suggestionsList}>
-                              {entry.corrections[0].suggestions.map(
-                                (suggestion, idx) => (
-                                  <li key={idx} style={styles.suggestionItem}>
-                                    {suggestion}
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          </div>
-                        )}
+                          {expandedGrammarIssue === index && (
+                            <div style={styles.details}>
+                              <p style={styles.suggestionsTitle}>
+                                Suggestions:
+                              </p>
+                              <ul style={styles.suggestionsList}>
+                                {entry.corrections[0].suggestions.map(
+                                  (suggestion, idx) => (
+                                    <li key={idx} style={styles.suggestionItem}>
+                                      {suggestion}
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
                       </div>
+                    ))
+                ) : (
+                  <p style={styles.emptyText}>
+                    No grammar issues with corrections available.
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div style={styles.square}>
+            <h3
+              style={{
+                ...styles.squareTitle,
+                ...(hoveredSection === "readability" &&
+                  styles.squareTitleHover),
+              }}
+              onMouseEnter={() => setHoveredSection("readability")}
+              onMouseLeave={() => setHoveredSection(null)}
+              onClick={() => toggleSection("readability")}
+            >
+              Readability Score
+            </h3>
+            {expandedSections.readability && (
+              <div>
+                {readabilityScore.fleschKincaid ? (
+                  <div>
+                    <p style={styles.textBlock}>
+                      <strong>Reading Ease:</strong>{" "}
+                      {readabilityScore.fleschKincaid.readingEase}
+                    </p>
+                    <p style={styles.textBlock}>
+                      <strong>Grade Level:</strong>{" "}
+                      {readabilityScore.fleschKincaid.grade}
+                    </p>
+                    <p style={styles.textBlock}>
+                      <strong>Interpretation:</strong>{" "}
+                      {readabilityScore.fleschKincaid.interpretation}
+                    </p>
+                  </div>
+                ) : (
+                  <p style={styles.emptyText}>
+                    No readability score available. We can only calculate a
+                    readability score when you have at least 40 words.
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div style={styles.square}>
+            <h3
+              style={{
+                ...styles.squareTitle,
+                ...(hoveredSection === "summarized" && styles.squareTitleHover),
+              }}
+              onMouseEnter={() => setHoveredSection("summarized")}
+              onMouseLeave={() => setHoveredSection(null)}
+              onClick={() => toggleSection("summarized")}
+            >
+              Summarized Text
+            </h3>
+            {expandedSections.summarized && (
+              <div>
+                {summarized.summaries?.length > 0 ? (
+                  <List title="Summaries" items={summarized.summaries} />
+                ) : (
+                  <p style={styles.emptyText}>No summaries available.</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div style={styles.square}>
+            <h3
+              style={{
+                ...styles.squareTitle,
+                ...(hoveredSection === "rephrase" && styles.squareTitleHover), // Apply hover styles
+              }}
+              onMouseEnter={() => setHoveredSection("rephrase")}
+              onMouseLeave={() => setHoveredSection(null)}
+              onClick={() => toggleSection("rephrase")} // Toggle the rephrase section
+            >
+              Rephrased Text
+            </h3>
+
+            {/* Expandable section */}
+            {expandedSections.rephrase && (
+              <div>
+                {rephrased.length > 0 ? (
+                  rephrased.map((entry, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        ...styles.listItem,
+                        ...(hoveredItem === index && styles.listItemHover), // Highlight hovered item
+                      }}
+                      onMouseEnter={() => setHoveredItem(index)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                      onClick={() =>
+                        setExpandedRephraseIndex((prevIndex) =>
+                          prevIndex === index ? null : index
+                        )
+                      } // Expand/collapse individual suggestion
+                    >
+                      <h4 style={styles.listTitle}>
+                        Rephrase Suggestion {index + 1}
+                      </h4>
+
+                      {/* Show rephrased suggestions when expanded */}
+                      {expandedRephraseIndex === index && (
+                        <div style={styles.details}>
+                          <ul style={styles.suggestionsList}>
+                            {entry.rephrasing.map((item, idx) => (
+                              <li key={idx} style={styles.suggestionItem}>
+                                {item.replacement}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   ))
-              ) : (
-                <p style={styles.emptyText}>
-                  No grammar issues with corrections available.
-                </p>
-              )}
-            </div>
-          )}
+                ) : (
+                  <p style={styles.emptyText}>No rephrased text available.</p>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
-        <div style={styles.square}>
-          <h3
-            style={{
-              ...styles.squareTitle,
-              ...(hoveredSection === "readability" && styles.squareTitleHover),
-            }}
-            onMouseEnter={() => setHoveredSection("readability")}
-            onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection("readability")}
-          >
-            Readability Score
+        <div style={styles.rightColumn}>
+          <h2 style={styles.header}>Overall Score</h2>
+          <h3 style={styles.header}>
+            {evaluationData.overallScore &&
+            evaluationData.overallScore.length > 0
+              ? `${(evaluationData.overallScore[0].overallScore * 100).toFixed(
+                  2
+                )}%`
+              : "No overall score available."}
           </h3>
-          {expandedSections.readability && (
-            <div>
-              {readabilityScore.fleschKincaid ? (
-                <div>
-                  <p style={styles.textBlock}>
-                    <strong>Reading Ease:</strong>{" "}
-                    {readabilityScore.fleschKincaid.readingEase}
-                  </p>
-                  <p style={styles.textBlock}>
-                    <strong>Grade Level:</strong>{" "}
-                    {readabilityScore.fleschKincaid.grade}
-                  </p>
-                  <p style={styles.textBlock}>
-                    <strong>Interpretation:</strong>{" "}
-                    {readabilityScore.fleschKincaid.interpretation}
-                  </p>
-                </div>
-              ) : (
-                <p style={styles.emptyText}>
-                  No readability score available. We can only calculate a
-                  readability score when you have at least 40 words.
-                </p>
-              )}
-            </div>
-          )}
+          <p style={styles.originalText}>{readabilityScore.originalText}</p>
         </div>
-
-        <div style={styles.square}>
-          <h3
-            style={{
-              ...styles.squareTitle,
-              ...(hoveredSection === "summarized" && styles.squareTitleHover),
-            }}
-            onMouseEnter={() => setHoveredSection("summarized")}
-            onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection("summarized")}
-          >
-            Summarized Text
-          </h3>
-          {expandedSections.summarized && (
-            <div>
-              {summarized.summaries?.length > 0 ? (
-                <List title="Summaries" items={summarized.summaries} />
-              ) : (
-                <p style={styles.emptyText}>No summaries available.</p>
-              )}
-            </div>
-          )}
-        </div>
-
-        <div style={styles.square}>
-          <h3
-            style={{
-              ...styles.squareTitle,
-              ...(hoveredSection === "rephrase" && styles.squareTitleHover), // Apply hover styles
-            }}
-            onMouseEnter={() => setHoveredSection("rephrase")}
-            onMouseLeave={() => setHoveredSection(null)}
-            onClick={() => toggleSection("rephrase")} // Toggle the rephrase section
-          >
-            Rephrased Text
-          </h3>
-
-          {/* Expandable section */}
-          {expandedSections.rephrase && (
-            <div>
-              {rephrased.length > 0 ? (
-                rephrased.map((entry, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      ...styles.listItem,
-                      ...(hoveredItem === index && styles.listItemHover), // Highlight hovered item
-                    }}
-                    onMouseEnter={() => setHoveredItem(index)}
-                    onMouseLeave={() => setHoveredItem(null)}
-                    onClick={() =>
-                      setExpandedRephraseIndex((prevIndex) =>
-                        prevIndex === index ? null : index
-                      )
-                    } // Expand/collapse individual suggestion
-                  >
-                    <h4 style={styles.listTitle}>
-                      Rephrase Suggestion {index + 1}
-                    </h4>
-
-                    {/* Show rephrased suggestions when expanded */}
-                    {expandedRephraseIndex === index && (
-                      <div style={styles.details}>
-                        <ul style={styles.suggestionsList}>
-                          {entry.rephrasing.map((item, idx) => (
-                            <li key={idx} style={styles.suggestionItem}>
-                              {item.replacement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <p style={styles.emptyText}>No rephrased text available.</p>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div style={styles.rightColumn}>
-        <h2 style={styles.header}>Overall Score</h2>
-        <h3 style={styles.header}>
-          {evaluationData.overallScore && evaluationData.overallScore.length > 0
-            ? `${(evaluationData.overallScore[0].overallScore * 100).toFixed(
-                2
-              )}%`
-            : "No overall score available."}
-        </h3>
-        <p style={styles.originalText}>{readabilityScore.originalText}</p>
       </div>
     </div>
   );
