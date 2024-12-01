@@ -1,4 +1,4 @@
-const { Summarize } = require("../../controller/textGearsController");
+const { Summarize } = require("../../../controller/textGearsController");
 
 const httpMocks = require("node-mocks-http");
 jest.mock("axios");

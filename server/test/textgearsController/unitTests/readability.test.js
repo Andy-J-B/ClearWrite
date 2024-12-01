@@ -1,4 +1,4 @@
-const { Readability } = require("../../controller/textGearsController");
+const { Readability } = require("../../../controller/textGearsController");
 
 const httpMocks = require("node-mocks-http");
 jest.mock("axios");
