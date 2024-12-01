@@ -18,21 +18,6 @@ body.dark-mode {
   color: #ffffff;
 }
 
-/* General container styling for both pages */
-.homepage-container,
-.aboutpage-container {
-  min-height: 100vh;
-  width: 85vw; /* Changed from 95vw to 85vw */
-  margin: 0 auto; /* Center the container */
-  padding: 20px 0; /* Added vertical padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
 #eval-page {
   display: flex;
   flex-direction: column;
@@ -41,7 +26,7 @@ body.dark-mode {
 /* Navbar styles */
 .navbar {
   width: 100%; /* Ensures navbar spans the container */
-  background-color: inherit;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between back button and navbar-right */
@@ -116,6 +101,10 @@ body.dark-mode {
 }
 
 body.dark-mode .homepage-container .essay-section {
+  background-color: #171717;
+}
+
+body.dark-mode .navbar {
   background-color: #171717;
 }
 
