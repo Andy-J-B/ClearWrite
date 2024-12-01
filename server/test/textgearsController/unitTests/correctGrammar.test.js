@@ -1,4 +1,4 @@
-const { CorrectGrammar } = require("../../controller/textGearsController");
+const { CorrectGrammar } = require("../../../controller/textGearsController");
 
 const httpMocks = require("node-mocks-http");
 jest.mock("axios");
