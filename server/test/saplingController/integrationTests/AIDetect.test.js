@@ -1,23 +1,37 @@
-require("dotenv").config({ path: "./server/.env" });
+const request = require('supertest');
+const express = require('express');
+const bodyParser = require('body-parser');
+const axios = require('axios');
+const saplingController = require('../../../controller/saplingController');
 
-const supertest = require("supertest");
-const app = require("../../../app"); // Your Express app
+jest.mock('axios');
 
-describe("POST /aidetect", () => {
-  it("should return AI detection results (real API)", async () => {
-    const response = await supertest(app).post("/aidetect").send({
-      text: "This is an example sentence.",
-    });
+const app = express();
+app.use(bodyParser.json());
+app.post('/ai-detect', saplingController.AiDetect);
+
+describe('AiDetect API', () => {
+  it('should return AI detection score', async () => {
+    const mockResponse = { data: { score: 0.95, sentence_scores: [0.9, 1.0] } };
+    axios.post.mockResolvedValue(mockResponse);
+
+    const response = await request(app)
+      .post('/ai-detect')
+      .send({ text: 'Sample text' });
 
     expect(response.status).toBe(200);
-    expect(response.body.detection).toBeDefined();
-    expect(response.body.detection.results.length).toBeGreaterThan(0);
+    expect(response.body.overallScore).toBe(0.95);
+    expect(response.body.sentenceScores).toEqual([0.9, 1.0]);
   });
 
-  it("should return 400 if text is missing", async () => {
-    const response = await supertest(app).post("/aidetect").send({});
+  it('should handle errors', async () => {
+    axios.post.mockRejectedValue(new Error('API Error'));
+
+    const response = await request(app)
+      .post('/ai-detect')
+      .send({ text: 'Sample text' });
 
     expect(response.status).toBe(400);
-    expect(response.body.error).toContain("Input text is required");
+    expect(response.text).toBe('Error: Error: API Error');
   });
 });

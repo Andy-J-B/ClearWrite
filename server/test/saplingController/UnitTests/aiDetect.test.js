@@ -33,6 +33,6 @@ describe("AiDetect Function Unit Test", () => {
     await AiDetect(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.send).toHaveBeenCalledWith(expect.stringContaining("Invalid tesct."));
+    expect(res.send).toHaveBeenCalledWith(expect.stringContaining("Invalid text."));
   });
 });

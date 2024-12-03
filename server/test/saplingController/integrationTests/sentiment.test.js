@@ -1,24 +1,36 @@
-require("dotenv").config({ path: "./server/.env" });
+const request = require('supertest');
+const express = require('express');
+const bodyParser = require('body-parser');
+const axios = require('axios');
+const saplingController = require('../../../controller/saplingController');
 
-const supertest = require("supertest");
-const app = require("../../../app"); // Your Express app
+jest.mock('axios');
 
-describe("POST /sentiment", () => {
-  it("should return sentiment analysis results (real API)", async () => {
-    const response = await supertest(app).post("/sentiment").send({
-      text: "I am extremely happy with this progress!",
-    });
+const app = express();
+app.use(bodyParser.json());
+app.post('/tone', saplingController.Tone);
+
+describe('Tone API', () => {
+  it('should return tone analysis', async () => {
+    const mockResponse = { data: { tone: 'positive' } };
+    axios.post.mockResolvedValue(mockResponse);
+
+    const response = await request(app)
+      .post('/tone')
+      .send({ text: 'Happy text' });
 
     expect(response.status).toBe(200);
-    expect(response.body.sentences).toBeDefined();
-    expect(response.body.overallSentiment).toBeDefined();
-    expect(response.body.sentences.length).toBeGreaterThan(0);
+    expect(response.body.tone).toBe('positive');
   });
 
-  it("should return 400 if text is missing", async () => {
-    const response = await supertest(app).post("/sentiment").send({});
+  it('should handle errors', async () => {
+    axios.post.mockRejectedValue(new Error('API Error'));
+
+    const response = await request(app)
+      .post('/tone')
+      .send({ text: 'Happy text' });
 
     expect(response.status).toBe(400);
-    expect(response.body.error).toContain("Input text is required");
+    expect(response.text).toBe('Error: Error: API Error');
   });
 });
