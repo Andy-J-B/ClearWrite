@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Homepage.css'; // Ensure the path is correct based on your project structure
 import { FaArrowLeft, FaSun, FaMoon } from 'react-icons/fa';
+import GordonPhoto from '../assets/image/Gordon.png';
+import ArmaanPhoto from '../assets/image/Armaan.png';
+import AndyPhoto from '../assets/image/Andy.png';
+import AdityaPhoto from '../assets/image/Aditya.png';
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -18,34 +22,36 @@ const AboutUs = () => {
   // Sample team member data
   const teamMembers = [
     {
-        name: 'Armaan Singh Chahal',
-        studentId: '301559489',
-        role: 'UI/UX Developer',
-        description: 'Designed and developed the entire user interface of ClearWrite, ensuring a seamless and intuitive user experience through thoughtful design and responsive layouts.',
-        photo: '/image/armaan.jpg',
-      },
-    
-    {
-        name: 'Andy Junhyuk Bae',
-        studentId: '301578862',
-        role: 'Team Lead and API Developer',
-        description: 'Led the team, implemented core functionalities, managed the codebase, and integrated APIs.',
-        photo: '/image/andy.jpg',
+      name: 'Armaan Singh Chahal',
+      studentId: '301559489',
+      role: 'UI/UX Developer',
+      description:
+        'Designed and developed the entire user interface of ClearWrite, ensuring a seamless and intuitive user experience through thoughtful design and responsive layouts. Added responsive buttons and followed heuristics throughout the application.',
+      photo: ArmaanPhoto,
     },
     {
-        name: 'Adityapal Singh Waraich',
-        studentId: '301568396',
-        role: 'CI/CD Integration',
-        description: 'Set up CI/CD pipelines to ensure smooth and automated deployment processes.',
-        photo: '/image/aditya.jpg',
-      },
-      {
-        name: 'Gordon Cheuk',
-        studentId: '301559492',
-        role: 'API Implementation',
-        description: 'Implemented API functionalities, conducted testing, and ensured integration quality.',
-        photo: '/image/gordon.jpg',
-      }
+      name: 'Andy Junhyuk Bae',
+      studentId: '301578862',
+      role: 'Scrum master',
+      description:
+        'Implemented TextGears API features and tests using Jest and Postman. As Scrum Master, coordinated agile scrum development cycles, setting deadlines, and fostering effective communication. Flexibly worked on user interface design, backend architecture, and project deployment.',
+      photo: AndyPhoto,
+    },
+    {
+      name: 'Adityapal Singh Waraich',
+      studentId: '301568396',
+      role: 'CI/CD Integration',
+      description:
+        'Spearheaded the CI/CD pipeline setup, ensuring seamless integration and deployment processes for the project. Conducted thorough testing to maintain code quality and reliability, leveraging automated testing frameworks. Developed and implemented key APIs, facilitating smooth communication between services and enhancing application functionality.',
+      photo: AdityaPhoto,
+    },
+    {
+      name: 'Gordon Cheuk',
+      studentId: '301559492',
+      role: 'API Implementation',
+      description: 'Implemented API functionalities, conducted testing, and ensured integration quality.',
+      photo: GordonPhoto,
+    },
   ];
 
   return (
@@ -61,13 +67,13 @@ const AboutUs = () => {
         <div className="navbar-right">
           <ul className="navbar-links">
             <li>
-              <button onClick={() => navigate("/home")}>Home</button>
+              <button onClick={() => navigate('/home')}>Home</button>
             </li>
             <li>
-              <button onClick={() => navigate("/about-us")}>About Us</button>
+              <button onClick={() => navigate('/about-us')}>About Us</button>
             </li>
             <li>
-              <button onClick={() => navigate("/faq")}>FAQ</button>
+              <button onClick={() => navigate('/faq')}>FAQ</button>
             </li>
           </ul>
           <div className="day-night-toggle">
