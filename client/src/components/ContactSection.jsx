@@ -22,7 +22,7 @@ const ContactSection = () => {
         </li>
         <li>
           <FaEnvelope style={{ marginRight: '8px', color: '#f94d6a' }} />
-          <strong>Gordon:</strong> <a href="mailto:gordon@example.com">gordon@example.com</a>
+          <strong>Gordon:</strong> <a href="mailto:gkc23@sfu.ca">gkc23@sfu.ca</a>
         </li>
         {/* Add more team members as needed */}
       </ul>
