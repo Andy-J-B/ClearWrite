@@ -2,7 +2,7 @@ name: CD (Continuous Deployment)
 
 on:
   push:
-    branches:
+    branches:                                                     # Run the Deployment on a Push to the main
       - main
 
 jobs:
