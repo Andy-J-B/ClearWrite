@@ -2,9 +2,9 @@
 name: CI
 on:
   push:
-    branches:
+    branches:                                                  # Run this File on a Push to the main
       - main
-  pull_request:
+  pull_request:                                                # Run this File on a Pull_Request to the main
     branches:
       - main
 jobs:
