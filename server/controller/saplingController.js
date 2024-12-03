@@ -48,7 +48,7 @@ const Rephrase = async (req, res) => {
   } catch (error) {
     // If there is an error
 
-    res.status(500).send(`Error: ${error}`);
+    res.status(400).send(`Error: ${error}`);
   }
 };
 
@@ -79,7 +79,7 @@ const AiDetect = async (req, res) => {
       sentenceScores: data.sentence_scores,
     });
   } catch (error) {
-    res.status(500).send(`Error: ${error}`);
+    res.status(400).send(`Error: ${error}`);
   }
 };
 
@@ -109,7 +109,7 @@ const Tone = async (req, res) => {
       detailedResults: data.results,
     });
   } catch (error) {
-    res.status(500).send(`Error: ${error}`);
+    res.status(400).send(`Error: ${error}`);
   }
 };
 
