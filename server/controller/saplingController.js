@@ -5,7 +5,9 @@ const { response } = require("express");
 const Rephrase = async (req, res) => {
   // Get text to rephraser
   const text = req.body.text;
-
+  if (!text) {
+    return res.status(400).send("Invalid text.");
+  }
   // Get apiKey from dotenv file
   const apiKey = process.env.Sapling_API_KEY;
 
@@ -56,7 +58,9 @@ const AiDetect = async (req, res) => {
   //   Get text to AI detector
 
   const text = req.body.text;
-
+  if (!text) {
+    return res.status(400).send("Invalid text.");
+  }
   // Get apiKey from dotenv file
   const apiKey = process.env.Sapling_API_KEY;
 
@@ -86,7 +90,9 @@ const AiDetect = async (req, res) => {
 const Tone = async (req, res) => {
   // Get text to AI detector
   const text = req.body.text;
-
+  if (!text) {
+    return res.status(400).send("Invalid text.");
+  }
   // Get apiKey from dotenv file
   const apiKey = process.env.Sapling_API_KEY;
 

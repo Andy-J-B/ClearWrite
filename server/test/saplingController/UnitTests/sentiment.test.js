@@ -37,7 +37,7 @@ describe("Tone Function Unit Test", () => {
 
     await Tone(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.send).toHaveBeenCalledWith(expect.stringContaining("Input text is required"));
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith(expect.stringContaining("Invalid text."));
   });
 });
