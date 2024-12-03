@@ -12,7 +12,7 @@ app.post('/tone', saplingController.Tone);
 
 describe('Tone API', () => {
   it('should return tone analysis', async () => {
-    const mockResponse = { data: { tone: 'positive' } };
+    const mockResponse = { data: { tone: 'POSITIVE' } };
     axios.post.mockResolvedValue(mockResponse);
 
     const response = await request(app)
@@ -20,7 +20,7 @@ describe('Tone API', () => {
       .send({ text: 'Happy text' });
 
     expect(response.status).toBe(200);
-    expect(response.body.tone).toBe('positive');
+    expect(response.body.overallS).toBe('POSITIVE');
   });
 
   it('should handle errors', async () => {
