@@ -16,6 +16,11 @@ jobs:
       - name: Checkout code # Checkout the repository code
         uses: actions/checkout@v2
 
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+
       - name: Deploy to Netlify # Deploy the code to Netlify
         uses: nwtgck/actions-netlify@v1
         with:
