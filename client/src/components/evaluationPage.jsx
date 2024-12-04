@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function EvaluationPage() {
   const location = useLocation();
+  const mainText = location.state?.originalText;
   const realEval = location.state?.evaluationData;
 
   const {
@@ -437,7 +438,7 @@ function EvaluationPage() {
 
           {/* Original text */}
           <div id="originalText">
-            <p style={styles.originalText}>{readabilityScore.originalText}</p>
+            <p style={styles.originalText}>{readabilityScore.mainText}</p>
           </div>
         </div>
       </div>

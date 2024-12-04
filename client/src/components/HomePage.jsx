@@ -86,7 +86,9 @@ const HomePage = () => {
         // const results = [0, 1, 2, 3, 4, 5, 5];
 
         // Navigate to the Evaluation page and pass data
-        navigate("/evaluate", { state: { evaluationData: results } });
+        navigate("/evaluate", {
+          state: { originalText: text, evaluationData: results },
+        });
       } catch (error) {
         if (error.name === "AbortError") {
           console.log("API requests were cancelled.");

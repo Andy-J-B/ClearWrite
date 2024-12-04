@@ -3,7 +3,6 @@ import { useProgress } from "./ProgressContext";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import "../css/LoadingPage.css"; // Import styles
-import { useRef } from "react";
 import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
 
 const LoadingPage = () => {
