@@ -21,6 +21,8 @@ body.dark-mode {
 #eval-page {
   display: flex;
   flex-direction: column;
+
+  padding-top: 50px; /* Optional: Adds rounded corners */
 }
 
 /* Navbar styles */

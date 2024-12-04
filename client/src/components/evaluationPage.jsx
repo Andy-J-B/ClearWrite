@@ -420,8 +420,6 @@ function EvaluationPage() {
 
   const readabilityScore = readability;
 
-
-
   const [expandedSections, setExpandedSections] = useState({
     summarized: false,
   });
@@ -430,8 +428,6 @@ function EvaluationPage() {
   const [hoveredSection, setHoveredSection] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [expandedRephraseIndex, setExpandedRephraseIndex] = useState(null);
-  const [expandedAiDetectIndex, setExpandedAiDetectIndex] = useState(null);
-
 
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
@@ -633,10 +629,11 @@ function EvaluationPage() {
                       }}
                       onMouseEnter={() => setHoveredItem(index)}
                       onMouseLeave={() => setHoveredItem(null)}
-                      onClick={() =>
-                        setExpandedSummaryIndex(
-                          expandedSummaryIndex === index ? null : index
-                        ) // Toggle individual summary  
+                      onClick={
+                        () =>
+                          setExpandedSummaryIndex(
+                            expandedSummaryIndex === index ? null : index
+                          ) // Toggle individual summary
                       }
                     >
                       <h4 style={styles.listTitle}>
@@ -697,7 +694,9 @@ function EvaluationPage() {
                       {/* Show rephrased suggestions when expanded */}
                       {expandedRephraseIndex === index && (
                         <div style={styles.details}>
-                          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                          <div
+                            style={{ maxHeight: "200px", overflowY: "auto" }}
+                          >
                             <ul style={styles.suggestionsList}>
                               {entry.rephrasing.map((item, idx) => (
                                 <li key={idx} style={styles.suggestionItem}>
@@ -716,134 +715,130 @@ function EvaluationPage() {
               </div>
             )}
           </div>
-         {/* AI Detection Section */}
-      <div style={styles.square}>
-        <h3
-          style={{
-            ...styles.squareTitle,
-            ...(expandedSections.aiDetect && styles.squareTitleActive),
-          }}
-          onClick={() => toggleSection("aiDetect")}
-        >
-          AI Detection Breakdown
-        </h3>
+          {/* AI Detection Section */}
+          <div style={styles.square}>
+            <h3
+              style={{
+                ...styles.squareTitle,
+                ...(expandedSections.aiDetect && styles.squareTitleActive),
+              }}
+              onClick={() => toggleSection("aiDetect")}
+            >
+              AI Detection Breakdown
+            </h3>
 
-        {/* Scrollable content for AI Detection */}
-        {expandedSections.aiDetect && (
-          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
-            {aidetect.sentenceScores?.length > 0 ? (
-              aidetect.sentenceScores.map((sentenceData, index) => (
-                <div key={index} style={styles.listItem}>
-                  <p style={styles.scoreText}>
-                    Sentence: {sentenceData.sentence}
+            {/* Scrollable content for AI Detection */}
+            {expandedSections.aiDetect && (
+              <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                {aidetect.sentenceScores?.length > 0 ? (
+                  aidetect.sentenceScores.map((sentenceData, index) => (
+                    <div key={index} style={styles.listItem}>
+                      <p style={styles.scoreText}>
+                        Sentence: {sentenceData.sentence}
+                      </p>
+                      <p style={styles.scoreText}>
+                        Score: {(sentenceData.score * 100).toFixed(2)}%
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p style={styles.emptyText}>
+                    No AI detection data available.
                   </p>
-                  <p style={styles.scoreText}>
-                    Score: {(sentenceData.score * 100).toFixed(2)}%
-                  </p>
-                </div>
-              ))
-            ) : (
-              <p style={styles.emptyText}>No AI detection data available.</p>
+                )}
+              </div>
             )}
           </div>
-        )}
-      </div>
-      {/* Tone Analysis Section */}
-      <div style={styles.square}>
-        <h3
-          style={{
-            ...styles.squareTitle,
-            ...(expandedSections.toneAnalysis && styles.squareTitleActive),
-          }}
-          onClick={() => toggleSection("toneAnalysis")}
-        >
-          Detailed Tone Analysis
-        </h3>
+          {/* Tone Analysis Section */}
+          <div style={styles.square}>
+            <h3
+              style={{
+                ...styles.squareTitle,
+                ...(expandedSections.toneAnalysis && styles.squareTitleActive),
+              }}
+              onClick={() => toggleSection("toneAnalysis")}
+            >
+              Detailed Tone Analysis
+            </h3>
 
-        {/* Scrollable content for Tone Analysis */}
-        {expandedSections.toneAnalysis && (
-          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
-            {/* Detailed Sentiment by Sentence */}
-            <h4 style={styles.listTitle}>Detailed Sentiment Analysis</h4>
-            {tone.detailedResults.map((resultData, index) => (
-              <div key={index} style={styles.listItem}>
-                <h5 style={styles.listTitle}>
-                  Sentence: {tone.sentences[index].split(" ").slice(0, 3).join(" ")}...
-                </h5>
-                {resultData.map((sentimentData, idx) => (
-                  <p key={idx} style={styles.scoreText}>
-                    {sentimentData[1]}: {(sentimentData[0] * 100).toFixed(2)}%
-                  </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+            {/* Scrollable content for Tone Analysis */}
+            {expandedSections.toneAnalysis && (
+              <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                {/* Detailed Sentiment by Sentence */}
+                <h4 style={styles.listTitle}>Detailed Sentiment Analysis</h4>
+                {tone.detailedResults.map((resultData, index) => (
+                  <div key={index} style={styles.listItem}>
+                    <h5 style={styles.listTitle}>
+                      Sentence:{" "}
+                      {tone.sentences[index].split(" ").slice(0, 3).join(" ")}
+                      ...
+                    </h5>
+                    {resultData.map((sentimentData, idx) => (
+                      <p key={idx} style={styles.scoreText}>
+                        {sentimentData[1]}:{" "}
+                        {(sentimentData[0] * 100).toFixed(2)}%
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         <div style={styles.rightColumn}>
-          {/* AI Detection and Tone Sentiment Breakdown Side by Side */}
-          <div style={styles.scoresContainer}>
+          <div style={styles.fullScoresContainer}>
+            {/* Tone Sentiment Breakdown */}
+            <div style={styles.sentimentContainer}>
+              <div style={styles.scoreContainer}>
+                <span style={styles.scoreLabel}>
+                  {tone && tone.overallSentiment && tone.overallSentiment[0]
+                    ? tone.overallSentiment[0][1]
+                    : "No Sentiment"}{" "}
+                  Tone:
+                </span>
+                <span style={styles.scoreValue}>
+                  {tone && tone.overallSentiment && tone.overallSentiment[0]
+                    ? (tone.overallSentiment[0][0] * 100).toFixed(2) + "%"
+                    : "No sentiment available."}
+                </span>
+              </div>
+
+              <div style={styles.scoreContainer}>
+                <span style={styles.scoreLabel}>
+                  {tone && tone.overallSentiment && tone.overallSentiment[1]
+                    ? tone.overallSentiment[1][1]
+                    : "No Sentiment"}{" "}
+                  Tone:
+                </span>
+                <span style={styles.scoreValue}>
+                  {tone && tone.overallSentiment && tone.overallSentiment[1]
+                    ? (tone.overallSentiment[1][0] * 100).toFixed(2) + "%"
+                    : "No sentiment available."}
+                </span>
+              </div>
+            </div>
+
             {/* AI Detection Score */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-              <h3 style={{ ...styles.scoreLabel, fontSize: '18px', color: '#333', textAlign: 'center' }}>AI Detection Score:</h3>
-              <h3 style={{ ...styles.scoreValue, fontSize: '18px', color: '#333', textAlign: 'center' }}>
+            <div style={styles.scoreContainer}>
+              <h3 style={styles.scoreLabel}>AI Detection Score:</h3>
+              <h3 style={styles.scoreValue}>
                 {aidetect && aidetect.overallScore
                   ? `${(aidetect.overallScore * 100).toFixed(2)}%`
                   : "No AI detection score available."}
               </h3>
             </div>
-
-            {/* Tone Sentiment Breakdown */}
-            <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-              {/* Positive and Neutral Sentiment displayed inline */}
-              {tone && tone.overallSentiment && tone.overallSentiment.length > 0 && (
-                <div style={{ display: "flex", gap: "15px", justifyContent: 'center' }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <span style={{ ...styles.scoreLabel, fontSize: '18px', color: '#333' }}>
-                      {tone.overallSentiment[0][1]} Tone:
-                    </span>
-                    <span style={{ ...styles.scoreValue, fontSize: '18px', color: '#333' }}>
-                      {(tone.overallSentiment[0][0] * 100).toFixed(2)}%
-                    </span>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <span style={{ ...styles.scoreLabel, fontSize: '18px', color: '#333' }}>
-                      {tone.overallSentiment[1][1]} Tone:
-                    </span>
-                    <span style={{ ...styles.scoreValue, fontSize: '18px', color: '#333' }}>
-                      {(tone.overallSentiment[1][0] * 100).toFixed(2)}%
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Original text */}
-          <p style={styles.originalText}>{readabilityScore.originalText}</p>
+          <div id="originalText">
+            <p style={styles.originalText}>{readabilityScore.originalText}</p>
+          </div>
         </div>
-
-
       </div>
     </div>
   );
 }
-
-// Utility Component for Lists
-const List = ({ title, items }) => (
-  <div>
-    {title && <h4 style={styles.listTitle}>{title}</h4>}
-    <ul style={styles.list}>
-      {items.map((item, index) => (
-        <li key={index} style={styles.listItem}>
-          {item}
-        </li>
-      ))}
-    </ul>
-  </div>
-);
 
 const styles = {
   pageContainer: {
@@ -854,7 +849,8 @@ const styles = {
     lineHeight: "1.6",
     gap: "20px",
     backgroundColor: "#f0f0f0",
-    overflowX: "hidden",
+    overflowy: "auto",
+    borderRadius: "10px" /* Optional: Adds rounded corners */,
   },
   leftColumn: {
     flex: 1,
@@ -872,7 +868,10 @@ const styles = {
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     maxWidth: "70%", // Ensures the right column takes up 70% of the space
-    overflowY: "auto",
+    overflowY: "auto", // Allows for scrolling if content overflows
+    position: "sticky", // Makes it sticky
+    top: "0", // Sticks to the top of the viewport when scrolling
+    zIndex: 10, // Ensure it stays above other elements while scrolling
   },
   square: {
     padding: "10px", // Reduced padding for more compact sections
@@ -978,33 +977,34 @@ const styles = {
     cursor: "pointer",
   },
 
-  // **Newly Updated Styles for AI Detection and Tone Scores**
-  scoresContainer: {
-    display: "flex", // Use flexbox for horizontal layout
-    justifyContent: "space-between", // Space between the items
-    alignItems: "center", // Center the items vertically
-    marginBottom: "20px", // Space below the scores
+  fullScoresContainer: {
+    display: "flex", // Use flexbox for the main container
+    justifyContent: "space-between", // Space out the AI Detection and Sentiment sections
+    alignItems: "center", // Center vertically
+    width: "100%", // Full width
+    gap: "40px", // Add spacing between elements
+    marginTop: "20px", // Optional, add top margin for spacing
   },
-
+  sentimentContainer: {
+    display: "flex", // Use flexbox for tone sentiment items
+    justifyContent: "space-between", // Space the sentiment items across the row
+    width: "60%", // Adjust width to control how much space it takes up
+  },
   scoreContainer: {
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center", // Center the label and value
-    marginRight: "20px", // Space between the scores
+    flexDirection: "column", // Stack label and value vertically
+    alignItems: "center", // Center label and value horizontally
+    gap: "5px", // Small gap between label and value
   },
-
-  // Increased header size for AI Detection and Tone
-  scoreHeader: {
-    fontSize: "20px", // Increased font size for headers
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: "10px", // Space between header and values
-  },
-
   scoreLabel: {
-    fontSize: "14px", // Smaller font size for the label
-    fontWeight: "bold",
-    color: "#666",
+    fontSize: "18px",
+    color: "#333",
+    textAlign: "center", // Center label text
+  },
+  scoreValue: {
+    fontSize: "18px",
+    color: "#333",
+    textAlign: "center", // Center value text
   },
 
   scoreValue: {
@@ -1013,7 +1013,5 @@ const styles = {
     color: "#333",
   },
 };
-
-
 
 export default EvaluationPage;
