@@ -611,12 +611,6 @@ const styles = {
     color: "#333",
     textAlign: "center", // Center value text
   },
-
-  scoreValue: {
-    fontSize: "16px", // Reduced font size for the score value
-    fontWeight: "bold",
-    color: "#333",
-  },
 };
 
 export default EvaluationPage;
