@@ -1,4 +1,3 @@
-import React from "react";
 import { useProgress } from "./ProgressContext";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";

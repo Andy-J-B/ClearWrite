@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 
 const ProgressContext = createContext();
 
@@ -13,3 +14,7 @@ export const ProgressProvider = ({ children }) => {
 };
 
 export const useProgress = () => useContext(ProgressContext);
+
+ProgressProvider.propTypes = {
+  children: PropTypes.node,
+};

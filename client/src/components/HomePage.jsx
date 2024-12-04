@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/image/clearwrite-background.png";
 import ErrorModal from "./ErrorModal";
 import { useProgress } from "./ProgressContext";
-import { useRef } from "react";
 import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
 
 const HomePage = () => {

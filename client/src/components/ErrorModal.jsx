@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../css/ErrorModal.css";
+import PropTypes from "prop-types"; // Import PropTypes
 
 // Inspired by https://react-bootstrap.netlify.app/docs/components/modal/
 
@@ -35,5 +36,10 @@ function ErrorModal(props) {
     </Modal>
   );
 }
+
+// PropTypes validation
+ErrorModal.propTypes = {
+  onHide: PropTypes.func.isRequired, // Ensures onHide is a required function
+};
 
 export default ErrorModal;

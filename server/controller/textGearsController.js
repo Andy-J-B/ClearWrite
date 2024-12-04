@@ -41,7 +41,7 @@ const CorrectGrammar = async (req, res) => {
     }
   }
 
-  seperatedAddedTexts = [];
+  let seperatedAddedTexts = [];
 
   for (var i = 0; i < seperated.length; i++) {
     // Replace all spaces with a +
@@ -61,9 +61,9 @@ const CorrectGrammar = async (req, res) => {
   // urls list
   var urls = [];
 
-  for (var i = 0; i < seperatedAddedTexts.length; i++) {
+  for (var n = 0; n < seperatedAddedTexts.length; n++) {
     // Server request url
-    const url = `https://api.textgears.com/grammar?text=${seperatedAddedTexts[i]}&language=en-GB&whitelist=&dictionary_id=&ai=1&key=${apiKey}`;
+    const url = `https://api.textgears.com/grammar?text=${seperatedAddedTexts[n]}&language=en-GB&whitelist=&dictionary_id=&ai=1&key=${apiKey}`;
     urls.push(url);
   }
 
@@ -72,10 +72,10 @@ const CorrectGrammar = async (req, res) => {
     // Codes from lines 24-42 is from
     // "https://gist.github.com/krishheii/415ccdf6ab9a6bb29d60bdcdbdb5e98c"
 
-    for (var i = 0; i < urls.length; i++) {
+    for (var m = 0; m < urls.length; m++) {
       // Should not test too many times due to api usage limit
       // Uncomment only for testing and production
-      const response = await axios.get(urls[i]);
+      const response = await axios.get(urls[m]);
 
       // Extract errors
 
@@ -87,7 +87,7 @@ const CorrectGrammar = async (req, res) => {
       if (errors.length > 0) {
         // If there are grammatical errors
         resultingData.push({
-          originalText: seperated[i],
+          originalText: seperated[m],
           corrections: errors.map((error) => ({
             error: error.description,
             suggestions: error.better,
@@ -98,7 +98,7 @@ const CorrectGrammar = async (req, res) => {
       } else {
         // If there are no grammatical errors
         resultingData.push({
-          originalText: seperated[i],
+          originalText: seperated[m],
           corrections: [],
         });
         //

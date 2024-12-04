@@ -1,6 +1,6 @@
 // src/components/AboutUs.jsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Homepage.css"; // Importing the CSS file for styling the component
 import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; // Importing icons for UI

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useRef } from "react";
+import { createContext, useContext, useRef } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 
 // Create a context for managing AbortController
 const AbortControllerContext = createContext(null);
@@ -17,4 +18,8 @@ export const AbortControllerProvider = ({ children }) => {
       {children}
     </AbortControllerContext.Provider>
   );
+};
+
+AbortControllerProvider.propTypes = {
+  children: PropTypes.node,
 };

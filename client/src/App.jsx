@@ -1,6 +1,4 @@
-import React from "react";
 import {
-  BrowserRouter as Router, // Used to set up the routing in the application
   Routes, // Container for all route definitions
   Route, // Defines individual routes
   useLocation, // Provides information about the current location
