@@ -18,6 +18,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
+          cd client
           npm install --include=dev
           npm run build
 

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Homepage.css"; // Importing the CSS file for styling the component
 import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; // Importing icons for UI
-import GordonPhoto from "../assets/image/Gordon.png";
+import GordonPhoto from "../assets/image/gordon.png";
 import ArmaanPhoto from "../assets/image/Armaan.png";
 import AndyPhoto from "../assets/image/Andy.png";
 import AdityaPhoto from "../assets/image/Aditya.png";
