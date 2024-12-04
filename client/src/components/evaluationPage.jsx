@@ -431,6 +431,8 @@ function EvaluationPage() {
   const [hoveredSection, setHoveredSection] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [expandedRephraseIndex, setExpandedRephraseIndex] = useState(null);
+  const [expandedAiDetectIndex, setExpandedAiDetectIndex] = useState(null);
+
 
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
@@ -635,7 +637,7 @@ function EvaluationPage() {
                       onClick={() =>
                         setExpandedSummaryIndex(
                           expandedSummaryIndex === index ? null : index
-                        ) // Toggle individual summary
+                        ) // Toggle individual summary  
                       }
                     >
                       <h4 style={styles.listTitle}>
@@ -715,7 +717,70 @@ function EvaluationPage() {
               </div>
             )}
           </div>
+         {/* AI Detection Section */}
+      <div style={styles.square}>
+        <h3
+          style={{
+            ...styles.squareTitle,
+            ...(expandedSections.aiDetect && styles.squareTitleActive),
+          }}
+          onClick={() => toggleSection("aiDetect")}
+        >
+          AI Detection Breakdown
+        </h3>
 
+        {/* Scrollable content for AI Detection */}
+        {expandedSections.aiDetect && (
+          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+            {aidetect.sentenceScores?.length > 0 ? (
+              aidetect.sentenceScores.map((sentenceData, index) => (
+                <div key={index} style={styles.listItem}>
+                  <p style={styles.scoreText}>
+                    Sentence: {sentenceData.sentence}
+                  </p>
+                  <p style={styles.scoreText}>
+                    Score: {(sentenceData.score * 100).toFixed(2)}%
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p style={styles.emptyText}>No AI detection data available.</p>
+            )}
+          </div>
+        )}
+      </div>
+      {/* Tone Analysis Section */}
+      <div style={styles.square}>
+        <h3
+          style={{
+            ...styles.squareTitle,
+            ...(expandedSections.toneAnalysis && styles.squareTitleActive),
+          }}
+          onClick={() => toggleSection("toneAnalysis")}
+        >
+          Detailed Tone Analysis
+        </h3>
+
+        {/* Scrollable content for Tone Analysis */}
+        {expandedSections.toneAnalysis && (
+          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+            {/* Detailed Sentiment by Sentence */}
+            <h4 style={styles.listTitle}>Detailed Sentiment Analysis</h4>
+            {tone.detailedResults.map((resultData, index) => (
+              <div key={index} style={styles.listItem}>
+                <h5 style={styles.listTitle}>
+                  Sentence: {tone.sentences[index].split(" ").slice(0, 3).join(" ")}...
+                </h5>
+                {resultData.map((sentimentData, idx) => (
+                  <p key={idx} style={styles.scoreText}>
+                    {sentimentData[1]}: {(sentimentData[0] * 100).toFixed(2)}%
+                  </p>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         </div>
 
         <div style={styles.rightColumn}>
