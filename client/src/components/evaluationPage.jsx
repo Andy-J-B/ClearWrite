@@ -421,6 +421,8 @@ function EvaluationPage() {
 
   const readabilityScore = readability;
 
+
+
   const [expandedSections, setExpandedSections] = useState({});
   const [hoveredSection, setHoveredSection] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -658,7 +660,7 @@ function EvaluationPage() {
                       } // Expand/collapse individual suggestion
                     >
                       <h4 style={styles.listTitle}>
-                        Rephrase Suggestion {index + 1}
+                        Sentence Suggestion {index + 1}
                       </h4>
 
                       {/* Show rephrased suggestions when expanded */}
@@ -684,17 +686,49 @@ function EvaluationPage() {
         </div>
 
         <div style={styles.rightColumn}>
-          <h2 style={styles.header}>Overall Score</h2>
-          <h3 style={styles.header}>
-            {evaluationData.overallScore &&
-            evaluationData.overallScore.length > 0
-              ? `${(evaluationData.overallScore[0].overallScore * 100).toFixed(
-                  2
-                )}%`
-              : "No overall score available."}
-          </h3>
+          {/* AI Detection and Tone Sentiment Breakdown Side by Side */}
+          <div style={styles.scoresContainer}>
+            {/* AI Detection Score */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+              <h3 style={{ ...styles.scoreLabel, fontSize: '18px', color: '#333', textAlign: 'center' }}>AI Detection Score:</h3>
+              <h3 style={{ ...styles.scoreValue, fontSize: '18px', color: '#333', textAlign: 'center' }}>
+                {aidetect && aidetect.overallScore
+                  ? `${(aidetect.overallScore * 100).toFixed(2)}%`
+                  : "No AI detection score available."}
+              </h3>
+            </div>
+
+            {/* Tone Sentiment Breakdown */}
+            <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+              {/* Positive and Neutral Sentiment displayed inline */}
+              {tone && tone.overallSentiment && tone.overallSentiment.length > 0 && (
+                <div style={{ display: "flex", gap: "15px", justifyContent: 'center' }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <span style={{ ...styles.scoreLabel, fontSize: '18px', color: '#333' }}>
+                      {tone.overallSentiment[0][1]} Tone:
+                    </span>
+                    <span style={{ ...styles.scoreValue, fontSize: '18px', color: '#333' }}>
+                      {(tone.overallSentiment[0][0] * 100).toFixed(2)}%
+                    </span>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <span style={{ ...styles.scoreLabel, fontSize: '18px', color: '#333' }}>
+                      {tone.overallSentiment[1][1]} Tone:
+                    </span>
+                    <span style={{ ...styles.scoreValue, fontSize: '18px', color: '#333' }}>
+                      {(tone.overallSentiment[1][0] * 100).toFixed(2)}%
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Original text */}
           <p style={styles.originalText}>{readabilityScore.originalText}</p>
         </div>
+
+
       </div>
     </div>
   );
@@ -846,6 +880,43 @@ const styles = {
     backgroundColor: "#e0e0e0",
     cursor: "pointer",
   },
+
+  // **Newly Updated Styles for AI Detection and Tone Scores**
+  scoresContainer: {
+    display: "flex", // Use flexbox for horizontal layout
+    justifyContent: "space-between", // Space between the items
+    alignItems: "center", // Center the items vertically
+    marginBottom: "20px", // Space below the scores
+  },
+
+  scoreContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center", // Center the label and value
+    marginRight: "20px", // Space between the scores
+  },
+
+  // Increased header size for AI Detection and Tone
+  scoreHeader: {
+    fontSize: "20px", // Increased font size for headers
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: "10px", // Space between header and values
+  },
+
+  scoreLabel: {
+    fontSize: "14px", // Smaller font size for the label
+    fontWeight: "bold",
+    color: "#666",
+  },
+
+  scoreValue: {
+    fontSize: "16px", // Reduced font size for the score value
+    fontWeight: "bold",
+    color: "#333",
+  },
 };
+
+
 
 export default EvaluationPage;
