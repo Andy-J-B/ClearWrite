@@ -12,7 +12,6 @@ const axios = require("axios");
 if (process.env.NODE_ENV !== "production") {
   // Get apiKey from dotenv file
   require("dotenv").config();
-  console.log("production");
 }
 
 // 1. Rephrasing

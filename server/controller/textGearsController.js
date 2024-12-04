@@ -11,7 +11,6 @@ const axios = require("axios");
 if (process.env.NODE_ENV !== "production") {
   // Get apiKey from dotenv file
   require("dotenv").config();
-  console.log("production");
 }
 
 // Correct Grammatical issues
@@ -49,7 +48,6 @@ const CorrectGrammar = async (req, res) => {
     const addTexts = seperated[i].trim().replace(/ /g, "+");
     seperatedAddedTexts.push(addTexts);
   }
-  console.log(text);
 
   // Insert each into a list
 
