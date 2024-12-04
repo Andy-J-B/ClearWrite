@@ -1,3 +1,12 @@
+/*
+ *** aiDetect.test.js
+ ***
+ *** Description : Unit test for the AI detection feature of the API
+ ***              
+ ***
+ ***
+ */
+
 const axios = require("axios");
 jest.mock("axios");
 const { AiDetect } = require("../../../controller/saplingController");

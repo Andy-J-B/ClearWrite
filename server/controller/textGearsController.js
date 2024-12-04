@@ -1,3 +1,12 @@
+/*
+ *** textGear.js
+ ***
+ *** Description : API used for 3 features :
+ ***               Rephrasing the text using different mapping like informal to formal, etc.
+ ***               Detecting the AI in the text
+ ***               Sentiment analysis of the text and provide the tone of the text
+ */
+
 const axios = require("axios");
 
 // Correct Grammatical issues
