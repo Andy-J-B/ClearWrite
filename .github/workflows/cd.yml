@@ -2,7 +2,7 @@ name: CD (Continuous Deployment)
 
 on:
   push:
-    branches:                                                     # Run the Deployment on a Push to the main
+    branches: # Run the Deployment on a Push to the main
       - main
 
 jobs:
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code                                         # Checkout the repository code
-      uses: actions/checkout@v2                                    
+      - name: Checkout code # Checkout the repository code
+        uses: actions/checkout@v2
 
-    - name: Deploy to Netlify                                     # Deploy the code to Netlify
-      uses: nwtgck/actions-netlify@v1                             
-      with:
-      publish-dir: ./public                                       # Publish the code from this directory
-      production-deploy: true                                     # Deploy the code to production
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}       # Netlify authentication token
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}             # Netlify site ID      
+      - name: Deploy to Netlify # Deploy the code to Netlify
+        uses: nwtgck/actions-netlify@v1
+        with:
+        publish-dir: ./client/dist # Publish the code from this directory
+        production-deploy: true # Deploy the code to production
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }} # Netlify authentication token
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }} # Netlify site ID
