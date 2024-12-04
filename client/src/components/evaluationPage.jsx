@@ -423,7 +423,11 @@ function EvaluationPage() {
 
 
 
-  const [expandedSections, setExpandedSections] = useState({});
+  const [expandedSections, setExpandedSections] = useState({
+    summarized: false,
+  });
+
+  const [expandedSummaryIndex, setExpandedSummaryIndex] = useState(null);
   const [hoveredSection, setHoveredSection] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [expandedRephraseIndex, setExpandedRephraseIndex] = useState(null);
@@ -619,7 +623,33 @@ function EvaluationPage() {
             {expandedSections.summarized && (
               <div>
                 {summarized.summaries?.length > 0 ? (
-                  <List title="Summaries" items={summarized.summaries} />
+                  summarized.summaries.map((summary, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        ...styles.listItem,
+                        ...(hoveredItem === index && styles.listItemHover),
+                      }}
+                      onMouseEnter={() => setHoveredItem(index)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                      onClick={() =>
+                        setExpandedSummaryIndex(
+                          expandedSummaryIndex === index ? null : index
+                        ) // Toggle individual summary
+                      }
+                    >
+                      <h4 style={styles.listTitle}>
+                        Sentence Summary {index + 1}
+                      </h4>
+
+                      {/* Show the expanded summary content */}
+                      {expandedSummaryIndex === index && (
+                        <div style={styles.details}>
+                          <p>{summary}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))
                 ) : (
                   <p style={styles.emptyText}>No summaries available.</p>
                 )}
