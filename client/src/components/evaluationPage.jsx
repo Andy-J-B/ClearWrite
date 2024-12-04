@@ -438,7 +438,7 @@ function EvaluationPage() {
 
           {/* Original text */}
           <div id="originalText">
-            <p style={styles.originalText}>{readabilityScore.mainText}</p>
+            <p style={styles.originalText}>{mainText}</p>
           </div>
         </div>
       </div>
