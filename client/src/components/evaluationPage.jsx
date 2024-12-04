@@ -666,13 +666,15 @@ function EvaluationPage() {
                       {/* Show rephrased suggestions when expanded */}
                       {expandedRephraseIndex === index && (
                         <div style={styles.details}>
-                          <ul style={styles.suggestionsList}>
-                            {entry.rephrasing.map((item, idx) => (
-                              <li key={idx} style={styles.suggestionItem}>
-                                {item.replacement}
-                              </li>
-                            ))}
-                          </ul>
+                          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                            <ul style={styles.suggestionsList}>
+                              {entry.rephrasing.map((item, idx) => (
+                                <li key={idx} style={styles.suggestionItem}>
+                                  {item.replacement}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -683,6 +685,7 @@ function EvaluationPage() {
               </div>
             )}
           </div>
+
         </div>
 
         <div style={styles.rightColumn}>
