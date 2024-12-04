@@ -8,10 +8,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/image/clearwrite-background.png";
 import ErrorModal from "./ErrorModal";
 import { useProgress } from "./ProgressContext";
+import { useRef } from "react";
+import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
 
 const HomePage = () => {
   // Implement progress for loadingPage
   const { setProgress } = useProgress();
+
+  // Create the AbortController ref
+  const abortControllerRef = useAbortController();
 
   // This state will hold the essay text
   const [text, setText] = useState("");
@@ -28,7 +33,7 @@ const HomePage = () => {
 
   // handleSubmit Function to get text, send to APIs,
   // receive JSON, and send to EvaluationPage
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, abortControllerRef) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
     // Validate text character limit
@@ -39,6 +44,10 @@ const HomePage = () => {
       setProgress(0);
       navigate("/loading");
       // If good, send API requests
+
+      const abortController = new AbortController();
+      abortControllerRef.current = abortController; // Save the controller in the context
+
       try {
         const apiEndpoints = [
           "correctGrammar",
@@ -51,18 +60,24 @@ const HomePage = () => {
         let results = {};
         const routerURL = import.meta.env.VITE_ROUTER_URL;
         for (let i = 0; i < 6; i++) {
-
           // Here we make a POST request to the API endpoint
 
-          const response = await fetch(`${routerURL}/${apiEndpoints[i]}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json", // Inform the server of JSON format
-            },
-            body: JSON.stringify({ text: text }), // Send the text state in the request body
-          });
+          const response = await fetch(
+            `http://localhost:3000/${apiEndpoints[i]}`,
+
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json", // Inform the server of JSON format
+              },
+              body: JSON.stringify({ text: text }), // Send the text state in the request body
+              signal: abortController.signal,
+            }
+          );
 
           const data = await response.json();
+
+          console.log(data);
 
           results[apiEndpoints[i]] = data;
           setProgress((prev) => prev + 1); // Increment progress
@@ -75,7 +90,11 @@ const HomePage = () => {
         // Navigate to the Evaluation page and pass data
         navigate("/evaluate", { state: { evaluationData: results } });
       } catch (error) {
-        console.error("Error submitting essay:", error);
+        if (error.name === "AbortError") {
+          console.log("API requests were cancelled.");
+        } else {
+          console.error("Error submitting essay:", error);
+        }
       }
     }
   };
@@ -115,7 +134,7 @@ const HomePage = () => {
       {/* Essay Section */}
       <div className="essay-section">
         <img src={logo} alt="ClearWrite Logo" className="logo" />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event) => handleSubmit(event, abortControllerRef)}>
           <div className="textarea-container">
             <textarea
               id="essayInput"

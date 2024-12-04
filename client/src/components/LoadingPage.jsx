@@ -1,23 +1,31 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import "../css/Homepage.css";
 import { useProgress } from "./ProgressContext";
-import { FaTimes } from "react-icons/fa"; // Importing the X icon
+import { useNavigate } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
+import "../css/LoadingPage.css"; // Import styles
+import { useRef } from "react";
+import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
 
 const LoadingPage = () => {
   const { progress } = useProgress();
   const navigate = useNavigate();
 
-  const handleCancel = () => {
-    navigate("/home"); // Redirect to the homepage when cancel is clicked
+  // Create the AbortController ref
+  const abortControllerRef = useAbortController();
+
+  const handleCancel = (abortControllerRef) => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort(); // Abort ongoing API requests
+    }
+    navigate("/home"); // Redirect to the homepage
   };
 
   return (
-    <div className="loading-container">
-      <div className="cancel-icon" onClick={handleCancel}>
-        <FaTimes size={20} />
-      </div>
-      <h1>Loading Results...</h1>
+    <div className="loading-page">
+      <h1 className="loading-title">Loading Results</h1>
+      <p className="loading-subtext">
+        Please wait, loading essential features...
+      </p>
       <div className="progress-bar">
         <div
           className="progress-bar-fill"
@@ -25,6 +33,13 @@ const LoadingPage = () => {
         ></div>
       </div>
       <p className="progress-text">{progress}/6 Features Loaded</p>
+      <div
+        className="cancel-container"
+        onClick={() => handleCancel(abortControllerRef)}
+      >
+        <FaTimes size={24} className="cancel-icon" />
+        <span className="cancel-text">Go back to Main Page</span>
+      </div>
     </div>
   );
 };
