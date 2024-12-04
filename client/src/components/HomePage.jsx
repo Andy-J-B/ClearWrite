@@ -63,7 +63,7 @@ const HomePage = () => {
           // Here we make a POST request to the API endpoint
 
           const response = await fetch(
-            `http://localhost:3000/${apiEndpoints[i]}`,
+            `${routerURL}/${apiEndpoints[i]}`,
 
             {
               method: "POST",
@@ -76,8 +76,6 @@ const HomePage = () => {
           );
 
           const data = await response.json();
-
-          console.log(data);
 
           results[apiEndpoints[i]] = data;
           setProgress((prev) => prev + 1); // Increment progress
