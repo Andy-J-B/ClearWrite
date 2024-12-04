@@ -2,7 +2,9 @@
 const app = require("./app");
 
 // Load environment variables from .env file
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 // Start port
 app.listen(process.env.PORT, () =>

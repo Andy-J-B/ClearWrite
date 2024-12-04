@@ -16,7 +16,6 @@ const axios = require("axios");
 const saplingController = require("../controller/saplingController");
 
 // Load environmental variables
-// require("dotenv").config();
 
 if (process.env.NODE_ENV === "test") {
   jest.mock("axios");

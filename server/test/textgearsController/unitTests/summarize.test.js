@@ -3,7 +3,9 @@ const { Summarize } = require("../../../controller/textGearsController");
 const httpMocks = require("node-mocks-http");
 jest.mock("axios");
 const axios = require("axios");
-require("dotenv").config({ path: "./server/.env" });
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "./server/.env" });
+}
 
 describe("Summarize", () => {
   // Inspired from https://stackoverflow.com/questions/45210018/how-to-test-response-data-from-express-in-jest

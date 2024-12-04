@@ -8,16 +8,20 @@
  */
 
 // Import necessary modules
-const axios = require("axios");         
-const { response } = require("express");
+const axios = require("axios");
+if (process.env.NODE_ENV !== "production") {
+  // Get apiKey from dotenv file
+  require("dotenv").config();
+  console.log("production");
+}
 
 // 1. Rephrasing
 const Rephrase = async (req, res) => {
   // Get text to rephraser
   const text = req.body.text;
 
-  // If there is no text 
-  if (!text) {                     
+  // If there is no text
+  if (!text) {
     return res.status(400).send("Invalid text.");
   }
   // Get apiKey from dotenv file
@@ -26,8 +30,8 @@ const Rephrase = async (req, res) => {
   // Seperate sentences
   // From https://stackoverflow.com/questions/11761563/javascript-regexp-for-splitting-text-into-sentences-and-keeping-the-delimiter
   const seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
-  
-  try {                      
+
+  try {
     let resultingData = [];
 
     // If the text length is greater than 0, process each sentence
@@ -69,7 +73,6 @@ const Rephrase = async (req, res) => {
 
 // 2. AI detection
 const AiDetect = async (req, res) => {
-
   //   Get text to AI detector
   const text = req.body.text;
 
@@ -81,7 +84,6 @@ const AiDetect = async (req, res) => {
   const apiKey = process.env.Sapling_API_KEY;
 
   try {
-
     // Send request to sapling API for AI detection
     const response = await axios.post(
       "https://api.sapling.ai/api/v1/aidetect",
@@ -100,19 +102,14 @@ const AiDetect = async (req, res) => {
       overallScore: data.score,
       sentenceScores: data.sentence_scores,
     });
-  } 
-  catch (error) {
-
+  } catch (error) {
     // If there is an error
     res.status(400).send(`Error: ${error}`);
-
   }
 };
 
-
 // 3. Tone analysis
 const Tone = async (req, res) => {
-
   // Get text to analyze
   const text = req.body.text;
 
@@ -133,7 +130,7 @@ const Tone = async (req, res) => {
         text: `${text}`,
       }
     );
-    
+
     // Get the response data
     const { status, data } = response;
 

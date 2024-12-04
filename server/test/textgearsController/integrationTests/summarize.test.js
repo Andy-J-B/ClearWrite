@@ -1,4 +1,6 @@
-require("dotenv").config({ path: "./server/.env" });
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "./server/.env" });
+}
 
 const supertest = require("supertest");
 const app = require("../../../app"); // Your Express app
