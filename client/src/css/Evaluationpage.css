@@ -1,0 +1,179 @@
+/* src/css/Homepage.css */
+
+/* Global box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Light and dark modes */
+body.light-mode {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+#eval-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar styles */
+.navbar {
+  width: 100%; /* Ensures navbar spans the container */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between back button and navbar-right */
+  padding: 10px 20px;
+  /* position: sticky; */
+  top: 0;
+  z-index: 1000;
+
+  position: fixed;
+  left: 0;
+}
+
+/* Navbar Links */
+.navbar-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.navbar-links button:hover {
+  color: #f94d6a;
+}
+
+/* Day-Night Toggle */
+.day-night-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggle-button:hover {
+  transform: scale(1.1);
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+
+/* Navbar Right Section */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Spacing between links and toggle */
+}
+
+body.dark-mode .homepage-container .essay-section {
+  background-color: #171717;
+}
+
+body.dark-mode .navbar {
+  background-color: #171717;
+}
+
+body.dark-mode .homepage-container .essay-input {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+body.dark-mode .homepage-container .essay-input::placeholder {
+  color: #bbbbbb;
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    flex-direction: column; /* Stack links vertically on very small screens */
+    gap: 10px;
+  }
+
+  .navbar-right {
+    flex-direction: column; /* Stack navbar elements vertically */
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbar {
+    flex-direction: column; /* Stack navbar elements vertically */
+    align-items: flex-start;
+  }
+
+  .aboutpage-container .team-members {
+    width: 90vw;
+    gap: 15px;
+  }
+
+  .homepage-container .essay-section {
+    width: 90%; /* Adjust width on very small screens */
+  }
+
+  .aboutpage-container .about-content {
+    max-width: 90vw;
+  }
+}
+/* Dark mode textarea styling */
+body.dark-mode .homepage-container .essay-section .textarea-container textarea {
+  background-color: #333333; /* Explicit dark background */
+  color: #ffffff; /* Explicit light text color */
+  border-color: #555555; /* Adjust border color for dark mode */
+}
+
+body.dark-mode
+  .homepage-container
+  .essay-section
+  .textarea-container
+  .character-count {
+  color: #bbbbbb; /* Adjust character count color in dark mode */
+}
+
+/* Responsive Image Adjustments */
+@media (max-width: 768px) {
+  .faq-image {
+    max-width: 100%; /* Allow images to scale down on smaller screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly smaller shadow on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-image {
+    max-width: 100%; /* Full width on mobile */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow on very small screens */
+  }
+}
