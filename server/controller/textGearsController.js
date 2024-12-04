@@ -60,8 +60,6 @@ const CorrectGrammar = async (req, res) => {
     return res.status(600).json({ error: "API key is missing" });
   }
 
-  console.log(apiKey);
-
   // urls list
   var urls = [];
 
