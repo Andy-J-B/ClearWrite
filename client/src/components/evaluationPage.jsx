@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import evaluationData from "./evaluationData-new.json";
 import { useLocation } from "react-router-dom";
 import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
 import "../css/Evaluationpage.css";

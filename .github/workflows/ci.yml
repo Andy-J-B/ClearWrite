@@ -2,9 +2,9 @@
 name: CI
 on:
   push:
-    branches:
+    branches:                                                  # Run this File on a Push to the main
       - main
-  pull_request:
+  pull_request:                                                # Run this File on a Pull_Request to the main
     branches:
       - main
 jobs:
@@ -17,12 +17,12 @@ jobs:
           - 20.x
           - 22.x
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+    - uses: actions/checkout@v4                                # Checkout the repository code
+    - name: Use Node.js ${{ matrix.node-version }}             # Use Node.js version
+      uses: actions/setup-node@v4                              # Setup Node.js
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
+        node-version: ${{ matrix.node-version }}              
+        cache: 'npm'                                           # Cache npm packages              
+    - run: npm ci                                              # Install npm packages         
    # - run: npm run build --if-present
-   # - run: npm test
+    - run: npm test                                            # Run tests files using jest       

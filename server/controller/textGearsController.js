@@ -1,3 +1,12 @@
+/*
+ *** textGear.js
+ ***
+ *** Description : API used for 3 features :
+ ***               Rephrasing the text using different mapping like informal to formal, etc.
+ ***               Detecting the AI in the text
+ ***               Sentiment analysis of the text and provide the tone of the text
+ */
+
 const axios = require("axios");
 
 // Correct Grammatical issues
@@ -5,9 +14,28 @@ const CorrectGrammar = async (req, res) => {
   // Get text to grammar check
   const text = req.body.text;
 
+  if (!text) {
+    return res.status(601).json({ error: "Text is required" });
+  }
+
   // Seperate sentences
   // From https://stackoverflow.com/questions/11761563/javascript-regexp-for-splitting-text-into-sentences-and-keeping-the-delimiter
-  const seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
+
+  var seperated = text.match(/[^\.!\?]+[\.!\?]+/g);
+
+  if (seperated == null || seperated == undefined) {
+    seperated = [text];
+  } else if (
+    text.slice(-1) !== "." &&
+    text.slice(-1) !== "!" &&
+    text.slice(-1) !== "?"
+  ) {
+    // Add the last part without punctuation
+    const lastSentence = text.match(/[^\.!\?]+$/g);
+    if (lastSentence) {
+      seperated.push(lastSentence[0].trim());
+    }
+  }
 
   seperatedAddedTexts = [];
 
@@ -21,6 +49,10 @@ const CorrectGrammar = async (req, res) => {
 
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
+
+  if (!apiKey) {
+    return res.status(600).json({ error: "API key is missing" });
+  }
 
   // urls list
   var urls = [];
@@ -72,7 +104,7 @@ const CorrectGrammar = async (req, res) => {
     res.json({ grammar: resultingData });
   } catch (error) {
     // If there is an error
-    res.status(500).send(`Error: ${error}`);
+    res.status(501).send(`Error: ${error}`);
   }
 };
 
@@ -81,11 +113,19 @@ const Readability = async (req, res) => {
   // Get text to check readability
   const text = req.body.text;
 
+  if (!text) {
+    return res.status(601).json({ error: "Text is required" });
+  }
+
   // Replace all spaces with a +
   const addTexts = text.replace(/ /g, "+");
 
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
+
+  if (!apiKey) {
+    return res.status(600).json({ error: "API key is missing" });
+  }
 
   // Server request url
   const url = `https://api.textgears.com/readability?key=${apiKey}&text=${addTexts}`;
@@ -117,11 +157,12 @@ const Readability = async (req, res) => {
       });
     } else {
       // If there are too little words
-      res.json({ error: "Essay is too short to evaluate." });
+      res.json({ error: "Essay is too short to evaluate" });
     }
   } catch (error) {
-    // Catch errors
-    res.status(500).send(`Error: ${error}`);
+    // If there is an error
+
+    res.status(501).send(`Error: ${error}`);
   }
 };
 
@@ -130,11 +171,19 @@ const Summarize = async (req, res) => {
   // Get text to check readability
   const text = req.body.text;
 
+  if (!text) {
+    return res.status(601).json({ error: "Text is required" });
+  }
+
   // Replace all spaces with a +
   const addTexts = text.replace(/ /g, "+");
 
   // Get apiKey from dotenv file
   const apiKey = process.env.TextGears_API_KEY;
+
+  if (!apiKey) {
+    return res.status(600).json({ error: "API key is missing" });
+  }
 
   // Server request url
   const url = `https://api.textgears.com/summarize?key=${apiKey}&language=en-GB&text=${addTexts}`;
@@ -153,23 +202,23 @@ const Summarize = async (req, res) => {
 
     // Extract summaries
 
-    if (summaries?.keywords.length > 0) {
+    if (summaries?.summary.length > 2) {
       // If there are enough sentences
       res.json({
         originalText: text,
         summaries: summaries?.summary,
         all: summaries,
       });
-    } else if (text.length == 0) {
-      // If there are no words at all
-      res.json({ error: "No words present to evaluate." });
     } else {
       // If the essay is too short
-      res.json({ error: "Essay is too short to evaluate." });
+      res.json({
+        error: "Essay too short to evaluate",
+      });
     }
   } catch (error) {
-    // Catch error
-    res.status(500).send(`Error: ${error}`);
+    // If there is an error
+
+    res.status(501).send(`Error: ${error}`);
   }
 };
 
