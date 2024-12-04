@@ -25,4 +25,13 @@ jobs:
           cache: "npm" # Cache npm packages
       - run: npm ci # Install npm packages
       # - run: npm run build --if-present
+      - name: Set up environment variables
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          TextGears_API_KEY: ${{ secrets.TextGears_API_KEY }}
+          Sapling_API_KEY: ${{ secrets.Sapling_API_KEY }}
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "TextGears_API_KEY=${{ secrets.TextGears_API_KEY }}" >> .env
+          echo "Sapling_API_KEY=${{ secrets.Sapling_API_KEY }}" >> .env
       - run: npm test # Run tests files using jest
