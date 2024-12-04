@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cd client && vite build",
     "serve": "vite preview",
     "test": "NODE_ENV=development jest --coverage"
   },
@@ -28,5 +28,8 @@
     "node-mocks-http": "^1.16.1",
     "supertest": "^7.0.0",
     "vite": "^6.0.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
