@@ -1,3 +1,10 @@
+/*
+ *** index.js
+ ***
+ *** Description : Main file for the server
+ ***               
+ */
+
 // Import express; axios
 const app = require("./app");
 

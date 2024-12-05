@@ -1,3 +1,10 @@
+/*
+ *** app.js
+ ***
+ *** Description : Main file for the server
+ ***               
+ */
+
 // Import express; axios
 const express = require("express");
 const cors = require("cors");
