@@ -1,3 +1,10 @@
+/*
+ *** readablitiy.test.js
+ ***
+ *** Description : Integration test for the readability feature of the API
+ ***
+ */
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "./server/.env" });
 }
