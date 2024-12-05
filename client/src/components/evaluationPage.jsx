@@ -602,7 +602,7 @@ function EvaluationPage() {
               Summarized Text
             </h3>
             {expandedSections.summarized && (
-              <div>
+              <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                 {summarized.summaries?.length > 0 ? (
                   summarized.summaries.map((summary, index) => (
                     <div
@@ -643,9 +643,8 @@ function EvaluationPage() {
             >
               Rephrased Text
             </h3>
-
             {expandedSections.rephrase && (
-              <div>
+              <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                 {rephrased.length > 0 ? (
                   rephrased.map((entry, index) => (
                     <div
@@ -665,7 +664,7 @@ function EvaluationPage() {
 
                       {expandedRephraseIndex === index && (
                         <div className="details">
-                          <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                             <ul className="suggestions-list">
                               {entry.rephrasing.map((item, idx) => (
                                 <li key={idx} className="suggestion-item">
@@ -684,6 +683,7 @@ function EvaluationPage() {
               </div>
             )}
           </div>
+
 
        
         {/* AI Detection Section */}
