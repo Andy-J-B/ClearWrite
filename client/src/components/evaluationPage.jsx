@@ -685,53 +685,62 @@ function EvaluationPage() {
             )}
           </div>
 
+       
         {/* AI Detection Section */}
-          <div className="square">
-            <h3
-              className={`square-title ${expandedSections.aiDetect ? "square-title-active" : ""}`}
-              onClick={() => toggleSection("aiDetect")}
-            >
-              AI Detection Breakdown
-            </h3>
+        <div className="square">
+          <h3
+            className={`square-title ${hoveredSection === "aiDetect" ? "square-title-hover" : ""}`}
+            onMouseEnter={() => setHoveredSection("aiDetect")}
+            onMouseLeave={() => setHoveredSection(null)}
+            onClick={() => toggleSection("aiDetect")}
+          >
+            AI Detection Breakdown
+          </h3>
+          {expandedSections.aiDetect && (
+            <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
+              {aidetect.sentenceScores?.length > 0 ? (
+                aidetect.sentenceScores.map((sentenceData, index) => (
+                  <div
+                    key={index}
+                    className={`list-item ${hoveredItem === index ? "list-item-hover" : ""}`}
+                    onMouseEnter={() => setHoveredItem(index)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <p className="score-text">
+                      Sentence: {sentenceData.sentence}
+                    </p>
+                    <p className="score-text">
+                      Score: {(sentenceData.score * 100).toFixed(2)}%
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p className="empty-text">No AI detection data available.</p>
+              )}
+            </div>
+          )}
+        </div>
 
-            {/* Scrollable content for AI Detection */}
-            {expandedSections.aiDetect && (
-              <div className="scrollable-content">
-                {aidetect.sentenceScores?.length > 0 ? (
-                  aidetect.sentenceScores.map((sentenceData, index) => (
-                    <div key={index} className="list-item">
-                      <p className="score-text">
-                        Sentence: {sentenceData.sentence}
-                      </p>
-                      <p className="score-text">
-                        Score: {(sentenceData.score * 100).toFixed(2)}%
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  <p className="empty-text">
-                    No AI detection data available.
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
 
           {/* Tone Analysis Section */}
           <div className="square">
             <h3
-              className={`square-title ${expandedSections.toneAnalysis ? "square-title-active" : ""}`}
+              className={`square-title ${hoveredSection === "toneAnalysis" ? "square-title-hover" : ""}`}
+              onMouseEnter={() => setHoveredSection("toneAnalysis")}
+              onMouseLeave={() => setHoveredSection(null)}
               onClick={() => toggleSection("toneAnalysis")}
             >
               Detailed Tone Analysis
             </h3>
-
-            {/* Scrollable content for Tone Analysis */}
             {expandedSections.toneAnalysis && (
-              <div className="scrollable-content">
-                <h4 className="list-title">Detailed Sentiment Analysis</h4>
+              <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                 {tone.detailedResults.map((resultData, index) => (
-                  <div key={index} className="list-item">
+                  <div
+                    key={index}
+                    className={`list-item ${hoveredItem === index ? "list-item-hover" : ""}`}
+                    onMouseEnter={() => setHoveredItem(index)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
                     <h5 className="list-title">
                       Sentence: {tone.sentences[index].split(" ").slice(0, 3).join(" ")}...
                     </h5>
@@ -745,9 +754,7 @@ function EvaluationPage() {
               </div>
             )}
           </div>
-
         </div>
-
         <div className="right-column">
           <div className="full-scores-container">
             {/* Positive Tone */}
