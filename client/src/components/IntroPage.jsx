@@ -23,9 +23,18 @@ const IntroPage = () => {
             teachers who aim to foster learning, not shortcuts and AI usage.
           </p>
         </div>
-        <button className="evaluate-button" onClick={() => navigate("/home")}>
-          Continue to ClearWrite
-        </button>
+
+        <div className="button-group">
+          <button className="btn btn-primary" onClick={() => navigate("/home")}>
+            Get Started
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => navigate("/FAQ")}
+          >
+            Learn More
+          </button>
+        </div>
       </div>
     </div>
   );
