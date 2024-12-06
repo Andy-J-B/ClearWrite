@@ -6,11 +6,6 @@
   background-color: green;
 }
 
-body.dark-mode #modal-button {
-  background-color: green;
-}
-
-body.dark-mode #contained-modal-title-vcenter {
+body.dark-mode .modal-content {
   background-color: black;
-  color: red;
 }
