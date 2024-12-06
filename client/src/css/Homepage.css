@@ -374,6 +374,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   }
 }
 
+
 @media (max-width: 768px) {
   .homepage-container,
   .aboutpage-container {
