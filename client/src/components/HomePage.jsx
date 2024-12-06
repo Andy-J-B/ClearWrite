@@ -1,7 +1,16 @@
 /*
  *** HomePage.jsx
  ***
- *** Description : contains the HomePage of the application
+ *** Description:
+ *** This component represents the main landing page where users can input their essays for evaluation.
+ ***
+ *** Features:
+ *** - Provides a text area for users to input their essays.
+ *** - Validates input for minimum and maximum character limits.
+ *** - Sends essays to multiple APIs for analysis (grammar correction, readability, etc.).
+ *** - Displays a progress modal for incomplete input.
+ *** - Implements Light/Dark mode toggling and navigation links.
+ *** - Progress updates are managed via a ProgressContext.
  */
 
 // Import all necessary files

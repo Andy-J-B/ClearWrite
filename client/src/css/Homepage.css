@@ -1,4 +1,17 @@
-/* src/css/Homepage.css */
+/*
+ *** Homepage.css
+ ***
+ *** Description: 
+ *** This CSS file provides styling for the ClearWrite application.
+ ***
+ *** Features:
+ *** - Ensures consistency in design across all pages.
+ *** - Implements responsive design principles for usability on various screen sizes.
+ *** - Styles key elements like navigation bars, buttons, forms, and layouts.
+ *** - Includes specific styling for Light and Dark modes.
+ *** - Provides hover effects, transitions, and animations to enhance user experience.
+ */
+
 
 /* Global box-sizing */
 *,

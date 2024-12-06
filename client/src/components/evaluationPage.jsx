@@ -1,6 +1,39 @@
-import { useState } from "react";
-import { Navbar } from "./Navbar";
-import "../css/Evaluationpage.css";
+/**
+ * EvaluationPage Component
+ *
+ * Description:
+ * This component provides a detailed evaluation of text analysis results, including grammar corrections,
+ * readability scores, summarized text, rephrased suggestions, and overall evaluation data.
+ *
+ * Features:
+ * - Displays different aspects of text evaluation (grammar, readability, summarization, rephrasing).
+ * - Includes expandable sections for detailed insights (e.g., grammar issues, rephrased suggestions).
+ * - Implements hover effects and animations for better user interaction.
+ * - Allows users to toggle between sections to focus on specific evaluations.
+ *
+ * Props and States:
+ * - `location.state.evaluationData`: Contains all the evaluation data passed from the previous page.
+ * - `expandedSections`: State to track which evaluation sections are expanded.
+ * - `hoveredSection`: State to track the currently hovered section.
+ * - `expandedRephraseIndex`: State to track expanded rephrased suggestions.
+ * - `expandedGrammarIssue`: State to track expanded grammar issues.
+ * - Includes additional hover states for list items (grammar and rephrase).
+ *
+ * Dependencies:
+ * - React Router's `useLocation` hook to fetch evaluation data from navigation state.
+ * - External JSON data (`evaluationData-new.json`) for mock data (if available).
+ *
+ * Styling:
+ * - Inline styles are used to create a responsive and interactive layout.
+ * - Hover and transition effects enhance user experience.
+ *
+ * Usage:
+ * - This component should be rendered after text evaluation on the "Evaluate" route.
+ * - Ensure `evaluationData` is passed correctly through navigation state.
+ */
+
+import React, { useState } from "react";
+import evaluationData from "./evaluationData-new.json";
 import { useLocation } from "react-router-dom";
 
 function EvaluationPage() {

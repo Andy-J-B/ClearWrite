@@ -1,18 +1,26 @@
 /*
  *** FAQ.jsx
  ***
- *** Description : contains the LoadingPage of the application
+ *** Description:
+ *** This component serves as the Frequently Asked Questions (FAQ) page.
+ ***
+ *** Features:
+ *** - Displays key questions and answers about ClearWrite's features, usage, and privacy policies.
+ *** - Includes visual aids (images) for better understanding of key features.
+ *** - Provides a step-by-step guide to help users get started.
+ *** - Includes a reusable ContactSection component for further assistance.
+ *** - Allows toggling between Light and Dark mode.
+ *** - Incorporates navigation to other sections of the app.
  */
 
-// Import all necessary files
 import React from "react"; // Import React to create the FAQ component
+import { useNavigate } from "react-router-dom"; // Import navigation hook for routing
 import "../css/Homepage.css"; // Import CSS for styling
+import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; // Import icons for UI enhancements
 import faqOverview from "../assets/image/faq-clearwrite-overview.png"; // Import image for FAQ section
 import faqGettingStarted from "../assets/image/faq-getting-started.png"; // Import image for "Getting Started" section
 import faqFeatures from "../assets/image/faq-features.png"; // Import image for features section
 import ContactSection from "./ContactSection"; // Import the Contact Section component
-
-import { Navbar } from "./Navbar";
 
 const FAQ = () => {
   return (
