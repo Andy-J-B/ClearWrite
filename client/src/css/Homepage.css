@@ -1,19 +1,50 @@
-/* src/css/Homepage.css */
+/*
+ *** Homepage.css
+ ***
+ *** Description: 
+ *** This CSS file provides styling for the ClearWrite application.
+ ***
+ *** Features:
+ *** - Ensures consistency in design across all pages.
+ *** - Implements responsive design principles for usability on various screen sizes.
+ *** - Styles key elements like navigation bars, buttons, forms, and layouts.
+ *** - Includes specific styling for Light and Dark modes.
+ *** - Provides hover effects, transitions, and animations to enhance user experience.
+ */
+
 
 /* Global box-sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 /* Light and dark modes */
 body.light-mode {
   background-color: #ffffff;
-  color: #333333;
+  color: #03045e;
 }
 
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
+}
+
+body.dark-mode .about-title {
+  color: white;
+}
+
+body.dark-mode .about-description {
+  color: white;
+}
+
+body.dark-mode .about-description {
+  color: white;
+}
+
+body.dark-mode .section-title {
+  color: white;
 }
 
 /* General container styling for both pages */
@@ -26,7 +57,7 @@ body.dark-mode {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden; /* Prevent horizontal overflow */
 }
@@ -89,7 +120,7 @@ body.dark-mode {
 }
 
 .navbar-links button:hover {
-  color: #f94d6a;
+  color: black;
 }
 
 /* Day-Night Toggle */
@@ -175,7 +206,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 
 /* Evaluate Button */
 .evaluate-button {
-  background: linear-gradient(45deg, #ff6b6b, #f94d6a);
+  background-color: black;
   color: white;
   border: none;
   padding: 15px 30px;
@@ -187,9 +218,27 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 }
 
 .evaluate-button:hover {
-  background: linear-gradient(45deg, #f94d6a, #ff6b6b);
+  background-color: transparent;
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
+  color: black;
+}
+
+body.dark-mode .evaluate-button {
+  background-color: rgb(113, 113, 113);
+  color: white;
+  box-shadow: 0 5px 15px rgba(195, 195, 195, 0.1);
+}
+
+body.dark-mode .evaluate-button:hover {
+  background-color: white;
+  transform: translateY(-5px);
+  border: 1px solid black;
+  color: black;
+}
+
+body.dark-mode .logo {
+  filter: invert(100%) brightness(100%);
 }
 
 /* AboutPage Specific Styles */
@@ -208,7 +257,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   /* Style for the main title on the About page */
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: inherit; /* Adapts to current theme (light/dark mode) */
+  color: #03045e; /* Adapts to current theme (light/dark mode) */
 }
 
 .aboutpage-container .about-description {
@@ -217,14 +266,14 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   line-height: 1.6; /* Spacing between lines for readability */
   text-align: center;
   margin-bottom: 40px;
-  color: inherit;
+  color: #03045e;
 }
 
 .aboutpage-container .section-title {
   /* Style for section headers (e.g., FAQ items, team members) */
   font-size: 2rem;
   margin-bottom: 20px;
-  color: inherit;
+  color: #03045e;
 }
 
 .aboutpage-container .section-description {
@@ -233,41 +282,64 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   line-height: 1.6;
   text-align: center;
   margin-bottom: 30px;
-  color: inherit;
+  color: #03045e;
+}
+
+body.dark-mode .aboutpage-container .section-description {
+  /* Style for descriptive text in sections */
+
+  color: white;
+}
+
+body.dark-mode .contact-section p {
+  color: white;
 }
 
 /* List container styles */
 .aboutpage-container .how-to-use {
   width: 100%;
 }
-
-/* Styling the list for how-to-use instructions */
-.aboutpage-container .how-to-use-list {
-  list-style: none; /* Remove default list styling */
+/* HowToUseList.css */
+.how-to-use-list {
+  list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
+  counter-reset: list-counter;
 }
 
-/* Style for individual list items */
-.aboutpage-container .how-to-use-list > li {
+.how-to-use-list li {
+  position: relative;
   margin-bottom: 20px;
-  display: flex; /* Align items horizontally */
-  align-items: flex-start;
+  padding-left: 40px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333;
 }
 
-/* Custom bullet style for list items */
-.aboutpage-container .how-to-use-list > li::before {
-  content: '•'; /* Use bullet point */
-  color: #ff6b6b; /* Accent color */
+.how-to-use-list li:before {
+  content: counter(list-counter) ".";
+  counter-increment: list-counter;
+  position: absolute;
+  left: 0;
+  top: 0;
   font-size: 1.5rem;
-  line-height: 1;
-  margin-right: 10px;
-  margin-top: 5px;
+  color: #03045e;
+  font-weight: bold;
 }
 
-/* Style for emphasized text in lists */
-.aboutpage-container .how-to-use-list strong {
-  color: inherit; /* Adapt to theme */
+.how-to-use-list strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #03045e;
+  margin-bottom: 5px;
+}
+
+body.dark-mode .how-to-use-list li::before {
+  color: white;
+}
+
+body.dark-mode .how-to-use-list li strong {
+  color: white;
 }
 
 /* Nested list styling */
@@ -279,7 +351,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 
 .aboutpage-container .nested-list li {
   margin-bottom: 10px;
-  color: inherit;
+  color: #03045e;
 }
 
 .aboutpage-container .evaluate-button {
@@ -299,7 +371,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 
 /* Styling individual team member cards */
 .aboutpage-container .member-card {
-  background-color: #f1f1f1; /* Light background for cards */
+  background-color: #e7fbff; /* Light background for cards */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   padding: 30px; /* Space inside cards */
   border-radius: 12px; /* Rounded corners */
@@ -309,6 +381,54 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   display: flex;
   flex-direction: column; /* Stack card content vertically */
   align-items: center;
+}
+
+.member-card {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #03045e;
+  border-radius: 10px;
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: black; /* Ensure text is readable */
+}
+
+body.dark-mode .member-card {
+  color: white;
+  background-color: black !important; /* Light background for cards */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border: 3px solid white; /* Accent border */
+}
+
+body.darkmode .member-card-link {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Inherit the text color from the parent */
+}
+
+body.darkmode .member-card-link:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+  color: white; /* Maintain inherited text color */
+}
+
+body.dark-mode .member-name {
+  color: white;
+}
+
+body.dark-mode .member-role {
+  color: white;
+}
+
+.member-card-link {
+  text-decoration: none; /* Remove underline */
+  color: #03045e; /* Inherit the text color from the parent */
+}
+
+.member-card-link:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+  color: #03045e; /* Maintain inherited text color */
 }
 
 /* Hover effect for team member cards */
@@ -324,7 +444,11 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   border-radius: 50%; /* Circular photos */
   object-fit: cover; /* Ensure photo fits without distortion */
   margin-bottom: 20px;
-  border: 4px solid #f94d6a; /* Accent border */
+  border: 6px solid #03045e; /* Accent border */
+}
+
+body.dark-mode .member-photo {
+  border: 3px solid white; /* Accent border */
 }
 
 /* Style for team member names */
@@ -337,14 +461,18 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 .aboutpage-container .member-role {
   font-size: 1.1rem;
   margin-bottom: 15px;
-  color: #f94d6a; /* Accent color for roles */
+  color: #03045e; /* Accent color for roles */
 }
 
 /* Style for team member descriptions */
 .aboutpage-container .member-description {
   font-size: 1rem;
   line-height: 1.4;
-  color: inherit;
+  color: #03045e;
+}
+
+body.dark-mode .member-description {
+  color: white;
 }
 
 /* Responsive Design Enhancements */
@@ -428,7 +556,6 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   .aboutpage-container .about-content {
     max-width: 90vw;
   }
-  
 }
 /* Styling the essay section container */
 .homepage-container .essay-section {
@@ -474,7 +601,11 @@ body.dark-mode .homepage-container .essay-section .textarea-container textarea {
   border-color: #555555; /* Adjust border color for dark mode */
 }
 
-body.dark-mode .homepage-container .essay-section .textarea-container .character-count {
+body.dark-mode
+  .homepage-container
+  .essay-section
+  .textarea-container
+  .character-count {
   color: #bbbbbb; /* Adjust character count color in dark mode */
 }
 
@@ -484,7 +615,7 @@ body.dark-mode .homepage-container .essay-section .textarea-container .character
   padding: 0; /* Ensure no padding is applied to the container */
   margin: 0; /* Remove any default margin */
   box-sizing: border-box; /* Ensure the container respects its defined width */
-  
+
   display: flex;
   flex-direction: column; /* Stack textarea and character count vertically */
   align-items: flex-start; /* Align items to the start (left) */
@@ -535,7 +666,7 @@ body.dark-mode .homepage-container .essay-section .textarea-container .character
 .contact-section p {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  color: inherit;
+  color: #03045e;
 }
 
 .team-emails {
@@ -550,13 +681,14 @@ body.dark-mode .homepage-container .essay-section .textarea-container .character
 }
 
 .team-emails a {
-  color: #f94d6a; /* Matches the accent color used elsewhere */
+  color: black; /* Matches the accent color used elsewhere */
   text-decoration: none;
 }
 
 .team-emails a:hover {
   text-decoration: underline;
 }
+
 /* Cancel icon styling */
 /* Cancel icon styling */
 .cancel-icon {
@@ -600,5 +732,24 @@ body.dark-mode .homepage-container .essay-section .textarea-container .character
 h1 {
   margin-top: 30px; /* Space between the icon and the heading */
   font-size: 24px;
-  color: inherit;
+  color: #03045e;
+}
+
+.member-name {
+  font-size: 1.5rem;
+  color: #03045e;
+  margin-bottom: 10px;
+}
+
+.faq-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .faq-item {
+  background-color: black;
 }

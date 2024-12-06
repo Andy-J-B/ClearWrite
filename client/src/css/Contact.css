@@ -1,0 +1,17 @@
+body.dark-mode li {
+  color: white; /* Make text white */
+}
+
+body.dark-mode a {
+  color: white; /* Ensure the link is also white */
+  text-decoration: none; /* Optionally remove underline */
+}
+
+body.dark-mode a:hover {
+  text-decoration: underline; /* Add a hover effect if desired */
+}
+
+body.dark-mode svg {
+  /* Target the icon (like FaEnvelope) */
+  color: white; /* Change icon color */
+}

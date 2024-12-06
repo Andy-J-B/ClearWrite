@@ -1,14 +1,50 @@
-// src/components/HomePage.jsx
+/*
+ *** HomePage.jsx
+ ***
+ *** Description:
+ *** This component represents the main landing page where users can input their essays for evaluation.
+ *** It includes functionality for essay submission, validation, API requests, and progress tracking.
+ *** The page also integrates a navigation bar and light/dark mode toggling.
+ ***
+ *** Features:
+ *** - Provides a text area for users to input their essays.
+ *** - Validates input for minimum and maximum character limits (50 to 4000 characters).
+ *** - Sends essays to multiple APIs for analysis, such as grammar correction, readability checks, etc.
+ *** - Displays a progress modal if input doesn't meet character limits.
+ *** - Integrates light/dark mode toggling for user preference.
+ *** - Progress updates are managed via the `ProgressContext` to indicate loading progress.
+ *** - Uses `AbortController` to handle API request cancellation.
+ *** - Navigation to the loading page for API processing and then to the evaluation page with results.
+ ***
+ *** Key Functions:
+ *** - `handleSubmit`: Submits essay for analysis, triggers API requests, and manages navigation.
+ *** - `setProgress`: Updates progress based on API request status.
+ *** - `setModalShow`: Toggles visibility of the error modal if character limits are exceeded.
+ *** - `useNavigate`: Used to navigate between pages, including redirecting to the loading and evaluation pages.
+ *** - `useAbortController`: Manages cancellation of ongoing API requests when the user navigates away.
+ ***
+ *** Styling:
+ *** - The page layout and components are styled using custom CSS defined in `Homepage.css`.
+ *** - The page includes a logo image, an essay input form, and buttons styled with Bootstrap.
+ ***
+ *** Notes:
+ *** - The essay input is validated before sending requests to the APIs, ensuring proper length and formatting.
+ *** - The API requests are made sequentially, and progress is tracked via `setProgress`.
+ *** - The page uses React hooks like `useState`, `useEffect`, and context APIs for state management and navigation.
+ *** - Ensure the `ErrorModal` component is properly styled to display error messages when input validation fails.
+ ***
+ */
 
+// Import all necessary files
 import React, { useState } from "react";
 import "../css/Homepage.css";
-import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/image/clearwrite-background.png";
 import ErrorModal from "./ErrorModal";
 import { useProgress } from "./ProgressContext";
-import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
+import { useAbortController } from "./AbortControllerContext";
+import { Navbar } from "./Navbar";
 
 const HomePage = () => {
   // Implement progress for loadingPage
@@ -22,13 +58,7 @@ const HomePage = () => {
 
   // Implement when to show modal
   const [modalShow, setModalShow] = React.useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
-
-  const toggleTheme = () => {
-    setDarkMode((prevMode) => !prevMode);
-    document.body.className = darkMode ? "light-mode" : "dark-mode";
-  };
 
   // handleSubmit Function to get text, send to APIs,
   // receive JSON, and send to EvaluationPage
@@ -103,32 +133,7 @@ const HomePage = () => {
       <ErrorModal show={modalShow} onHide={() => setModalShow(false)} />
 
       {/* Navbar */}
-      <nav className="navbar">
-        {/* Back Button */}
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <FaArrowLeft size={20} />
-        </button>
-
-        {/* Navbar Links and Day-Night Toggle */}
-        <div className="navbar-right">
-          <ul className="navbar-links">
-            <li>
-              <button onClick={() => navigate("/home")}>Home</button>
-            </li>
-            <li>
-              <button onClick={() => navigate("/about-us")}>About Us</button>
-            </li>
-            <li>
-              <button onClick={() => navigate("/faq")}>FAQ</button>
-            </li>
-          </ul>
-          <div className="day-night-toggle">
-            <button onClick={toggleTheme} className="toggle-button">
-              {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Essay Section */}
       <div className="essay-section">

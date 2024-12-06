@@ -18,6 +18,62 @@ body.dark-mode {
   color: #ffffff;
 }
 
+body.dark-mode .page-container {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .square {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .square-title {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .square-title-hover {
+  background-color: #414141;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .list-item {
+  background-color: white;
+  color: black;
+}
+
+body.dark-mode .right-column {
+  background-color: black;
+  color: white;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .original-text {
+  background-color: black;
+  color: white;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .score-label {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode .score-value {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode .note {
+  background-color: black;
+  color: white;
+}
+
 #eval-page {
   display: flex;
   flex-direction: column;
@@ -28,7 +84,7 @@ body.dark-mode {
 /* Navbar styles */
 .navbar {
   width: 100%; /* Ensures navbar spans the container */
-  background-color: white;
+  background-color: #caf0f8;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between back button and navbar-right */
@@ -36,6 +92,8 @@ body.dark-mode {
   /* position: sticky; */
   top: 0;
   z-index: 1000;
+  border: 1px solid #ccc;
+  border-color: #000000;
 
   position: fixed;
   left: 0;
@@ -64,7 +122,7 @@ body.dark-mode {
 }
 
 .navbar-links button:hover {
-  color: #f94d6a;
+  color: #0077b6;
 }
 
 /* Day-Night Toggle */
@@ -178,4 +236,235 @@ body.dark-mode
     max-width: 100%; /* Full width on mobile */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow on very small screens */
   }
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  gap: 20px;
+  background-color: #dcf9ff;
+  overflow-y: auto;
+  border-radius: 10px; /* Optional: Adds rounded corners */
+  border: 2px solid #03045e;
+}
+
+.left-column {
+  flex: 1;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reduced gap for more compact layout */
+  max-width: 30%; /* Ensures the left column takes up 30% of the space */
+}
+
+.right-column {
+  flex: 2;
+  padding: 10px;
+  border-left: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 70%; /* Ensures the right column takes up 70% of the space */
+  overflow-y: auto; /* Allows for scrolling if content overflows */
+  position: sticky; /* Makes it sticky */
+  top: 0; /* Sticks to the top of the viewport when scrolling */
+  z-index: 10; /* Ensure it stays above other elements while scrolling */
+  border: 2px solid #03045e;
+}
+
+.square {
+  padding: 10px; /* Reduced padding for more compact sections */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #03045e;
+}
+
+.square-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+  background-color: #e1f4ff;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #03045e;
+}
+
+.square-title-hover {
+  background-color: #cde3ff;
+  color: #000000;
+}
+
+.header {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.original-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #333;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-block {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.list-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.list-item {
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: inherit;
+  transition: background-color 0.3s ease; /* Smooth transition for color change */
+}
+
+.list-item:hover {
+  background-color: #e0e0e0; /* Highlight hovered item */
+}
+
+.details {
+  padding-left: 20px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.error-text {
+  font-weight: bold;
+  font-size: 16px;
+  color: #d9534f; /* Red color for error message */
+  margin-bottom: 10px;
+}
+
+.suggestions-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.suggestions-list {
+  list-style-type: disc; /* Bulleted list style */
+  padding-left: 20px;
+}
+
+.suggestion-item {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+body.dark-mode .suggestion-item {
+  color: black;
+}
+
+.empty-text {
+  font-style: italic;
+  color: #888;
+}
+
+.no-issues-text {
+  font-style: italic;
+  color: #888;
+  font-size: 14px;
+}
+
+.list-item-hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.full-scores-container {
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: space-between; /* Space out the AI Detection and Sentiment sections */
+  align-items: center; /* Center vertically */
+  width: 100%; /* Full width */
+  gap: 10px; /* Decreased spacing between elements */
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column; /* Stack label and value vertically */
+  align-items: center; /* Center label and value horizontally */
+}
+
+.score-header,
+.score-label,
+.score-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.highlight {
+  color: #fff;
+  background-color: #ff0000;
+  padding: 3px; /* Reduced padding for better alignment */
+  border-radius: 3px; /* Reduced radius for better alignment */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.positive-tone .score-label {
+  color: #28a745; /* Green for positive tone */
+}
+
+.neutral-tone .score-label {
+  color: #ffc107; /* Yellow for neutral tone */
+}
+
+.negative-tone .score-label {
+  color: #dc3545; /* Red for negative tone */
+}
+
+.highlight {
+  color: #fff; /* White text for better contrast */
+  background-color: #ff0000; /* Red background for highlight */
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.note {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: #000000;
+  background-color: #dff7ff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 20; /* Ensure it appears above other elements */
 }

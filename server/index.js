@@ -1,4 +1,11 @@
-// Import express; axios
+/*
+ *** index.js
+ ***
+ *** Description : Main file for the server
+ ***
+ */
+
+// Import app
 const app = require("./app");
 
 // Load environment variables from .env file
@@ -15,4 +22,5 @@ app.get("/health", (req, res) => {
   res.status(200).send("OK");
 });
 
+// Export app
 module.exports = app;

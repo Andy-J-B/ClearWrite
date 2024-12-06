@@ -1,3 +1,10 @@
+/*
+ *** summarize.test.js
+ ***
+ *** Description : Unit test for the summarize feature of the API
+ ***
+ */
+
 const { Summarize } = require("../../../controller/textGearsController");
 
 const httpMocks = require("node-mocks-http");
