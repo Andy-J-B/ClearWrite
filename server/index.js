@@ -2,10 +2,10 @@
  *** index.js
  ***
  *** Description : Main file for the server
- ***               
+ ***
  */
 
-// Import express; axios
+// Import app
 const app = require("./app");
 
 // Load environment variables from .env file
@@ -18,4 +18,5 @@ app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT}`)
 );
 
+// Export app
 module.exports = app;

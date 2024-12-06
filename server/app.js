@@ -2,14 +2,14 @@
  *** app.js
  ***
  *** Description : Main file for the server
- ***               
+ ***
  */
 
 // Import express; axios
 const express = require("express");
 const cors = require("cors");
 
-// Initiate express
+// Initiate express and cors
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -31,4 +31,5 @@ app.use("/", saplingRoute);
 // Routes
 app.use(router);
 
+// Export app
 module.exports = app;
