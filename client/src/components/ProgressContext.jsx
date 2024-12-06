@@ -1,11 +1,17 @@
+// import context
 import { createContext, useState, useContext } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+// Import PropTypes
+import PropTypes from "prop-types";
 
+// Create a Progress Context
 const ProgressContext = createContext();
 
+// ProgressProvider function to provide progress for loadingPage
 export const ProgressProvider = ({ children }) => {
+  // Set progress to 0
   const [progress, setProgress] = useState(0);
 
+  // Make the value progress usable to it's children
   return (
     <ProgressContext.Provider value={{ progress, setProgress }}>
       {children}
@@ -13,8 +19,10 @@ export const ProgressProvider = ({ children }) => {
   );
 };
 
+// Export ProgressContext
 export const useProgress = () => useContext(ProgressContext);
 
+// Require ProgressProvider's children to be a node
 ProgressProvider.propTypes = {
   children: PropTypes.node,
 };

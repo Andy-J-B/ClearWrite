@@ -9,7 +9,9 @@ import { AbortControllerProvider } from "./components/AbortControllerContext.jsx
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ProgressProvider>
+      {/* Progress provider for loadingPage */}
       <AbortControllerProvider>
+        {/* Abort controller for loadingPage */}
         <BrowserRouter>
           <App />
         </BrowserRouter>
