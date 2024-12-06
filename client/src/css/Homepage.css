@@ -10,12 +10,28 @@
 /* Light and dark modes */
 body.light-mode {
   background-color: #ffffff;
-  color: #333333;
+  color: #03045e;
 }
 
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
+}
+
+body.dark-mode .about-title {
+  color: white;
+}
+
+body.dark-mode .about-description {
+  color: white;
+}
+
+body.dark-mode .about-description {
+  color: white;
+}
+
+body.dark-mode .section-title {
+  color: white;
 }
 
 /* General container styling for both pages */
@@ -195,6 +211,23 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   color: black;
 }
 
+body.dark-mode .evaluate-button {
+  background-color: rgb(113, 113, 113);
+  color: white;
+  box-shadow: 0 5px 15px rgba(195, 195, 195, 0.1);
+}
+
+body.dark-mode .evaluate-button:hover {
+  background-color: transparent;
+  transform: translateY(-5px);
+  border: 1px solid black;
+  color: black;
+}
+
+body.dark-mode .logo {
+  filter: invert(100%) brightness(100%);
+}
+
 /* AboutPage Specific Styles */
 .aboutpage-container .about-content {
   max-width: 80vw; /* Changed to 70vw for 15% breathing room on each side */
@@ -211,7 +244,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   /* Style for the main title on the About page */
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: inherit; /* Adapts to current theme (light/dark mode) */
+  color: #03045e; /* Adapts to current theme (light/dark mode) */
 }
 
 .aboutpage-container .about-description {
@@ -220,14 +253,14 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   line-height: 1.6; /* Spacing between lines for readability */
   text-align: center;
   margin-bottom: 40px;
-  color: inherit;
+  color: #03045e;
 }
 
 .aboutpage-container .section-title {
   /* Style for section headers (e.g., FAQ items, team members) */
   font-size: 2rem;
   margin-bottom: 20px;
-  color: inherit;
+  color: #03045e;
 }
 
 .aboutpage-container .section-description {
@@ -236,7 +269,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
   line-height: 1.6;
   text-align: center;
   margin-bottom: 30px;
-  color: inherit;
+  color: #03045e;
 }
 
 /* List container styles */
@@ -270,7 +303,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 
 /* Style for emphasized text in lists */
 .aboutpage-container .how-to-use-list strong {
-  color: inherit; /* Adapt to theme */
+  color: #03045e; /* Adapt to theme */
 }
 
 /* Nested list styling */
@@ -282,7 +315,7 @@ body.dark-mode .homepage-container .essay-input::placeholder {
 
 .aboutpage-container .nested-list li {
   margin-bottom: 10px;
-  color: inherit;
+  color: #03045e;
 }
 
 .aboutpage-container .evaluate-button {
@@ -336,12 +369,12 @@ body.dark-mode .member-card {
 
 body.darkmode .member-card-link {
   text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit the text color from the parent */
+  color: white; /* Inherit the text color from the parent */
 }
 
 body.darkmode .member-card-link:hover {
   text-decoration: none; /* Ensure no underline on hover */
-  color: inherit; /* Maintain inherited text color */
+  color: white; /* Maintain inherited text color */
 }
 
 body.dark-mode .member-name {
@@ -370,12 +403,12 @@ body.dark-mode .member-role {
 
 .member-card-link {
   text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit the text color from the parent */
+  color: #03045e; /* Inherit the text color from the parent */
 }
 
 .member-card-link:hover {
   text-decoration: none; /* Ensure no underline on hover */
-  color: inherit; /* Maintain inherited text color */
+  color: #03045e; /* Maintain inherited text color */
 }
 
 /* Hover effect for team member cards */
@@ -415,7 +448,11 @@ body.dark-mode .member-photo {
 .aboutpage-container .member-description {
   font-size: 1rem;
   line-height: 1.4;
-  color: inherit;
+  color: #03045e;
+}
+
+body.dark-mode .member-description {
+  color: white;
 }
 
 /* Responsive Design Enhancements */
@@ -609,7 +646,7 @@ body.dark-mode
 .contact-section p {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  color: inherit;
+  color: #03045e;
 }
 
 .team-emails {
@@ -674,7 +711,7 @@ body.dark-mode
 h1 {
   margin-top: 30px; /* Space between the icon and the heading */
   font-size: 24px;
-  color: inherit;
+  color: #03045e;
 }
 
 .member-name {
