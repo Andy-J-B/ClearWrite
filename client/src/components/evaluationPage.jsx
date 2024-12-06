@@ -306,45 +306,6 @@ function EvaluationPage() {
             )}
           </div>
 
-          {/* AI Detection Section */}
-          <div className="square">
-            <h3
-              className={`square-title ${
-                hoveredSection === "aiDetect" ? "square-title-hover" : ""
-              }`}
-              onMouseEnter={() => setHoveredSection("aiDetect")}
-              onMouseLeave={() => setHoveredSection(null)}
-              onClick={() => toggleSection("aiDetect")}
-            >
-              AI Detection Breakdown
-            </h3>
-            {expandedSections.aiDetect && (
-              <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-                {aidetect.sentenceScores?.length > 0 ? (
-                  aidetect.sentenceScores.map((sentenceData, index) => (
-                    <div
-                      key={index}
-                      className={`list-item ${
-                        hoveredItem === index ? "list-item-hover" : ""
-                      }`}
-                      onMouseEnter={() => setHoveredItem(index)}
-                      onMouseLeave={() => setHoveredItem(null)}
-                    >
-                      <p className="score-text">
-                        Sentence: {sentenceData.sentence}
-                      </p>
-                      <p className="score-text">
-                        Score: {(sentenceData.score * 100).toFixed(2)}%
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  <p className="empty-text">No AI detection data available.</p>
-                )}
-              </div>
-            )}
-          </div>
-
           {/* Tone Analysis Section */}
           <div className="square">
             <h3
