@@ -358,7 +358,7 @@ body.dark-mode .how-to-use-list li strong {
 
 /* Styling individual team member cards */
 .aboutpage-container .member-card {
-  background-color: #f1f1f1; /* Light background for cards */
+  background-color: #e7fbff; /* Light background for cards */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   padding: 30px; /* Space inside cards */
   border-radius: 12px; /* Rounded corners */
@@ -406,22 +406,6 @@ body.dark-mode .member-name {
 
 body.dark-mode .member-role {
   color: white;
-}
-
-#Armaan {
-  background-color: #e7fbff;
-}
-
-#Andy {
-  background-color: #cbf1fa;
-}
-
-#Adit {
-  background-color: #c6f5ff;
-}
-
-#Gordon {
-  background-color: #afeffb;
 }
 
 .member-card-link {
@@ -504,7 +488,6 @@ body.dark-mode .member-description {
     padding: 25px; /* Reduced padding for cards */
   }
 }
-
 
 @media (max-width: 768px) {
   .homepage-container,

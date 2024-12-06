@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import "../css/Homepage.css";
-import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/image/clearwrite-background.png";
 import ErrorModal from "./ErrorModal";
 import { useProgress } from "./ProgressContext";
 import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
+
+import { Navbar } from "./Navbar";
 
 const HomePage = () => {
   // Implement progress for loadingPage
@@ -22,13 +23,7 @@ const HomePage = () => {
 
   // Implement when to show modal
   const [modalShow, setModalShow] = React.useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
-
-  const toggleTheme = () => {
-    setDarkMode((prevMode) => !prevMode);
-    document.body.className = darkMode ? "light-mode" : "dark-mode";
-  };
 
   // handleSubmit Function to get text, send to APIs,
   // receive JSON, and send to EvaluationPage
@@ -103,32 +98,7 @@ const HomePage = () => {
       <ErrorModal show={modalShow} onHide={() => setModalShow(false)} />
 
       {/* Navbar */}
-      <nav className="navbar">
-        {/* Back Button */}
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <FaArrowLeft size={20} />
-        </button>
-
-        {/* Navbar Links and Day-Night Toggle */}
-        <div className="navbar-right">
-          <ul className="navbar-links">
-            <li>
-              <button onClick={() => navigate("/home")}>Home</button>
-            </li>
-            <li>
-              <button onClick={() => navigate("/about-us")}>About Us</button>
-            </li>
-            <li>
-              <button onClick={() => navigate("/faq")}>FAQ</button>
-            </li>
-          </ul>
-          <div className="day-night-toggle">
-            <button onClick={toggleTheme} className="toggle-button">
-              {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Essay Section */}
       <div className="essay-section">

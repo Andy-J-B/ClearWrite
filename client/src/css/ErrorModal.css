@@ -5,3 +5,12 @@
 #modal-button {
   background-color: green;
 }
+
+body.dark-mode #modal-button {
+  background-color: green;
+}
+
+body.dark-mode #contained-modal-title-vcenter {
+  background-color: black;
+  color: red;
+}

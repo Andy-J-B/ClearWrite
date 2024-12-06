@@ -1,24 +1,13 @@
 // src/components/AboutUs.jsx
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../css/Homepage.css"; // Importing the CSS file for styling the component
-import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; // Importing icons for UI
 import GordonPhoto from "../assets/image/gordon.png";
 import ArmaanPhoto from "../assets/image/Armaan.png";
 import AndyPhoto from "../assets/image/Andy.png";
 import AdityaPhoto from "../assets/image/Aditya.png";
+import { Navbar } from "./Navbar";
 
 const AboutUs = () => {
-  const navigate = useNavigate(); // Hook to navigate between pages
-  const [darkMode, setDarkMode] = useState(false); // State to track the current theme (dark/light)
-
-  // Function to toggle between light and dark mode
-  const toggleTheme = () => {
-    setDarkMode((prevMode) => !prevMode); // Update the darkMode state
-    document.body.className = darkMode ? "light-mode" : "dark-mode"; // Apply the corresponding class to the body
-  };
-
   // Array of team member data
   const teamMembers = [
     {
@@ -66,34 +55,7 @@ const AboutUs = () => {
   return (
     <div className="aboutpage-container">
       {/* Navbar Section */}
-      <nav className="navbar">
-        {/* Back Button to navigate to the previous page */}
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <FaArrowLeft size={20} />
-        </button>
-
-        {/* Navbar Links and Theme Toggle */}
-        <div className="navbar-right">
-          <ul className="navbar-links">
-            {/* Navigation links */}
-            <li>
-              <button onClick={() => navigate("/home")}>Home</button>
-            </li>
-            <li>
-              <button onClick={() => navigate("/about-us")}>About Us</button>
-            </li>
-            <li>
-              <button onClick={() => navigate("/faq")}>FAQ</button>
-            </li>
-          </ul>
-          {/* Day-Night Mode Toggle Button */}
-          <div className="day-night-toggle">
-            <button onClick={toggleTheme} className="toggle-button">
-              {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Main Content Section */}
       <div className="about-content">

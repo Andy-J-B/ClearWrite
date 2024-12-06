@@ -1,58 +1,20 @@
 // src/components/FAQ.jsx
 
 import React from "react"; // Import React to create the FAQ component
-import { useNavigate } from "react-router-dom"; // Import navigation hook for routing
 import "../css/Homepage.css"; // Import CSS for styling
-import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; // Import icons for UI enhancements
 import faqOverview from "../assets/image/faq-clearwrite-overview.png"; // Import image for FAQ section
 import faqGettingStarted from "../assets/image/faq-getting-started.png"; // Import image for "Getting Started" section
 import faqFeatures from "../assets/image/faq-features.png"; // Import image for features section
 import ContactSection from "./ContactSection"; // Import the Contact Section component
 
+import { Navbar } from "./Navbar";
+
 const FAQ = () => {
-  const navigate = useNavigate(); // Hook for navigating between pages
-  const [darkMode, setDarkMode] = React.useState(false); // State to manage dark mode
-
-  // Function to toggle between light and dark mode
-  const toggleTheme = () => {
-    setDarkMode((prevMode) => !prevMode);
-    document.body.className = darkMode ? "light-mode" : "dark-mode"; // Dynamically update body class
-  };
-
   return (
     // Main container for the FAQ page
     <div className="aboutpage-container">
       {/* Navbar */}
-      <nav className="navbar">
-        {/* Back Button */}
-        <button className="back-button" onClick={() => navigate(-1)}>
-          <FaArrowLeft size={20} />
-        </button>
-
-        {/* Navbar Links and Day-Night Toggle */}
-        <div className="navbar-right">
-          <ul className="navbar-links">
-            {/* Navigation to Home */}
-            <li>
-              <button onClick={() => navigate("/home")}>Home</button>
-            </li>
-            {/* Navigation to About Us */}
-            <li>
-              <button onClick={() => navigate("/about-us")}>About Us</button>
-            </li>
-            {/* Navigation to FAQ */}
-            <li>
-              <button onClick={() => navigate("/faq")}>FAQ</button>
-            </li>
-          </ul>
-          {/* Button for toggling between light and dark modes */}
-          <div className="day-night-toggle">
-            <button onClick={toggleTheme} className="toggle-button">
-              {darkMode ? <FaMoon size={20} /> : <FaSun size={20} />}
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Main Content */}
       <div className="about-content">
