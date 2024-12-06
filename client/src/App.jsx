@@ -28,7 +28,7 @@ const App = () => {
         {/* Define the application's routes */}
         <Routes location={location}>
           {/* Introductory page displayed at the root path */}
-          <Route path="/" element={<EvaluationPage />} />
+          <Route path="/" element={<IntroPage />} />
           {/* Home page */}
           <Route path="/home" element={<HomePage />} />
           {/* Loading page */}
