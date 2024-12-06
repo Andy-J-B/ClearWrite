@@ -5,3 +5,7 @@
 #modal-button {
   background-color: green;
 }
+
+body.dark-mode .modal-content {
+  background-color: black;
+}

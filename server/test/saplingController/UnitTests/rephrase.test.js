@@ -1,3 +1,10 @@
+/*
+ *** rephrase.test.js
+ ***
+ *** Description : Unit test for the rephrase feature of the API
+ ***               
+ */
+
 const axios = require("axios");
 jest.mock("axios");
 const { Rephrase } = require("../../../controller/saplingController");

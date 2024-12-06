@@ -1,3 +1,10 @@
+/*
+ *** correctGrammar.test.js
+ ***
+ *** Description : Unit test for the correctGrammar feature of the API
+ ***
+ */
+
 const { CorrectGrammar } = require("../../../controller/textGearsController");
 
 const httpMocks = require("node-mocks-http");
