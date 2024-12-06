@@ -1,6 +1,7 @@
 // src/components/ContactSection.jsx
 
 import { FaEnvelope } from "react-icons/fa"; // Import email icon from react-icons for visual representation
+import "../css/Contact.css";
 
 const ContactSection = () => {
   return (
