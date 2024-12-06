@@ -1,11 +1,21 @@
+/*
+ *** IntroPage.jsx
+ ***
+ *** Description : contains the IntroPage of the application
+ */
+
+// Import all necessary files
 import { useNavigate } from "react-router-dom";
 import "../css/IntroPage.css";
 
+// IntroPage
 const IntroPage = () => {
+  // Navigate between pages
   const navigate = useNavigate();
 
   return (
     <div className="intro">
+      {/* Intro Page */}
       <div className="intro-container">
         <h1>Hello! Welcome to ClearWrite!</h1>
         <p>
@@ -25,6 +35,7 @@ const IntroPage = () => {
         </div>
 
         <div className="button-group">
+          {/* Buttons to start */}
           <button className="btn btn-primary" onClick={() => navigate("/home")}>
             Get Started
           </button>
@@ -40,4 +51,5 @@ const IntroPage = () => {
   );
 };
 
+// Export component
 export default IntroPage;

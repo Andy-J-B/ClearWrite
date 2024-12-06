@@ -1,3 +1,10 @@
+/*
+ *** main.jsx
+ ***
+ *** Description : contains root of react application
+ */
+
+// Import all necessary files
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";

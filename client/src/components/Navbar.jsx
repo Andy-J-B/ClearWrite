@@ -1,5 +1,10 @@
-// src/components/Navbar.jsx
+/*
+ *** Navbar.jsx
+ ***
+ *** Description : Contains the navbar of the application
+ */
 
+// Import all necessary files
 import "../css/Homepage.css";
 import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +15,7 @@ export const Navbar = () => {
   const navigate = useNavigate(); // Hook for navigating between pages
   const { isDarkMode, setIsDarkMode } = useDarkMode();
 
+  // Toggle for dark mode
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
     document.body.classList.toggle("dark-mode", !isDarkMode);

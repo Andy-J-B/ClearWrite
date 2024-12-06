@@ -1,3 +1,12 @@
+/*
+ *** ProgressContext.jsx
+ ***
+ *** Description : contains ProgressProvider
+ ***               used for providing the progress of apis requests to loadingPage
+ */
+
+// Import all necessary files
+
 // import context
 import { createContext, useState, useContext } from "react";
 // Import PropTypes

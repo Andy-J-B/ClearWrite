@@ -1,5 +1,10 @@
-// src/components/HomePage.jsx
+/*
+ *** HomePage.jsx
+ ***
+ *** Description : contains the HomePage of the application
+ */
 
+// Import all necessary files
 import React, { useState } from "react";
 import "../css/Homepage.css";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/image/clearwrite-background.png";
 import ErrorModal from "./ErrorModal";
 import { useProgress } from "./ProgressContext";
-import { useAbortController } from "./AbortControllerContext"; // Import the custom hook
-
+import { useAbortController } from "./AbortControllerContext";
 import { Navbar } from "./Navbar";
 
 const HomePage = () => {

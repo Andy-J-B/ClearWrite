@@ -1,5 +1,10 @@
-// src/components/FAQ.jsx
+/*
+ *** FAQ.jsx
+ ***
+ *** Description : contains the LoadingPage of the application
+ */
 
+// Import all necessary files
 import React from "react"; // Import React to create the FAQ component
 import "../css/Homepage.css"; // Import CSS for styling
 import faqOverview from "../assets/image/faq-clearwrite-overview.png"; // Import image for FAQ section

@@ -1,3 +1,10 @@
+/*
+ *** app.jsx
+ ***
+ *** Description : contains all routes of application
+ */
+
+// Import all necessary files
 import {
   Routes, // Container for all route definitions
   Route, // Defines individual routes
