@@ -244,7 +244,10 @@ function EvaluationPage() {
                     </div>
                   ))
                 ) : (
-                  <p className="empty-text">No summaries available.</p>
+                  <p className="empty-text">
+                    No summaries available. The text is too short. Please add
+                    more words and sentences.
+                  </p>
                 )}
               </div>
             )}
