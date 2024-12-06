@@ -1,4 +1,17 @@
-import React from "react";
+/*
+ *** IntroPage.jsx
+ ***
+ *** Description: 
+ *** This component serves as the introduction page of the application.
+ ***
+ *** Features:
+ *** - Introduces users to ClearWrite and its purpose.
+ *** - Highlights the educational focus of the tool and its affordability.
+ *** - Guides users to the main HomePage for starting their journey.
+ *** - Implements a clean, minimalistic design to set the tone of the application.
+ */
+
+ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/IntroPage.css";
 

@@ -1,4 +1,15 @@
-// src/components/ContactSection.jsx
+/*
+ *** ContactSection.jsx
+ ***
+ *** Description: 
+ *** This component is a reusable section that provides contact information for team members.
+ ***
+ *** Features:
+ *** - Lists team members with their respective email addresses.
+ *** - Uses icons to enhance the UI for email links.
+ *** - Allows for seamless integration into multiple pages like FAQ or About Us.
+ */
+
 
 import React from 'react'; // Import React for building the component
 import { FaEnvelope } from 'react-icons/fa'; // Import email icon from react-icons for visual representation

@@ -1,4 +1,16 @@
-// src/components/AboutUs.jsx
+/*
+ *** AboutUs.jsx
+ ***
+ *** Description: 
+ *** This component represents the "About Us" page of the application. 
+ *** It introduces the ClearWrite team and their respective roles and contributions.
+ ***
+ *** Features:
+ *** - Displays a detailed overview of each team member.
+ *** - Includes a theme toggle (Light/Dark mode) with state management.
+ *** - Provides navigation links to other sections of the application (Home, About Us, FAQ).
+ *** - Implements responsive and accessible design.
+ */
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

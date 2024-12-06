@@ -1,4 +1,16 @@
-import React from "react";
+/*
+ *** LoadingPage.jsx
+ ***
+ *** Description: 
+ *** This component is a transitional page that displays a loading screen while API calls are being processed.
+ ***
+ *** Features:
+ *** - Shows a progress bar with real-time updates based on API responses.
+ *** - Includes a cancel option to navigate back to the HomePage.
+ *** - Enhances user experience with responsive and dynamic progress indicators.
+ */
+
+ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Homepage.css";
 import { useProgress } from "./ProgressContext";
