@@ -1,8 +1,25 @@
 /*
  *** ProgressContext.jsx
  ***
- *** Description : contains ProgressProvider
- ***               used for providing the progress of apis requests to loadingPage
+ *** Description: Provides a shared context for managing and accessing progress state across components.
+ ***              This is used for tracking progress on the loading screen.
+ ***
+ *** Components:
+ *** - ProgressProvider: Wraps child components and provides `progress` and `setProgress` through context.
+ ***
+ *** Features:
+ *** - Shared State: Allows multiple components to access and update progress seamlessly.
+ ***
+ *** Functions:
+ *** - useProgress: A custom hook to access `progress` and `setProgress` from the context.
+ ***
+ *** PropTypes:
+ *** - `ProgressProvider`: Ensures `children` is a valid React node.
+ ***
+ *** Notes:
+ *** - `ProgressProvider` wraps any components that need access to the progress state.
+ *** - Designed with React's `useContext` and `useState` for simplicity and efficiency.
+ ***
  */
 
 // Import all necessary files

@@ -1,14 +1,28 @@
 /*
  *** IntroPage.jsx
  ***
- *** Description:
- *** This component serves as the introduction page of the application.
+ *** Description: The introductory page for ClearWrite, welcoming users and
+ ***              providing options to explore the application or learn more about it.
+ ***
+ *** Components:
+ *** - IntroPage: A introduction page with a brief description of ClearWrite and navigation buttons.
  ***
  *** Features:
- *** - Introduces users to ClearWrite and its purpose.
- *** - Highlights the educational focus of the tool and its affordability.
- *** - Guides users to the main HomePage for starting their journey.
- *** - Implements a clean, minimalistic design to set the tone of the application.
+ *** - Welcome Message: Engages users with a friendly introduction and mission statement.
+ *** - Navigation Buttons: Direct users to either start using the app or learn more through the FAQ page.
+ ***
+ *** Functions:
+ *** - `navigate`: Utilized via `useNavigate` for seamless routing between pages.
+ ***
+ *** Styling:
+ *** - Custom styles are defined in `IntroPage.css`.
+ *** - Uses Bootstrap classes for consistent button styling (`btn`, `btn-primary`, `btn-secondary`).
+ *** - Layout optimized for readability and user engagement.
+ ***
+ *** Notes:
+ *** - The page structure emphasizes user accessibility and clean navigation options.
+ *** - Consider adding responsive design adjustments for optimal viewing on smaller screens.
+ ***
  */
 
 import { useNavigate } from "react-router-dom";

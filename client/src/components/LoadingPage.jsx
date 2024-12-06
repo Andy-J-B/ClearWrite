@@ -1,7 +1,35 @@
 /*
  *** LoadingPage.jsx
  ***
- *** Description : contains the LoadingPage of the application
+ *** Description: Displays a loading screen with a progress bar while API requests are being sent.
+ ***              Allows users to cancel the process and return to the homepage.
+ ***
+ *** Components:
+ *** - LoadingPage: A full-page component providing loading feedback with a cancel option.
+ ***
+ *** Features:
+ *** - Progress Bar: Dynamically updates to reflect loading progress using the `ProgressContext`.
+ *** - Cancel Button: Lets users abort the loading process and navigate back to the home page.
+ ***
+ *** Functions:
+ *** - handleCancel: Aborts ongoing API requests via `AbortControllerContext` and redirects to the homepage.
+ ***
+ *** Styling:
+ *** - Custom styles defined in `LoadingPage.css`.
+ *** - Includes a visually appealing progress bar and cancel button with hover effects.
+ ***
+ *** Hooks:
+ *** - useProgress: Accesses the current progress state from `ProgressContext`.
+ *** - useNavigate: Handles navigation using React Router.
+ *** - useAbortController: Manages API request abortion using an `AbortController` reference.
+ ***
+ *** Icons:
+ *** - FaTimes: Used for the cancel button icon, providing a clear visual cue for cancellation.
+ ***
+ *** Notes:
+ *** - Ensure `ProgressContext` and `AbortControllerContext` are properly implemented and wrap the app.
+ *** - Progress is calculated as a percentage of 6 API features being loaded.
+ ***
  */
 
 // Import all necessary files

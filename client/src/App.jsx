@@ -31,7 +31,6 @@
  ***
  */
 
-import React from "react";
 import {
   Routes, // Container for all route definitions
   Route, // Defines individual routes

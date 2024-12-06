@@ -2,25 +2,45 @@
  *** FAQ.jsx
  ***
  *** Description:
- *** This component serves as the Frequently Asked Questions (FAQ) page.
+ *** This component serves as the Frequently Asked Questions (FAQ) page for ClearWrite.
+ *** It provides users with key information about ClearWrite's features, usage, and privacy policies.
+ *** The page includes images, step-by-step guides, and a contact section for further assistance.
  ***
  *** Features:
- *** - Displays key questions and answers about ClearWrite's features, usage, and privacy policies.
- *** - Includes visual aids (images) for better understanding of key features.
- *** - Provides a step-by-step guide to help users get started.
- *** - Includes a reusable ContactSection component for further assistance.
- *** - Allows toggling between Light and Dark mode.
- *** - Incorporates navigation to other sections of the app.
+ *** - Displays key questions and answers about ClearWrite, including features, usage, and privacy.
+ *** - Includes visual aids (images) for better understanding of key features and usage instructions.
+ *** - Provides a step-by-step guide to help users get started with ClearWrite.
+ *** - Includes a reusable `ContactSection` component for users seeking additional assistance.
+ *** - Allows toggling between Light and Dark modes.
+ *** - Provides navigation links to other sections of the app, including the Home page.
+ ***
+ *** Components:
+ *** - `ContactSection`: A reusable component that provides contact information for user inquiries.
+ *** - `Navbar`: The navigation bar that allows users to navigate between pages.
+ ***
+ *** Key Functions:
+ *** - The page includes various questions such as "What is ClearWrite?", "How do I get started?", and more.
+ *** - Each question has corresponding answers and visual aids (images).
+ *** - Users are provided with step-by-step guides, including how to use ClearWrite and its features.
+ ***
+ *** Styling:
+ *** - The FAQ page is styled using the CSS file `Homepage.css`, ensuring consistency across the app.
+ *** - Images are loaded lazily to optimize page loading times.
+ ***
+ *** Notes:
+ *** - The FAQ page is part of the app’s informative section, providing essential information to users.
+ *** - The page is structured to ensure easy navigation and clarity of information.
+ *** - Ensure that images like `faqOverview`, `faqGettingStarted`, and `faqFeatures` are optimized for fast loading.
+ ***
  */
 
 import React from "react"; // Import React to create the FAQ component
-import { useNavigate } from "react-router-dom"; // Import navigation hook for routing
 import "../css/Homepage.css"; // Import CSS for styling
-import { FaArrowLeft, FaSun, FaMoon } from "react-icons/fa"; // Import icons for UI enhancements
 import faqOverview from "../assets/image/faq-clearwrite-overview.png"; // Import image for FAQ section
 import faqGettingStarted from "../assets/image/faq-getting-started.png"; // Import image for "Getting Started" section
 import faqFeatures from "../assets/image/faq-features.png"; // Import image for features section
 import ContactSection from "./ContactSection"; // Import the Contact Section component
+import { Navbar } from "./Navbar";
 
 const FAQ = () => {
   return (

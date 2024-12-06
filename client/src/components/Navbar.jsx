@@ -1,7 +1,32 @@
 /*
  *** Navbar.jsx
  ***
- *** Description : Contains the navbar of the application
+ *** Description: Defines a responsive and functional navigation bar for the application,
+ ***              incorporating navigation buttons, a dark mode toggle, and a back button.
+ ***
+ *** Components:
+ *** - Navbar: The main navigation bar component containing links, a back button, and a dark mode toggle.
+ ***
+ *** Features:
+ *** - Back Button: Allows users to navigate to the previous page.
+ *** - Navigation Links: Provides buttons to access the Home, About Us, and FAQ pages.
+ *** - Day-Night Toggle: Switches between light and dark themes dynamically using the `DarkModeContext`.
+ ***
+ *** Functions:
+ *** - toggleDarkMode: Toggles the dark mode and updates the `isDarkMode` state.
+ ***
+ *** Styling:
+ *** - Custom styles imported from `Homepage.css`.
+ *** - Utilizes Bootstrap for consistent layout and responsiveness.
+ ***
+ *** Hooks:
+ *** - useNavigate: Manages navigation between pages using React Router.
+ *** - useDarkMode: Accesses and modifies the application's dark mode state via context.
+ ***
+ *** Notes:
+ *** - Ensure that `DarkModeContext` is implemented and wraps the app to provide `isDarkMode` and `setIsDarkMode`.
+ *** - React-icons (`FaArrowLeft`, `FaSun`, `FaMoon`) provide visual indicators for navigation and theme toggling.
+ ***
  */
 
 // Import all necessary files

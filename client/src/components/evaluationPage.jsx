@@ -32,9 +32,10 @@
  * - Ensure `evaluationData` is passed correctly through navigation state.
  */
 
-import React, { useState } from "react";
-import evaluationData from "./evaluationData-new.json";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Navbar } from "./Navbar";
+import "../css/Evaluationpage.css";
 
 function EvaluationPage() {
   const location = useLocation();

@@ -3,14 +3,36 @@
  ***
  *** Description:
  *** This component represents the main landing page where users can input their essays for evaluation.
+ *** It includes functionality for essay submission, validation, API requests, and progress tracking.
+ *** The page also integrates a navigation bar and light/dark mode toggling.
  ***
  *** Features:
  *** - Provides a text area for users to input their essays.
- *** - Validates input for minimum and maximum character limits.
- *** - Sends essays to multiple APIs for analysis (grammar correction, readability, etc.).
- *** - Displays a progress modal for incomplete input.
- *** - Implements Light/Dark mode toggling and navigation links.
- *** - Progress updates are managed via a ProgressContext.
+ *** - Validates input for minimum and maximum character limits (50 to 4000 characters).
+ *** - Sends essays to multiple APIs for analysis, such as grammar correction, readability checks, etc.
+ *** - Displays a progress modal if input doesn't meet character limits.
+ *** - Integrates light/dark mode toggling for user preference.
+ *** - Progress updates are managed via the `ProgressContext` to indicate loading progress.
+ *** - Uses `AbortController` to handle API request cancellation.
+ *** - Navigation to the loading page for API processing and then to the evaluation page with results.
+ ***
+ *** Key Functions:
+ *** - `handleSubmit`: Submits essay for analysis, triggers API requests, and manages navigation.
+ *** - `setProgress`: Updates progress based on API request status.
+ *** - `setModalShow`: Toggles visibility of the error modal if character limits are exceeded.
+ *** - `useNavigate`: Used to navigate between pages, including redirecting to the loading and evaluation pages.
+ *** - `useAbortController`: Manages cancellation of ongoing API requests when the user navigates away.
+ ***
+ *** Styling:
+ *** - The page layout and components are styled using custom CSS defined in `Homepage.css`.
+ *** - The page includes a logo image, an essay input form, and buttons styled with Bootstrap.
+ ***
+ *** Notes:
+ *** - The essay input is validated before sending requests to the APIs, ensuring proper length and formatting.
+ *** - The API requests are made sequentially, and progress is tracked via `setProgress`.
+ *** - The page uses React hooks like `useState`, `useEffect`, and context APIs for state management and navigation.
+ *** - Ensure the `ErrorModal` component is properly styled to display error messages when input validation fails.
+ ***
  */
 
 // Import all necessary files
