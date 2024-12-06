@@ -1,3 +1,36 @@
+/*
+ *** App.jsx
+ ***
+ *** Description : This is the main application component responsible for routing and page transitions.
+ ***               It utilizes React Router for navigation and React Transition Group for smooth transitions.
+ ***
+ *** Components:
+ *** - Router: Sets up the routing for the application.
+ *** - Routes: Contains all the route definitions.
+ *** - CSSTransition: Manages page transitions with animations.
+ ***
+ *** Features:
+ *** - Introductory Page: Displayed at the root path ("/").
+ *** - Home Page: Accessed at "/home".
+ *** - Loading Page: Displays progress during API interactions at "/loading".
+ *** - Evaluation Page: Shows results and feedback at "/evaluate".
+ *** - About Us Page: Provides team details and project information at "/about-us".
+ *** - FAQ Page: Answers frequently asked questions at "/FAQ".
+ ***
+ *** Styling:
+ *** - Uses Bootstrap for consistent component styling.
+ *** - Includes custom CSS for page transitions defined in `transitions.css`.
+ ***
+ *** Key Functions:
+ *** - Smooth page transitions using CSSTransition and SwitchTransition.
+ *** - Dynamic routing with React Router.
+ ***
+ *** Notes:
+ *** - The application's location is managed using the `useLocation` hook to track the current route.
+ *** - Ensure that the CSS for transitions (`transitions.css`) is properly configured for fade effects.
+ ***
+ */
+
 import React from "react";
 import {
   BrowserRouter as Router, // Used to set up the routing in the application

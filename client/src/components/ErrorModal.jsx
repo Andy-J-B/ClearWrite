@@ -1,3 +1,20 @@
+/**
+ * ErrorModal Component
+ *
+ * Description:
+ * This component represents a modal dialog that displays an error message to the user
+ * when their character count is outside the allowed range (50-4000 characters).
+ * It utilizes React-Bootstrap components for styling and functionality.
+ *
+ * Props:
+ * - `props`: Contains properties passed down to the modal, such as `onHide` to handle the close action.
+ *
+ * Features:
+ * - Displays an error title and message to inform users of the character count limit.
+ * - Provides a close button to dismiss the modal.
+ * - Centers the modal on the screen.
+ */
+
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../css/ErrorModal.css";
