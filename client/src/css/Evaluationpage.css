@@ -18,6 +18,62 @@ body.dark-mode {
   color: #ffffff;
 }
 
+body.dark-mode .page-container {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .square {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .square-title {
+  background-color: #121212;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .square-title-hover {
+  background-color: #414141;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .list-item {
+  background-color: white;
+  color: black;
+}
+
+body.dark-mode .right-column {
+  background-color: black;
+  color: white;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .original-text {
+  background-color: black;
+  color: white;
+  border: 2px solid #ffffff;
+}
+
+body.dark-mode .score-label {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode .score-value {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode .note {
+  background-color: black;
+  color: white;
+}
+
 #eval-page {
   display: flex;
   flex-direction: column;
@@ -189,9 +245,10 @@ body.dark-mode
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
   gap: 20px;
-  background-color: #f0f0f0;
+  background-color: #dcf9ff;
   overflow-y: auto;
   border-radius: 10px; /* Optional: Adds rounded corners */
+  border: 2px solid #03045e;
 }
 
 .left-column {
@@ -215,6 +272,7 @@ body.dark-mode
   position: sticky; /* Makes it sticky */
   top: 0; /* Sticks to the top of the viewport when scrolling */
   z-index: 10; /* Ensure it stays above other elements while scrolling */
+  border: 2px solid #03045e;
 }
 
 .square {
@@ -225,10 +283,7 @@ body.dark-mode
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
   cursor: pointer;
-}
-
-.square:hover {
-  background-color: #f0f0f0; /* Slight hover effect */
+  border: 1px solid #03045e;
 }
 
 .square-title {
@@ -237,15 +292,16 @@ body.dark-mode
   margin-bottom: 10px;
   color: #333;
   text-align: center;
-  background-color: #e0e0e0;
+  background-color: #e1f4ff;
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #03045e;
 }
 
 .square-title-hover {
-  background-color: #333;
-  color: #fff;
+  background-color: #cde3ff;
+  color: #000000;
 }
 
 .header {
@@ -290,7 +346,7 @@ body.dark-mode
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: inherit;
   transition: background-color 0.3s ease; /* Smooth transition for color change */
 }
 
@@ -327,6 +383,10 @@ body.dark-mode
 .suggestion-item {
   font-size: 14px;
   margin-bottom: 5px;
+}
+
+body.dark-mode .suggestion-item {
+  color: black;
 }
 
 .empty-text {
@@ -388,17 +448,6 @@ body.dark-mode
   color: #dc3545; /* Red for negative tone */
 }
 
-.original-text {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  color: #333;
-  font-size: 16px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .highlight {
   color: #fff; /* White text for better contrast */
   background-color: #ff0000; /* Red background for highlight */
@@ -407,24 +456,13 @@ body.dark-mode
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.original-text {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  color: #333;
-  font-size: 16px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .note {
   position: absolute;
   bottom: 10px;
   right: 10px;
   font-size: 14px;
-  color: #888;
-  background-color: #fff;
+  color: #000000;
+  background-color: #dff7ff;
   padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

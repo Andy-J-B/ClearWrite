@@ -47,7 +47,7 @@
 /* Progress Bar */
 .progress-bar {
   width: 80%;
-  height: 8px;
+  height: 10px;
   background: #ffffff; /* Darker grey */
   border-radius: 4px;
   overflow: hidden;
@@ -68,4 +68,30 @@
 .progress-text {
   font-size: 0.9rem;
   color: #000000;
+}
+
+body.dark-mode .loading-page {
+  background-color: transparent;
+  color: white;
+}
+
+body.dark-mode .loading-page .loading-subtext {
+  color: white;
+}
+
+body.dark-mode .loading-page .progress-text {
+  color: white;
+}
+
+body.dark-mode .loading-page .progress-bar-fill {
+  background: #0064cf;
+  border: 0.1px solid #ffffff;
+}
+
+body.dark-mode .cancel-container {
+  color: red;
+}
+
+body.dark-mode .cancel-container svg {
+  color: red;
 }

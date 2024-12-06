@@ -218,7 +218,7 @@ body.dark-mode .evaluate-button {
 }
 
 body.dark-mode .evaluate-button:hover {
-  background-color: transparent;
+  background-color: white;
   transform: translateY(-5px);
   border: 1px solid black;
   color: black;
@@ -272,38 +272,61 @@ body.dark-mode .logo {
   color: #03045e;
 }
 
+body.dark-mode .aboutpage-container .section-description {
+  /* Style for descriptive text in sections */
+
+  color: white;
+}
+
+body.dark-mode .contact-section p {
+  color: white;
+}
+
 /* List container styles */
 .aboutpage-container .how-to-use {
   width: 100%;
 }
-
-/* Styling the list for how-to-use instructions */
-.aboutpage-container .how-to-use-list {
-  list-style: none; /* Remove default list styling */
+/* HowToUseList.css */
+.how-to-use-list {
+  list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
+  counter-reset: list-counter;
 }
 
-/* Style for individual list items */
-.aboutpage-container .how-to-use-list > li {
+.how-to-use-list li {
+  position: relative;
   margin-bottom: 20px;
-  display: flex; /* Align items horizontally */
-  align-items: flex-start;
+  padding-left: 40px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #333;
 }
 
-/* Custom bullet style for list items */
-.aboutpage-container .how-to-use-list > li::before {
-  content: "•"; /* Use bullet point */
-  color: #ff6b6b; /* Accent color */
+.how-to-use-list li:before {
+  content: counter(list-counter) ".";
+  counter-increment: list-counter;
+  position: absolute;
+  left: 0;
+  top: 0;
   font-size: 1.5rem;
-  line-height: 1;
-  margin-right: 10px;
-  margin-top: 5px;
+  color: #03045e;
+  font-weight: bold;
 }
 
-/* Style for emphasized text in lists */
-.aboutpage-container .how-to-use-list strong {
-  color: #03045e; /* Adapt to theme */
+.how-to-use-list strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #03045e;
+  margin-bottom: 5px;
+}
+
+body.dark-mode .how-to-use-list li::before {
+  color: white;
+}
+
+body.dark-mode .how-to-use-list li strong {
+  color: white;
 }
 
 /* Nested list styling */
@@ -668,6 +691,7 @@ body.dark-mode
 .team-emails a:hover {
   text-decoration: underline;
 }
+
 /* Cancel icon styling */
 /* Cancel icon styling */
 .cancel-icon {
@@ -718,4 +742,17 @@ h1 {
   font-size: 1.5rem;
   color: #03045e;
   margin-bottom: 10px;
+}
+
+.faq-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .faq-item {
+  background-color: black;
 }

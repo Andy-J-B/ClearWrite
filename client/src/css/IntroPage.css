@@ -39,26 +39,26 @@
 }
 
 .btn-primary {
-  background-color: #03045e;
-  color: white;
+  background-color: #000; /* Black background */
+  color: white; /* White text */
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #caf0f8;
-  color: #03045e;
-  border: 1px solid #03045e;
+  background-color: #333; /* Dark gray hover effect */
+  color: white; /* Consistent text color */
+  border: 1px solid #333;
 }
 
 .btn-secondary {
-  background-color: #caf0f8;
-  color: #03045e;
-  border: 1px solid #03045e;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  border: 1px solid #000;
 }
 
 .btn-secondary:hover {
-  background-color: #03045e;
-  color: white;
+  background-color: #000; /* Black background on hover */
+  color: white; /* White text on hover */
   border: none;
 }
 
